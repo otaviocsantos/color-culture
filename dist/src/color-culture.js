@@ -115,5 +115,5 @@ class ColorCulture {
 /**
  * this module version
  */
-ColorCulture.version = '1.0.0';
+ColorCulture.version = '1.0.1';
 exports.ColorCulture = ColorCulture;

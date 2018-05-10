@@ -5,42 +5,40 @@ Color naming and conversion library, with automatic path finding between color m
 Color Culture makes color conversion easier by automatically finding a way to convert from one color model to another.
 
 To create on color you just need to select the desired color model:
-<code>
+```ts
 
 import { RGB } from 'rgb';
 
 let colorA: RGB = new RGB(0, 0, 255); //blue
-</code>
+```
 
 To convert to another color model just call the function connected to the desired color model:
-<code>
+```ts
 
 import { HSL } from 'hsl';
 
 let colorB:HSL = colorA.hsl();
-</code>
-
-
+```
 
 ## Installation
 
 npm i color-culture --save
 
 ## Usage
-<code>
+```ts
 import { ColorCulture } from 'color-culture';
-</code>
+```
 
 Instantiate the main class:
-<code>
+```ts
 
 const cc = new ColorCulture();
-</code>
+```
 
 ### Conversion
 
 Basic color conversion is provided to RGB, HSL and XYZ.
-<pre>
+```ts
 // import models
 import { RGB } from 'rgb';
 import { HSL } from 'hsl';
@@ -50,14 +48,14 @@ const cc = new ColorCulture();
 
 let colorA: RGB = new RGB(0, 0, 255); //blue
 let colorB: HSL = colorA.hsl();
-</pre>
+```
 
 ### How to work with new color models
 
 In case you have a new color model there's no need to create conversion functions to all others color models, Color Culture will automatically find the shortest path between models. 
 
 Conversion work as long as there's at least **one** function converting **to** **RGB** or **HSL**, and **one** function converting **from** **RGB** or **HSL** to your new model
-<pre>
+```ts
 // import color culture
 import { ColorCulture } from 'color-culture';
 // import color class to extend it
@@ -89,8 +87,13 @@ Converter.register(HIP.model, RGB.model,
 let colorA: HIP = new HIP(...hipothetical values);
 let colorB: HSL = colorA.hsl(); // color culture will convert colorA->RGB->HSL
 
-</pre>
+```
 
-### Test 
+## Examples
+Examples can be found in __examples__ folder, remember to execute __npm install__ in order to install all packages needed.
+
+## Test 
+To run tests execute in a terminal:
 ```sh
 npm run test
+```

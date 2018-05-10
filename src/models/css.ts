@@ -1,5 +1,4 @@
 import { Color } from './color';
-import { CSSCulture } from '../cultures/css-culture';
 /**
  * CSS Color Model
  */
