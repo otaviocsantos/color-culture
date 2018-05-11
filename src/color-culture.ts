@@ -125,18 +125,11 @@ export class ColorCulture {
       Convert.register(CSS.model, RGB.model,
         function (css: any): RGB {
           const hexVal = (css as CSS).hexValue;
-          const result = new RGB(parseInt(hexVal.substr(0,2),16), parseInt(hexVal.substr(2,2),16), parseInt(hexVal.substr(4,2),16) );
+          const result = new RGB(parseInt(hexVal.substr(0, 2), 16), parseInt(hexVal.substr(2, 2), 16), parseInt(hexVal.substr(4, 2), 16));
           return result;
         }
       );
     }
-
-
-
-
-
-
-
 
   }
 

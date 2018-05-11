@@ -85,6 +85,9 @@
                     id="xs-classes-links"
                 >
                     <li class="link">
+                        <a href="classes/CSS.html" data-type="entity-link">CSS</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/Color.html" data-type="entity-link">Color</a>
                     </li>
                     <li class="link">
@@ -193,6 +196,9 @@
                     id="classes-links"
 >
                     <li class="link">
+                        <a href="classes/CSS.html" data-type="entity-link">CSS</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/Color.html" data-type="entity-link">Color</a>
                     </li>
                     <li class="link">
@@ -238,56 +244,44 @@
 <h1 id="color-culture">Color Culture</h1>
 <p>Color naming and conversion library, with automatic path finding between color models.</p>
 <p>Color Culture makes color conversion easier by automatically finding a way to convert from one color model to another.</p>
-<p>To create on color you just need to select the desired color model:
-<code></p>
-<p>import { RGB } from &#39;rgb&#39;;</p>
-<p>let colorA: RGB = new RGB(0, 0, 255); //blue
-</code></p>
-<p>To convert to another color model just call the function connected to the desired color model:
-<code></p>
-<p>import { HSL } from &#39;hsl&#39;;</p>
-<p>let colorB:HSL = colorA.hsl();
-</code></p>
-<h2 id="installation">Installation</h2>
+<p>To create on color you just need to select the desired color model:</p>
+<pre class="line-numbers"><code class="language-ts">
+import { RGB } from &#39;rgb&#39;;
+
+let colorA: RGB = new RGB(0, 0, 255); //blue</code></pre><p>To convert to another color model just call the function connected to the desired color model:</p>
+<pre class="line-numbers"><code class="language-ts">
+import { HSL } from &#39;hsl&#39;;
+
+let colorB:HSL = colorA.hsl();</code></pre><h2 id="installation">Installation</h2>
 <p>npm i color-culture --save</p>
 <h2 id="usage">Usage</h2>
-<p><code>
-import { ColorCulture } from &#39;color-culture&#39;;
-</code></p>
-<p>Instantiate the main class:
-<code></p>
-<p>const cc = new ColorCulture();
-</code></p>
-<h3 id="conversion">Conversion</h3>
+<pre class="line-numbers"><code class="language-ts">import { ColorCulture } from &#39;color-culture&#39;;</code></pre><p>Instantiate the main class:</p>
+<pre class="line-numbers"><code class="language-ts">
+const cc = new ColorCulture();</code></pre><h3 id="conversion">Conversion</h3>
 <p>Basic color conversion is provided to RGB, HSL and XYZ.</p>
-<pre>
-// import models
-import { RGB } from 'rgb';
-import { HSL } from 'hsl';
+<pre class="line-numbers"><code class="language-ts">// import models
+import { RGB } from &#39;rgb&#39;;
+import { HSL } from &#39;hsl&#39;;
 
 // instantiate Color Culture
 const cc = new ColorCulture();
 
 let colorA: RGB = new RGB(0, 0, 255); //blue
-let colorB: HSL = colorA.hsl();
-</pre>
-
-<h3 id="how-to-work-with-new-color-models">How to work with new color models</h3>
+let colorB: HSL = colorA.hsl();</code></pre><h3 id="how-to-work-with-new-color-models">How to work with new color models</h3>
 <p>In case you have a new color model there&#39;s no need to create conversion functions to all others color models, Color Culture will automatically find the shortest path between models. </p>
 <p>Conversion work as long as there&#39;s at least <strong>one</strong> function converting <strong>to</strong> <strong>RGB</strong> or <strong>HSL</strong>, and <strong>one</strong> function converting <strong>from</strong> <strong>RGB</strong> or <strong>HSL</strong> to your new model</p>
-<pre>
-// import color culture
-import { ColorCulture } from 'color-culture';
+<pre class="line-numbers"><code class="language-ts">// import color culture
+import { ColorCulture } from &#39;color-culture&#39;;
 // import color class to extend it
-import { Color } from 'color';
+import { Color } from &#39;color&#39;;
 
 // import converter to register your converting functions
-import { Converter } from 'converter';
+import { Converter } from &#39;converter&#39;;
 
 // import models
-import { RGB } from 'rgb';
-import { HSL } from 'hsl';
-import { Hip } from 'hipothetical-colormodel'; // your hipothetical new color model
+import { RGB } from &#39;rgb&#39;;
+import { HSL } from &#39;hsl&#39;;
+import { Hip } from &#39;hipothetical-colormodel&#39;; // your hipothetical new color model
 
 
 // instantiate Color Culture
@@ -295,7 +289,7 @@ const cc = new ColorCulture();
 
 // register your converting functions
 // from RGB to your color model
-Converter.register("RGB", "HIP", Converter.register(RGB.model, HIP.model,
+Converter.register(&quot;RGB&quot;, &quot;HIP&quot;, Converter.register(RGB.model, HIP.model,
       function (value: any): HIP { ... })
 
 // from your color model to RGB
@@ -305,9 +299,12 @@ Converter.register(HIP.model, RGB.model,
 //now you can convert from your color model to and from any other color model registered
 //without the need to create functions to every color model
 let colorA: HIP = new HIP(...hipothetical values);
-let colorB: HSL = colorA.hsl(); // color culture will convert colorA->RGB->HSL
-
-</pre>
+let colorB: HSL = colorA.hsl(); // color culture will convert colorA-&gt;RGB-&gt;HSL
+</code></pre><h2 id="examples">Examples</h2>
+<p>Examples can be found in <strong>examples</strong> folder, remember to execute <strong>npm install</strong> in order to install all packages needed.</p>
+<h2 id="test">Test</h2>
+<p>To run tests execute in a terminal:</p>
+<pre class="line-numbers"><code class="language-sh">npm run test</code></pre>
 
 
 

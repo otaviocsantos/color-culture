@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const convert_1 = require("./convert");
 const rgb_1 = require("./models/rgb");
 const hsl_1 = require("./models/hsl");
+const css_1 = require("./models/css");
 /**
  * Color Culture, the shortest path between two colors
  */
@@ -101,6 +102,14 @@ class ColorCulture {
                 return result;
             });
         }
+        // Convert from CSS to RGB
+        if (!convert_1.Convert.has(css_1.CSS.model, rgb_1.RGB.model)) {
+            convert_1.Convert.register(css_1.CSS.model, rgb_1.RGB.model, function (css) {
+                const hexVal = css.hexValue;
+                const result = new rgb_1.RGB(parseInt(hexVal.substr(0, 2), 16), parseInt(hexVal.substr(2, 2), 16), parseInt(hexVal.substr(4, 2), 16));
+                return result;
+            });
+        }
     }
     /**
      * Convenience method, provide conversion without the need to import Converter
@@ -115,5 +124,5 @@ class ColorCulture {
 /**
  * this module version
  */
-ColorCulture.version = '1.0.1';
+ColorCulture.version = '1.0.0';
 exports.ColorCulture = ColorCulture;

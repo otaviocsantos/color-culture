@@ -251,7 +251,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>HSL</li>
+  <li>CSS</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -271,14 +271,14 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/models/hsl.ts</code>
+            <code>src/models/css.ts</code>
         </p>
 
             <p class="comment">
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>HSL Color Model</p>
+                <p>CSS Color Model</p>
 
             </p>
 
@@ -305,15 +305,16 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_h">_h</a>
+                                <a href="#_hexValue">_hexValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#_named">_named</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_l">_l</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_s">_s</a>
+                                <a href="#_value">_value</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
@@ -342,6 +343,11 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Private</span>
+                                <a href="#setNamedIndex">setNamedIndex</a>
+                            </li>
+                            <li>
                                 <a href="#toString">toString</a>
                             </li>
                             <li>
@@ -368,18 +374,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(_h: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, _s: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, _l: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+<code>constructor(val: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/models/hsl.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/models/css.ts:10</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Instantiate a new HSL color model Class</p>
+                            <div class="io-description"><p>Instantiate a new CSS color model Class</p>
 </div>
                             <div>
                                     <b>Parameters :</b>
@@ -394,10 +400,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                    <td>_h</td>
+                                                    <td>val</td>
                                                   
                                                         <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -405,39 +411,11 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>hue value, from 0 to 359</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>_s</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>saturation value, from 0 to 100</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>_l</td>
-                                                  
-                                                        <td>
-                                                                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            no
-                                                    </td>
-                                                    
-                                                        <td>
-                                                                <code><p>lightness value, from 0 to 100</p>
+                                                                <code><p>string value, as the form of 
+_named: cyan, red, black, blue, green, white, yellow, etc...
+hexadecimal: #000 | #FFFFFF
+rgb|rgba : rgb(0,127,255) , rgba(255,0,127,0.1), rgb(0%,50%,100%)
+hsl|hsla : hsl(0,0,0) , hsla(20,30,40,0.1), rgb(10%,20%,30%)</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -459,45 +437,39 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="_h"></a>
+                        <a name="_hexValue"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            _h
+                            _hexValue
                             </b>
-                            <a href="#_h"><span class="fa fa-link"></span></a>
+                            <a href="#_hexValue"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>_h:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <span class="modifier-icon fa fa-reset"></span><code>_hexValue:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>0</code>
+                            <i>Default value : </i><code>&quot;&quot;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/models/hsl.ts:9</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/models/css.ts:10</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>internal Hue value</p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -505,45 +477,35 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="_l"></a>
+                        <a name="_named"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Static</span>
                                 <span class="modifier">Private</span>
-                            _l
+                            _named
                             </b>
-                            <a href="#_l"><span class="fa fa-link"></span></a>
+                            <a href="#_named"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>_l:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <span class="modifier-icon fa fa-reset"></span><code>_named:     <code>Map&lt;string | string&gt;</code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>    <code>Map&lt;string | string&gt;</code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>0</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/models/hsl.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/models/css.ts:28</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>internal Lightness value</p>
-</div>
-                    </td>
-                </tr>
 
             </tbody>
         </table>
@@ -551,42 +513,42 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="_s"></a>
+                        <a name="_value"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            _s
+                            _value
                             </b>
-                            <a href="#_s"><span class="fa fa-link"></span></a>
+                            <a href="#_value"><span class="fa fa-link"></span></a>
                         </span>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <span class="modifier-icon fa fa-reset"></span><code>_s:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                        <span class="modifier-icon fa fa-reset"></span><code>_value:     <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>0</code>
+                            <i>Default value : </i><code>&quot;&quot;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/models/hsl.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/models/css.ts:9</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>internal Saturation value</p>
+                        <div class="io-description"><p>internal original string value</p>
 </div>
                     </td>
                 </tr>
@@ -622,12 +584,12 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&quot;HSL&quot;</code>
+                            <i>Default value : </i><code>&quot;CSS&quot;</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/models/hsl.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/models/css.ts:185</a></div>
                             </td>
                         </tr>
 
@@ -756,6 +718,46 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="setNamedIndex"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Static</span>
+                                <span class="modifier">Private</span>
+                            setNamedIndex
+                            </b>
+                            <a href="#setNamedIndex"><span class="fa fa-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                            <span class="modifier-icon fa fa-reset"></span>
+                        <code>setNamedIndex()</code>
+                    </td>
+                </tr>
+
+
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/models/css.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="toString"></a>
                         <span class="name">
                             <b>
@@ -774,7 +776,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/models/hsl.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="311" class="link-to-prism">src/models/css.ts:311</a></div>
                             </td>
                         </tr>
 
@@ -967,7 +969,7 @@ eg: color.as(<RGB>) will return an RGB object</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/models/hsl.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/models/css.ts:190</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -984,259 +986,42 @@ eg: color.as(<RGB>) will return an RGB object</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="h"></a>
-                        <span class="name"><b>h</b><a href="#h"><span class="fa fa-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>h()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/models/hsl.ts:47</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>get Hue</p>
-</div>
-
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>h(val: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/models/hsl.ts:53</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>set Hue</p>
-</div>
-
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                        <td>Type</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                        <td>val</td>
-                                                    
-                                                            <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                            </td>
-                                                    
-                                                        <td>
-                                                                no
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="s"></a>
-                        <span class="name"><b>s</b><a href="#s"><span class="fa fa-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>s()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/models/hsl.ts:60</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>get Saturation</p>
-</div>
-
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>s(val: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/models/hsl.ts:66</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>set Saturation</p>
-</div>
-
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                        <td>Type</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                        <td>val</td>
-                                                    
-                                                            <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                            </td>
-                                                    
-                                                        <td>
-                                                                no
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="l"></a>
-                        <span class="name"><b>l</b><a href="#l"><span class="fa fa-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>l()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/models/hsl.ts:73</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>get Lightness</p>
-</div>
-
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>l(val: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/models/hsl.ts:79</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>set Lightness</p>
-</div>
-
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                        <td>Type</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                        <td>val</td>
-                                                    
-                                                            <td>
-                                                                        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
-                                                            </td>
-                                                    
-                                                        <td>
-                                                                no
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>    <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
                         <a name="value"></a>
                         <span class="name"><b>value</b><a href="#value"><span class="fa fa-link"></span></a></span>
                     </td>
                 </tr>
 
-
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>value(val: )</code></span>
+                        <span class="accessor"><b>get</b><code>value()</code></span>
                     </td>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/models/hsl.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/models/css.ts:282</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Update h,s,l vals using val parameter</p>
+                                <div class="io-description"><p>get original string value</p>
+</div>
+
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>value(val: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="197" class="link-to-prism">src/models/css.ts:197</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>set string value</p>
 </div>
 
                                 <div class="io-description">
@@ -1245,6 +1030,7 @@ eg: color.as(<RGB>) will return an RGB object</p>
                                             <thead>
                                                 <tr>
                                                     <td>Name</td>
+                                                        <td>Type</td>
                                                     <td>Optional</td>
                                                 </tr>
                                             </thead>
@@ -1252,6 +1038,9 @@ eg: color.as(<RGB>) will return an RGB object</p>
                                                     <tr>
                                                         <td>val</td>
                                                     
+                                                            <td>
+                                                                        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            </td>
                                                     
                                                         <td>
                                                                 no
@@ -1269,6 +1058,39 @@ eg: color.as(<RGB>) will return an RGB object</p>
                                 </div>
                         </td>
                     </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hexValue"></a>
+                        <span class="name"><b>hexValue</b><a href="#hexValue"><span class="fa fa-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>hexValue()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="289" class="link-to-prism">src/models/css.ts:289</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>get original string value parsed as a hexadecimal value, eg: abcdef</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
             </tbody>
         </table>
 </section>
@@ -1278,102 +1100,320 @@ eg: color.as(<RGB>) will return an RGB object</p>
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Color } from &#x27;./color&#x27;;
 /**
- * HSL Color Model
+ * CSS Color Model
  */
-export class HSL extends Color {
+export class CSS extends Color {
   /**
-   * internal Hue value
+   * internal original string value
    */
-  private _h &#x3D; 0;
-  /**
-   * internal Saturation value
-   */
-  private _s &#x3D; 0;
-  /**
-   * internal Lightness value
-   */
-  private _l &#x3D; 0;
+  private _value &#x3D; &quot;&quot;;
+  private _hexValue &#x3D; &quot;&quot;;
 
   /**
-   * Instantiate a new HSL color model Class
-   * @param _h hue value, from 0 to 359
-   * @param _s saturation value, from 0 to 100
-   * @param _l lightness value, from 0 to 100
+   * Instantiate a new CSS color model Class
+   * @param val string value, as the form of 
+   * _named: cyan, red, black, blue, green, white, yellow, etc...
+   * hexadecimal: #000 | #FFFFFF
+   * rgb|rgba : rgb(0,127,255) , rgba(255,0,127,0.1), rgb(0%,50%,100%)
+   * hsl|hsla : hsl(0,0,0) , hsla(20,30,40,0.1), rgb(10%,20%,30%)
    */
-  constructor(_h: number &#x3D; 0, _s: number &#x3D; 0, _l: number &#x3D; 0) {
+  constructor(val &#x3D; &quot;#000000&quot;) {
     super();
-    this.h &#x3D; _h;
-    this.s &#x3D; _s;
-    this.l &#x3D; _l;
+    if (!CSS._named) {
+      CSS.setNamedIndex();
+    }
+    this.value &#x3D; val;
   }
+
+  private static _named: Map&lt;string, string&gt;;
+  private static setNamedIndex() {
+    CSS._named &#x3D; new Map&lt;string, string&gt;();
+    CSS._named.set(&quot;aliceblue&quot;, &quot;F0F8FF&quot;);
+    CSS._named.set(&quot;antiquewhite&quot;, &quot;FAEBD7&quot;);
+    CSS._named.set(&quot;aqua&quot;, &quot;00FFFF&quot;);
+    CSS._named.set(&quot;aquamarine&quot;, &quot;7FFFD4&quot;);
+    CSS._named.set(&quot;azure&quot;, &quot;F0FFFF&quot;);
+    CSS._named.set(&quot;beige&quot;, &quot;F5F5DC&quot;);
+    CSS._named.set(&quot;bisque&quot;, &quot;FFE4C4&quot;);
+    CSS._named.set(&quot;black&quot;, &quot;000000&quot;);
+    CSS._named.set(&quot;blanchedalmond&quot;, &quot;FFEBCD&quot;);
+    CSS._named.set(&quot;blue&quot;, &quot;0000FF&quot;);
+    CSS._named.set(&quot;blueviolet&quot;, &quot;8A2BE2&quot;);
+    CSS._named.set(&quot;brown&quot;, &quot;A52A2A&quot;);
+    CSS._named.set(&quot;burlywood&quot;, &quot;DEB887&quot;);
+    CSS._named.set(&quot;cadetblue&quot;, &quot;5F9EA0&quot;);
+    CSS._named.set(&quot;chartreuse&quot;, &quot;7FFF00&quot;);
+    CSS._named.set(&quot;chocolate&quot;, &quot;D2691E&quot;);
+    CSS._named.set(&quot;coral&quot;, &quot;FF7F50&quot;);
+    CSS._named.set(&quot;cornflowerblue&quot;, &quot;6495ED&quot;);
+    CSS._named.set(&quot;cornsilk&quot;, &quot;FFF8DC&quot;);
+    CSS._named.set(&quot;crimson&quot;, &quot;DC143C&quot;);
+    CSS._named.set(&quot;cyan&quot;, &quot;00FFFF&quot;);
+    CSS._named.set(&quot;darkblue&quot;, &quot;00008B&quot;);
+    CSS._named.set(&quot;darkcyan&quot;, &quot;008B8B&quot;);
+    CSS._named.set(&quot;darkgoldenrod&quot;, &quot;B8860B&quot;);
+    CSS._named.set(&quot;darkgray&quot;, &quot;A9A9A9&quot;);
+    CSS._named.set(&quot;darkgrey&quot;, &quot;A9A9A9&quot;);
+    CSS._named.set(&quot;darkgreen&quot;, &quot;006400&quot;);
+    CSS._named.set(&quot;darkkhaki&quot;, &quot;BDB76B&quot;);
+    CSS._named.set(&quot;darkmagenta&quot;, &quot;8B008B&quot;);
+    CSS._named.set(&quot;darkolivegreen&quot;, &quot;556B2F&quot;);
+    CSS._named.set(&quot;darkorange&quot;, &quot;FF8C00&quot;);
+    CSS._named.set(&quot;darkorchid&quot;, &quot;9932CC&quot;);
+    CSS._named.set(&quot;darkred&quot;, &quot;8B0000&quot;);
+    CSS._named.set(&quot;darksalmon&quot;, &quot;E9967A&quot;);
+    CSS._named.set(&quot;darkseagreen&quot;, &quot;8FBC8F&quot;);
+    CSS._named.set(&quot;darkslateblue&quot;, &quot;483D8B&quot;);
+    CSS._named.set(&quot;darkslategray&quot;, &quot;2F4F4F&quot;);
+    CSS._named.set(&quot;darkslategrey&quot;, &quot;2F4F4F&quot;);
+    CSS._named.set(&quot;darkturquoise&quot;, &quot;00CED1&quot;);
+    CSS._named.set(&quot;darkviolet&quot;, &quot;9400D3&quot;);
+    CSS._named.set(&quot;deeppink&quot;, &quot;FF1493&quot;);
+    CSS._named.set(&quot;deepskyblue&quot;, &quot;00BFFF&quot;);
+    CSS._named.set(&quot;dimgray&quot;, &quot;696969&quot;);
+    CSS._named.set(&quot;dimgrey&quot;, &quot;696969&quot;);
+    CSS._named.set(&quot;dodgerblue&quot;, &quot;1E90FF&quot;);
+    CSS._named.set(&quot;firebrick&quot;, &quot;B22222&quot;);
+    CSS._named.set(&quot;floralwhite&quot;, &quot;FFFAF0&quot;);
+    CSS._named.set(&quot;forestgreen&quot;, &quot;228B22&quot;);
+    CSS._named.set(&quot;fuchsia&quot;, &quot;FF00FF&quot;);
+    CSS._named.set(&quot;gainsboro&quot;, &quot;DCDCDC&quot;);
+    CSS._named.set(&quot;ghostwhite&quot;, &quot;F8F8FF&quot;);
+    CSS._named.set(&quot;gold&quot;, &quot;FFD700&quot;);
+    CSS._named.set(&quot;goldenrod&quot;, &quot;DAA520&quot;);
+    CSS._named.set(&quot;gray&quot;, &quot;808080&quot;);
+    CSS._named.set(&quot;grey&quot;, &quot;808080&quot;);
+    CSS._named.set(&quot;green&quot;, &quot;008000&quot;);
+    CSS._named.set(&quot;greenyellow&quot;, &quot;ADFF2F&quot;);
+    CSS._named.set(&quot;honeydew&quot;, &quot;F0FFF0&quot;);
+    CSS._named.set(&quot;hotpink&quot;, &quot;FF69B4&quot;);
+    CSS._named.set(&quot;indianred &quot;, &quot;CD5C5C&quot;);
+    CSS._named.set(&quot;indigo &quot;, &quot;4B0082&quot;);
+    CSS._named.set(&quot;ivory&quot;, &quot;FFFFF0&quot;);
+    CSS._named.set(&quot;khaki&quot;, &quot;F0E68C&quot;);
+    CSS._named.set(&quot;lavender&quot;, &quot;E6E6FA&quot;);
+    CSS._named.set(&quot;lavenderblush&quot;, &quot;FFF0F5&quot;);
+    CSS._named.set(&quot;lawngreen&quot;, &quot;7CFC00&quot;);
+    CSS._named.set(&quot;lemonchiffon&quot;, &quot;FFFACD&quot;);
+    CSS._named.set(&quot;lightblue&quot;, &quot;ADD8E6&quot;);
+    CSS._named.set(&quot;lightcoral&quot;, &quot;F08080&quot;);
+    CSS._named.set(&quot;lightcyan&quot;, &quot;E0FFFF&quot;);
+    CSS._named.set(&quot;lightgoldenrodyellow&quot;, &quot;FAFAD2&quot;);
+    CSS._named.set(&quot;lightgray&quot;, &quot;D3D3D3&quot;);
+    CSS._named.set(&quot;lightgrey&quot;, &quot;D3D3D3&quot;);
+    CSS._named.set(&quot;lightgreen&quot;, &quot;90EE90&quot;);
+    CSS._named.set(&quot;lightpink&quot;, &quot;FFB6C1&quot;);
+    CSS._named.set(&quot;lightsalmon&quot;, &quot;FFA07A&quot;);
+    CSS._named.set(&quot;lightseagreen&quot;, &quot;20B2AA&quot;);
+    CSS._named.set(&quot;lightskyblue&quot;, &quot;87CEFA&quot;);
+    CSS._named.set(&quot;lightslategray&quot;, &quot;778899&quot;);
+    CSS._named.set(&quot;lightslategrey&quot;, &quot;778899&quot;);
+    CSS._named.set(&quot;lightsteelblue&quot;, &quot;B0C4DE&quot;);
+    CSS._named.set(&quot;lightyellow&quot;, &quot;FFFFE0&quot;);
+    CSS._named.set(&quot;lime&quot;, &quot;00FF00&quot;);
+    CSS._named.set(&quot;limegreen&quot;, &quot;32CD32&quot;);
+    CSS._named.set(&quot;linen&quot;, &quot;FAF0E6&quot;);
+    CSS._named.set(&quot;magenta&quot;, &quot;FF00FF&quot;);
+    CSS._named.set(&quot;maroon&quot;, &quot;800000&quot;);
+    CSS._named.set(&quot;mediumaquamarine&quot;, &quot;66CDAA&quot;);
+    CSS._named.set(&quot;mediumblue&quot;, &quot;0000CD&quot;);
+    CSS._named.set(&quot;mediumorchid&quot;, &quot;BA55D3&quot;);
+    CSS._named.set(&quot;mediumpurple&quot;, &quot;9370DB&quot;);
+    CSS._named.set(&quot;mediumseagreen&quot;, &quot;3CB371&quot;);
+    CSS._named.set(&quot;mediumslateblue&quot;, &quot;7B68EE&quot;);
+    CSS._named.set(&quot;mediumspringgreen&quot;, &quot;00FA9A&quot;);
+    CSS._named.set(&quot;mediumturquoise&quot;, &quot;48D1CC&quot;);
+    CSS._named.set(&quot;mediumvioletred&quot;, &quot;C71585&quot;);
+    CSS._named.set(&quot;midnightblue&quot;, &quot;191970&quot;);
+    CSS._named.set(&quot;mintcream&quot;, &quot;F5FFFA&quot;);
+    CSS._named.set(&quot;mistyrose&quot;, &quot;FFE4E1&quot;);
+    CSS._named.set(&quot;moccasin&quot;, &quot;FFE4B5&quot;);
+    CSS._named.set(&quot;navajowhite&quot;, &quot;FFDEAD&quot;);
+    CSS._named.set(&quot;navy&quot;, &quot;000080&quot;);
+    CSS._named.set(&quot;oldlace&quot;, &quot;FDF5E6&quot;);
+    CSS._named.set(&quot;olive&quot;, &quot;808000&quot;);
+    CSS._named.set(&quot;olivedrab&quot;, &quot;6B8E23&quot;);
+    CSS._named.set(&quot;orange&quot;, &quot;FFA500&quot;);
+    CSS._named.set(&quot;orangered&quot;, &quot;FF4500&quot;);
+    CSS._named.set(&quot;orchid&quot;, &quot;DA70D6&quot;);
+    CSS._named.set(&quot;palegoldenrod&quot;, &quot;EEE8AA&quot;);
+    CSS._named.set(&quot;palegreen&quot;, &quot;98FB98&quot;);
+    CSS._named.set(&quot;paleturquoise&quot;, &quot;AFEEEE&quot;);
+    CSS._named.set(&quot;palevioletred&quot;, &quot;DB7093&quot;);
+    CSS._named.set(&quot;papayawhip&quot;, &quot;FFEFD5&quot;);
+    CSS._named.set(&quot;peachpuff&quot;, &quot;FFDAB9&quot;);
+    CSS._named.set(&quot;peru&quot;, &quot;CD853F&quot;);
+    CSS._named.set(&quot;pink&quot;, &quot;FFC0CB&quot;);
+    CSS._named.set(&quot;plum&quot;, &quot;DDA0DD&quot;);
+    CSS._named.set(&quot;powderblue&quot;, &quot;B0E0E6&quot;);
+    CSS._named.set(&quot;purple&quot;, &quot;800080&quot;);
+    CSS._named.set(&quot;rebeccapurple&quot;, &quot;663399&quot;);
+    CSS._named.set(&quot;red&quot;, &quot;FF0000&quot;);
+    CSS._named.set(&quot;rosybrown&quot;, &quot;BC8F8F&quot;);
+    CSS._named.set(&quot;royalblue&quot;, &quot;4169E1&quot;);
+    CSS._named.set(&quot;saddlebrown&quot;, &quot;8B4513&quot;);
+    CSS._named.set(&quot;salmon&quot;, &quot;FA8072&quot;);
+    CSS._named.set(&quot;sandybrown&quot;, &quot;F4A460&quot;);
+    CSS._named.set(&quot;seagreen&quot;, &quot;2E8B57&quot;);
+    CSS._named.set(&quot;seashell&quot;, &quot;FFF5EE&quot;);
+    CSS._named.set(&quot;sienna&quot;, &quot;A0522D&quot;);
+    CSS._named.set(&quot;silver&quot;, &quot;C0C0C0&quot;);
+    CSS._named.set(&quot;skyblue&quot;, &quot;87CEEB&quot;);
+    CSS._named.set(&quot;slateblue&quot;, &quot;6A5ACD&quot;);
+    CSS._named.set(&quot;slategray&quot;, &quot;708090&quot;);
+    CSS._named.set(&quot;slategrey&quot;, &quot;708090&quot;);
+    CSS._named.set(&quot;snow&quot;, &quot;FFFAFA&quot;);
+    CSS._named.set(&quot;springgreen&quot;, &quot;00FF7F&quot;);
+    CSS._named.set(&quot;steelblue&quot;, &quot;4682B4&quot;);
+    CSS._named.set(&quot;tan&quot;, &quot;D2B48C&quot;);
+    CSS._named.set(&quot;teal&quot;, &quot;008080&quot;);
+    CSS._named.set(&quot;thistle&quot;, &quot;D8BFD8&quot;);
+    CSS._named.set(&quot;tomato&quot;, &quot;FF6347&quot;);
+    CSS._named.set(&quot;turquoise&quot;, &quot;40E0D0&quot;);
+    CSS._named.set(&quot;violet&quot;, &quot;EE82EE&quot;);
+    CSS._named.set(&quot;wheat&quot;, &quot;F5DEB3&quot;);
+    CSS._named.set(&quot;white&quot;, &quot;FFFFFF&quot;);
+    CSS._named.set(&quot;whitesmoke&quot;, &quot;F5F5F5&quot;);
+    CSS._named.set(&quot;yellow&quot;, &quot;FFFF00&quot;);
+    CSS._named.set(&quot;yellowgreen&quot;, &quot;9ACD32&quot;);
+  }
+
 
   /**
 	 * Read only string constant used to identify this color model
 	 */
-  static readonly model: string &#x3D; &quot;HSL&quot;;
+  static readonly model: string &#x3D; &quot;CSS&quot;;
 
   /**
 	 * Returns this color type model. For example a color instance of HSL class will return HSL.model, ie &quot;HSL&quot;.
 	 */
   get signature() {
-    return HSL.model;
+    return CSS.model;
   }
 
   /**
-   * get Hue
+   * set string value
    */
-  get h() {
-    return this._h;
-  }
-  /**
-   * set Hue
-   */
-  set h(val: number) {
-    this._h &#x3D; Math.round(val);
+  set value(val: any) {
+    if (val &#x3D;&#x3D; undefined || val &#x3D;&#x3D; null)
+      return;
+
+    if (typeof val &#x3D;&#x3D;&#x3D; &quot;string&quot;) {
+      this._value &#x3D; val.toLowerCase();
+
+      //check for #hex
+      if (this._value.substr(0, 1) &#x3D;&#x3D; &quot;#&quot;) {
+        this._hexValue &#x3D; this._value.substr(1);
+      }
+      //check for rgb/rgba
+      else if (this._value.substr(0, 3) &#x3D;&#x3D; &quot;rgb&quot;) {
+        //percentage or absolute?
+        let isPercentage &#x3D; val.indexOf(&quot;%&quot;) &gt; -1;
+
+        //check for syntax
+        let values: string[];
+        //is it , separated?
+        if (val.indexOf(&quot;,&quot;) &gt; -1) {
+
+          values &#x3D; val.split(&quot;(&quot;)[1].split(&quot;)&quot;)[0].split(&quot;,&quot;);
+        
+        } else {
+        
+          //then it must be divided by blank space
+          const isThereAlpha &#x3D; val.split(&quot;/&quot;);
+        
+          values &#x3D; val.split(&quot;(&quot;)[1].split(&quot;)&quot;)[0].split(&quot; &quot;);
+        
+          if (isThereAlpha.length &#x3D;&#x3D; 2) {
+        
+            let alp &#x3D; isThereAlpha[1].split(&quot;)&quot;)[0];
+        
+            if (!alp.endsWith(&quot;%&quot;)) {
+        
+              this.alpha &#x3D; Number(alp);
+            } else {
+        
+              this.alpha &#x3D; Number(alp.slice(0, -1)) / 100;
+            }
+          }
+        }
+
+        //all values have % or none, otherwise issue an error
+        //0 means we haven&#x27;t started checking yet
+        //1 the value has no %
+        //2 the value has a %
+        let allOrNone &#x3D; &quot;&quot;;
+        this._hexValue &#x3D; &quot;&quot;;
+        
+        for (let i &#x3D; 0; i &lt; 3; i++) {
+
+          let checkOne &#x3D; values[i].endsWith(&quot;%&quot;) ? &quot;%&quot; : &quot;-&quot;;
+          if (allOrNone &#x3D;&#x3D; &quot;&quot;) {
+            allOrNone &#x3D; checkOne;
+          } else if (allOrNone !&#x3D; checkOne) {
+            throw new Error(&quot;Don&#x27;t mix integers and percentages.&quot;);
+          }
+
+          if (checkOne &#x3D;&#x3D; &quot;%&quot;) {
+              let asNumber &#x3D; Number(values[i].slice(0, -1));
+              asNumber &#x3D; Math.round(asNumber / 100 * 255);
+              this._hexValue +&#x3D; (&quot;0&quot; + (asNumber.toString(16))).slice(-2).toUpperCase();
+          } else {
+              const asNumber &#x3D; Math.round(Number(values[i]));
+              this._hexValue +&#x3D; (&quot;0&quot; + (asNumber.toString(16))).slice(-2).toUpperCase();
+          }
+        }
+      }
+      //check for _named
+      else if (CSS._named.has(this._value)) {
+        this._hexValue &#x3D; CSS._named.get(this._value) as string;
+      }
+      else {
+        throw new Error(&quot;It wasn&#x27;t possible to parse color &quot; + this._value);
+      }
+    } else {
+      super.value &#x3D; val as Color;
+    }
   }
 
   /**
-   * get Saturation
+   * get original string value
    */
-  get s() {
-    return this._s;
-  }
-  /**
-   * set Saturation
-   */
-  set s(val: number) {
-    this._s &#x3D; Math.round(val);
+  get value() {
+    return this._value;
   }
 
   /**
-   * get Lightness
+   * get original string value parsed as a hexadecimal value, eg: abcdef
    */
-  get l() {
-    return this._l;
-  }
-  /**
-   * set Lightness
-   */
-  set l(val: number) {
-    this._l &#x3D; Math.round(val);
+  get hexValue(): string {
+    return this._hexValue;
   }
 
-  /**
-   * Update h,s,l vals using val parameter
-   */
-  set value(val: HSL) {
-    super.value &#x3D; val;
-    this.h &#x3D; val.h;
-    this.s &#x3D; val.s;
-    this.l &#x3D; val.l;
-  }
+  /*
+  function parseColor(input) {
+    if (input.substr(0,1)&#x3D;&#x3D;&quot;#&quot;) {
+	var collen&#x3D;(input.length-1)/3;
+	var fact&#x3D;[17,1,0.062272][collen-1];
+	return [
+	    Math.round(parseInt(input.substr(1,collen),16)*fact),
+	    Math.round(parseInt(input.substr(1+collen,collen),16)*fact),
+	    Math.round(parseInt(input.substr(1+2*collen,collen),16)*fact)
+	];
+    }
+    else return input.split(&quot;(&quot;)[1].split(&quot;)&quot;)[0].split(&quot;,&quot;).map(Math.round);
+}
+  */
 
   /**
    * This class representation as a string, with h,s,l vals exposed.
    */
   toString(): string {
-    return &#x60;h: ${this.h}, s: ${this.s}, l: ${this.l}&#x60;;
+    return &#x60;value: ${this.value}}&#x60;;
   }
+
+
+
 }</code></pre>
     </div>
 </div>
@@ -1408,7 +1448,7 @@ export class HSL extends Color {
 
         <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_URL = 'HSL.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CSS.html';
         </script>
 
        <script src="../js/search/search.js"></script>

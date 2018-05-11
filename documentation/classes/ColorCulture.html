@@ -85,6 +85,9 @@
                     id="xs-classes-links"
                 >
                     <li class="link">
+                        <a href="classes/CSS.html" data-type="entity-link">CSS</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/Color.html" data-type="entity-link">Color</a>
                     </li>
                     <li class="link">
@@ -192,6 +195,9 @@
             <ul class="links collapse"
                     id="classes-links"
 >
+                    <li class="link">
+                        <a href="classes/CSS.html" data-type="entity-link">CSS</a>
+                    </li>
                     <li class="link">
                         <a href="classes/Color.html" data-type="entity-link">Color</a>
                     </li>
@@ -334,7 +340,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/color-culture.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/color-culture.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -387,7 +393,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/color-culture.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/color-culture.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -429,7 +435,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">src/color-culture.ts:226</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/color-culture.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -526,11 +532,10 @@
 
     <div class="tab-pane fade tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Convert } from &#x27;./convert&#x27;;
-import { Color } from &#x27;./color&#x27;;
-import { RGB } from &#x27;./rgb&#x27;;
-import { HSL } from &#x27;./hsl&#x27;;
-// import { LAB } from &#x27;./lab&#x27;;
-// import { XYZ } from &#x27;./xyz&#x27;;
+import { Color } from &#x27;./models/color&#x27;;
+import { RGB } from &#x27;./models/rgb&#x27;;
+import { HSL } from &#x27;./models/hsl&#x27;;
+import { CSS } from &#x27;./models/css&#x27;;
 
 /**
  * Color Culture, the shortest path between two colors
@@ -593,154 +598,71 @@ export class ColorCulture {
       }
     );
 
-    // // Convert from RGB to XYZ
-    // if (!Convert.contains(RGB.model, XYZ.model)) {
-    // 	Convert.register(RGB.model, XYZ.model,
-    // 		function () {
-    // 			let fr &#x3D; this.r / 255;
-    // 			let fg &#x3D; this.g / 255;
-    // 			let fb &#x3D; this.b / 255;
+    // Convert from HSL to RGB
+    if (!Convert.has(HSL.model, RGB.model)) {
+      Convert.register(HSL.model, RGB.model,
+        function (hsl: any): RGB {
+          let fh &#x3D; hsl._h / 360;
+          let fs &#x3D; hsl._s / 100;
+          let fl &#x3D; hsl._l / 100;
+          let t1;
+          let t2;
+          let t3;
 
-    // 			// assume sRGB
-    // 			fr &#x3D; fr &gt; 0.04045 ? Math.pow(((fr + 0.055) / 1.055), 2.4) : (fr / 12.92);
-    // 			fg &#x3D; fg &gt; 0.04045 ? Math.pow(((fg + 0.055) / 1.055), 2.4) : (fg / 12.92);
-    // 			fb &#x3D; fb &gt; 0.04045 ? Math.pow(((fb + 0.055) / 1.055), 2.4) : (fb / 12.92);
+          let val;
 
-    // 			let x &#x3D; (fr * 0.4124) + (fg * 0.3576) + (fb * 0.1805);
-    // 			let y &#x3D; (fr * 0.2126) + (fg * 0.7152) + (fb * 0.0722);
-    // 			let z &#x3D; (fr * 0.0193) + (fg * 0.1192) + (fb * 0.9505);
+          if (fs &#x3D;&#x3D;&#x3D; 0) {
+            val &#x3D; fl * 255;
+            new RGB(val, val, val);
+          }
 
-    // 			return new XYZ(x * 100, y * 100, z * 100);
-    // 		}
-    // 	);
-    // }
+          if (fl &lt; 0.5) {
+            t2 &#x3D; fl * (1 + fs);
+          } else {
+            t2 &#x3D; fl + fs - fl * fs;
+          }
 
-    // // Convert from RGB to LAB
-    // if (!Convert.contains(RGB.model, LAB.model)) {
-    // 	Convert.register(RGB.model, LAB.model,
-    // 		function () {
-    // 			let xyz &#x3D; Convert.execute(this, XYZ.model);
-    // 			let x &#x3D; xyz.x;
-    // 			let y &#x3D; xyz.y;
-    // 			let z &#x3D; xyz.z;
-    // 			let l;
-    // 			let a;
-    // 			let b;
+          t1 &#x3D; 2 * fl - t2;
 
-    // 			x /&#x3D; 95.047;
-    // 			y /&#x3D; 100;
-    // 			z /&#x3D; 108.883;
+          let channel &#x3D; [0, 0, 0];
+          for (let i &#x3D; 0; i &lt; 3; i++) {
+            t3 &#x3D; fh + 1 / 3 * -(i - 1);
+            if (t3 &lt; 0) {
+              t3++;
+            }
+            if (t3 &gt; 1) {
+              t3--;
+            }
 
-    // 			x &#x3D; x &gt; 0.008856 ? Math.pow(x, 1 / 3) : (7.787 * x) + (16 / 116);
-    // 			y &#x3D; y &gt; 0.008856 ? Math.pow(y, 1 / 3) : (7.787 * y) + (16 / 116);
-    // 			z &#x3D; z &gt; 0.008856 ? Math.pow(z, 1 / 3) : (7.787 * z) + (16 / 116);
+            if (6 * t3 &lt; 1) {
+              val &#x3D; t1 + (t2 - t1) * 6 * t3;
+            } else if (2 * t3 &lt; 1) {
+              val &#x3D; t2;
+            } else if (3 * t3 &lt; 2) {
+              val &#x3D; t1 + (t2 - t1) * (2 / 3 - t3) * 6;
+            } else {
+              val &#x3D; t1;
+            }
 
-    // 			l &#x3D; (116 * y) - 16;
-    // 			a &#x3D; 500 * (x - y);
-    // 			b &#x3D; 200 * (y - z);
+            channel[i] &#x3D; val * 255;
+          }
+          const result &#x3D; new RGB(channel[0], channel[1], channel[2]);
 
-    // 			return new LAB(l, a, b);
-    // 		}
-    // 	);
-    // }
+          return result;
+        }
+      );
+    }
 
-    // // Convert from HSL to RGB
-    // if (!Convert.contains(HSL.model, RGB.model)) {
-    // 	Convert.register(HSL.model, RGB.model,
-    // 		function () {
-
-    // 			let fh &#x3D; this._h / 360;
-    // 			let fs &#x3D; this._s / 100;
-    // 			let fl &#x3D; this._l / 100;
-    // 			let t1;
-    // 			let t2;
-    // 			let t3;
-
-    // 			let val;
-
-    // 			if (fs &#x3D;&#x3D;&#x3D; 0) {
-    // 				val &#x3D; fl * 255;
-    // 				new RGB(val, val, val);
-    // 			}
-
-    // 			if (fl &lt; 0.5) {
-    // 				t2 &#x3D; fl * (1 + fs);
-    // 			} else {
-    // 				t2 &#x3D; fl + fs - fl * fs;
-    // 			}
-
-    // 			t1 &#x3D; 2 * fl - t2;
-
-    // 			let channel &#x3D; [0, 0, 0];
-    // 			for (let i &#x3D; 0; i &lt; 3; i++) {
-    // 				t3 &#x3D; fh + 1 / 3 * -(i - 1);
-    // 				if (t3 &lt; 0) {
-    // 					t3++;
-    // 				}
-    // 				if (t3 &gt; 1) {
-    // 					t3--;
-    // 				}
-
-    // 				if (6 * t3 &lt; 1) {
-    // 					val &#x3D; t1 + (t2 - t1) * 6 * t3;
-    // 				} else if (2 * t3 &lt; 1) {
-    // 					val &#x3D; t2;
-    // 				} else if (3 * t3 &lt; 2) {
-    // 					val &#x3D; t1 + (t2 - t1) * (2 / 3 - t3) * 6;
-    // 				} else {
-    // 					val &#x3D; t1;
-    // 				}
-
-    // 				channel[i] &#x3D; val * 255;
-    // 			}
-    // 			const result &#x3D; new RGB(channel[0], channel[1], channel[2]);
-
-    // 			return result;
-    // 		}
-    // 	);
-    // }
-
-
-    // // Convert from XYZ to RGB
-    // if (!Convert.contains(XYZ.model, RGB.model)) {
-    // 	Convert.register(XYZ.model, RGB.model,
-    // 		function () {
-    // 			let fx &#x3D; this.x / 100;
-    // 			let fy &#x3D; this.y / 100;
-    // 			let fz &#x3D; this.z / 100;
-    // 			let r;
-    // 			let g;
-    // 			let b;
-
-    // 			r &#x3D; (fx * 3.2406) + (fy * -1.5372) + (fz * -0.4986);
-    // 			g &#x3D; (fx * -0.9689) + (fy * 1.8758) + (fz * 0.0415);
-    // 			b &#x3D; (fx * 0.0557) + (fy * -0.2040) + (fz * 1.0570);
-
-    // 			// assume sRGB
-    // 			r &#x3D; r &gt; 0.0031308
-    // 				? ((1.055 * Math.pow(r, 1.0 / 2.4)) - 0.055)
-    // 				: r * 12.92;
-
-    // 			g &#x3D; g &gt; 0.0031308
-    // 				? ((1.055 * Math.pow(g, 1.0 / 2.4)) - 0.055)
-    // 				: g * 12.92;
-
-    // 			b &#x3D; b &gt; 0.0031308
-    // 				? ((1.055 * Math.pow(b, 1.0 / 2.4)) - 0.055)
-    // 				: b * 12.92;
-
-    // 			r &#x3D; Math.min(Math.max(0, r), 1);
-    // 			g &#x3D; Math.min(Math.max(0, g), 1);
-    // 			b &#x3D; Math.min(Math.max(0, b), 1);
-
-    // 			return new RGB(r * 255, g * 255, b * 255);
-    // 		}
-    // 	);
-    // }
-
-
-
-
+    // Convert from CSS to RGB
+    if (!Convert.has(CSS.model, RGB.model)) {
+      Convert.register(CSS.model, RGB.model,
+        function (css: any): RGB {
+          const hexVal &#x3D; (css as CSS).hexValue;
+          const result &#x3D; new RGB(parseInt(hexVal.substr(0, 2), 16), parseInt(hexVal.substr(2, 2), 16), parseInt(hexVal.substr(4, 2), 16));
+          return result;
+        }
+      );
+    }
 
   }
 

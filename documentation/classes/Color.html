@@ -85,6 +85,9 @@
                     id="xs-classes-links"
                 >
                     <li class="link">
+                        <a href="classes/CSS.html" data-type="entity-link">CSS</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/Color.html" data-type="entity-link">Color</a>
                     </li>
                     <li class="link">
@@ -193,6 +196,9 @@
                     id="classes-links"
 >
                     <li class="link">
+                        <a href="classes/CSS.html" data-type="entity-link">CSS</a>
+                    </li>
+                    <li class="link">
                         <a href="classes/Color.html" data-type="entity-link">Color</a>
                     </li>
                     <li class="link">
@@ -265,7 +271,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/color.ts</code>
+            <code>src/models/color.ts</code>
         </p>
 
             <p class="comment">
@@ -369,7 +375,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/color.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/models/color.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -416,7 +422,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/color.ts:11</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/models/color.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -458,13 +464,14 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/color.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/models/color.ts:55</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                            <div class="io-description"><p>Typescript convenience method, so conversion can be made using a class reference instead of a string: Color.as(<Color>)</p>
+                            <div class="io-description"><p>Typed conversion, returns the converted color to the model requested, 
+eg: color.as(<RGB>) will return an RGB object</p>
 </div>
 
                             <div class="io-description">
@@ -524,7 +531,7 @@
 
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/color.ts:63</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/models/color.ts:63</a></div>
                             </td>
                         </tr>
 
@@ -599,7 +606,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/color.ts:21</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/models/color.ts:20</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -621,7 +628,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/color.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/models/color.ts:27</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -681,7 +688,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/color.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/models/color.ts:34</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -715,7 +722,7 @@
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/color.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/models/color.ts:46</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -760,9 +767,8 @@
 
 
     <div class="tab-pane fade tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Convert } from &#x27;./convert&#x27;;
-import { HSL } from &#x27;./hsl&#x27;;
-import { RGB } from &#x27;./rgb&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ColorCulture } from &#x27;../color-culture&#x27;;
+import { Convert } from &#x27;../convert&#x27;;
 /**
  * Base Color class
  */
@@ -805,13 +811,14 @@ export class Color {
 
 	/**
    * Update alpha value using val parameter
-   */	
+   */
 	set value(val: Color) {
 		this.alpha &#x3D; val.alpha;
 	}
 
 	/**
-	 *  Typescript convenience method, so conversion can be made using a class reference instead of a string: Color.as(&lt;Color&gt;)
+	 *  Typed conversion, returns the converted color to the model requested, 
+	 *	eg: color.as(&lt;RGB&gt;) will return an RGB object
 	 *  @value Type to which this color will be converted, eg: color_instance.as(HSL)
 	 */
 	as&lt;T extends Color&gt;(val: new () &#x3D;&gt; T): T {
