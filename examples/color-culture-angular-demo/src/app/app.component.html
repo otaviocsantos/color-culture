@@ -1,0 +1,13 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h3>RGB</h3>
+
+<input type="number" [value]="rgb.r" (change)="rgb.r=$event.target.value;updateFromRGB()" min="0" max="255" />
+<input type="number" [value]="rgb.g" (change)="rgb.g=$event.target.value;updateFromRGB()" min="0" max="255" />
+<input type="number" [value]="rgb.b" (change)="rgb.b=$event.target.value;updateFromRGB()" min="0" max="255" />
+<div style='height: 100px; width: 100px;' #sample></div>
+<h3>HSL</h3>
+<input type="number" [value]="hsl.h" (change)="hsl.h=$event.target.value;updateFromHSL()" min="0" max="360" />
+<input type="number" [value]="hsl.s" (change)="hsl.s=$event.target.value;updateFromHSL()" min="0" max="100" />
+<input type="number" [value]="hsl.l" (change)="hsl.l=$event.target.value;updateFromHSL()" min="0" max="100" />
+
+
