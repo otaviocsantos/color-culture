@@ -51,7 +51,7 @@ export class RGB extends Color {
    * set Red channel value
    */
 	set r(val: number) {
-		this._r = val;
+		this._r = Math.round(val);
 	}
 
 	/**
@@ -64,7 +64,7 @@ export class RGB extends Color {
    * set Green channel value
    */
 	set g(val: number) {
-		this._g = val;
+		this._g = Math.round(val);
 	}
 
 	/**
@@ -77,7 +77,7 @@ export class RGB extends Color {
    * set Blue channel value
    */
 	set b(val: number) {
-		this._b = val;
+		this._b = Math.round(val);
 	}
 
 	/**

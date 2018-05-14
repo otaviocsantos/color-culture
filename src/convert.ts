@@ -71,8 +71,10 @@ export class Convert {
 			let func: Function = Convert.conversions.get(from.signature + Convert.divider + to) as Function;
 
 			let res = func.call(func, from);
-
-			return res;
+			if (res) {
+				res.alpha = from.alpha;
+				return res;
+			}
 		}
 
 		let result = from;
@@ -86,10 +88,13 @@ export class Convert {
 			for (let index in p) {
 
 				if (result.signature != p[index].id) {
-					//result = Convert.conversions[result.signature + Convert.divider + p[index].id].apply(result);
 					let func: Function = Convert.conversions.get(result.signature + Convert.divider + p[index].id) as Function;
-					return func.apply(from);
+					result = func.call(func, result);
 				}
+			}
+			if (result) {
+				result.alpha = from.alpha;
+				return result;
 			}
 		}
 		return null;

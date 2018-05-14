@@ -12,7 +12,7 @@ export class ColorCulture {
    * this module version
    */
 
-  static readonly version: string = '1.0.0';
+  static readonly version: string = '1.0.2';
   /**
     * When Color Culture is instantiated it register basic conversion functions
     */
@@ -69,6 +69,7 @@ export class ColorCulture {
     if (!Convert.has(HSL.model, RGB.model)) {
       Convert.register(HSL.model, RGB.model,
         function (hsl: any): RGB {
+          
           let fh = hsl._h / 360;
           let fs = hsl._s / 100;
           let fl = hsl._l / 100;
@@ -80,7 +81,7 @@ export class ColorCulture {
 
           if (fs === 0) {
             val = fl * 255;
-            new RGB(val, val, val);
+            return new RGB(val, val, val);
           }
 
           if (fl < 0.5) {
@@ -126,6 +127,25 @@ export class ColorCulture {
         function (css: any): RGB {
           const hexVal = (css as CSS).hexValue;
           const result = new RGB(parseInt(hexVal.substr(0, 2), 16), parseInt(hexVal.substr(2, 2), 16), parseInt(hexVal.substr(4, 2), 16));
+          return result;
+        }
+      );
+    }
+
+    // Convert from RGB to CSS 
+    if (!Convert.has(RGB.model, CSS.model)) {
+      Convert.register(RGB.model, CSS.model,
+        function (val: any): CSS {
+
+          const rgb = val as RGB;
+          let integer = ((Math.round(rgb.r) & 0xFF) << 16)
+            + ((Math.round(rgb.g) & 0xFF) << 8)
+            + (Math.round(rgb.b) & 0xFF);
+
+          let str = integer.toString(16).toUpperCase();
+          str = '000000'.substring(str.length) + str;
+          str = "#" + str;
+          const result = new CSS(str);
           return result;
         }
       );

@@ -1,4 +1,5 @@
 import { Color } from './color';
+import { HSL } from './hsl';
 /**
  * CSS Color Model
  */
@@ -15,10 +16,11 @@ export class CSS extends Color {
    * _named: cyan, red, black, blue, green, white, yellow, etc...
    * hexadecimal: #000 | #FFFFFF
    * rgb|rgba : rgb(0,127,255) , rgba(255,0,127,0.1), rgb(0%,50%,100%)
-   * hsl|hsla : hsl(0,0,0) , hsla(20,30,40,0.1), rgb(10%,20%,30%)
+   * hsl|hsla : hsl(0,0,0) , hsla(20,30,40,0.1), hsl(270,60%,70%)
    */
   constructor(val = "#000000") {
     super();
+
     if (!CSS._named) {
       CSS.setNamedIndex();
     }
@@ -203,39 +205,20 @@ export class CSS extends Color {
 
       //check for #hex
       if (this._value.substr(0, 1) == "#") {
-        this._hexValue = this._value.substr(1);
+        this._hexValue = this._value.substr(1).toUpperCase();
       }
       //check for rgb/rgba
       else if (this._value.substr(0, 3) == "rgb") {
-        //percentage or absolute?
-        let isPercentage = val.indexOf("%") > -1;
 
         //check for syntax
-        let values: string[];
-        //is it , separated?
-        if (val.indexOf(",") > -1) {
+        let values: string[] = this.extractValues(val);
+        
+        if (values.length > 3) {
+          this.parseAlpha(values.pop() as string);
+        }
 
-          values = val.split("(")[1].split(")")[0].split(",");
-        
-        } else {
-        
-          //then it must be divided by blank space
-          const isThereAlpha = val.split("/");
-        
-          values = val.split("(")[1].split(")")[0].split(" ");
-        
-          if (isThereAlpha.length == 2) {
-        
-            let alp = isThereAlpha[1].split(")")[0];
-        
-            if (!alp.endsWith("%")) {
-        
-              this.alpha = Number(alp);
-            } else {
-        
-              this.alpha = Number(alp.slice(0, -1)) / 100;
-            }
-          }
+        if (values.length < 3) {
+          throw new Error("Invalid value, an HSL model should have at least three parameters");
         }
 
         //all values have % or none, otherwise issue an error
@@ -244,7 +227,7 @@ export class CSS extends Color {
         //2 the value has a %
         let allOrNone = "";
         this._hexValue = "";
-        
+
         for (let i = 0; i < 3; i++) {
 
           let checkOne = values[i].endsWith("%") ? "%" : "-";
@@ -255,18 +238,76 @@ export class CSS extends Color {
           }
 
           if (checkOne == "%") {
-              let asNumber = Number(values[i].slice(0, -1));
-              asNumber = Math.round(asNumber / 100 * 255);
-              this._hexValue += ("0" + (asNumber.toString(16))).slice(-2).toUpperCase();
+            let asNumber = Number(values[i].slice(0, -1));
+            asNumber = Math.round(asNumber / 100 * 255);
+            this._hexValue += ("0" + (asNumber.toString(16))).slice(-2).toUpperCase();
           } else {
-              const asNumber = Math.round(Number(values[i]));
-              this._hexValue += ("0" + (asNumber.toString(16))).slice(-2).toUpperCase();
+            const asNumber = Math.round(Number(values[i]));
+            this._hexValue += ("0" + (asNumber.toString(16))).slice(-2).toUpperCase();
           }
         }
       }
       //check for _named
       else if (CSS._named.has(this._value)) {
         this._hexValue = CSS._named.get(this._value) as string;
+
+      } else if (this._value.substr(0, 3) == "hsl") {
+        
+        //check for syntax
+        let values: string[] = this.extractValues(val);
+        
+        if (values.length > 3) {
+          this.parseAlpha(values.pop() as string);
+        }
+
+        if (values.length < 3) {
+          throw new Error("Invalid value, an HSL model should have at least three parameters");
+        }
+
+        let hue = values[0];
+        let sat = values[1];
+        let lgt = values[2];
+        let h: number, s, l;
+        if (hue.endsWith("deg")) {
+          //exclude "deg" from end of string and "rotate around" 360 to shed exceeding turns
+          h = Number(hue.slice(0, -3)) % 360;
+          if (h < 0) {
+            h = 360 + h;
+          }
+        } else if (hue.endsWith("turn")) {
+          h = Number(hue.slice(0, -4)); //exclue "turn" from end of string
+          if (Math.abs(h) > 1) {
+            h = h - Math.floor(h); //4 - 4.75 = 0.75
+          }
+          if (h < 1) {
+            h = 1 + h;
+          }
+          h = 360 * h;
+
+        } else if (hue.endsWith("rad")) {
+          h = (Math.abs(Number(hue.slice(0, -3))) * 180 / Math.PI) % 360;
+
+        } else {
+          h = Number(hue);
+        }
+        if (Number.isNaN(h)) {
+          throw new Error("Invalid value for hue");
+        }
+        
+        s = this.roundPercentage(sat, 100);
+        
+        if (Number.isNaN(s)) {
+          throw new Error("Invalid value for saturation");
+        }
+
+        l = this.roundPercentage(lgt, 100);
+        if (Number.isNaN(l)) {
+          throw new Error("Invalid value for lightness");
+        }
+
+        const hsl = new HSL(h, s, l);
+        this._hexValue = hsl.as(CSS).hexValue;
+
       }
       else {
         throw new Error("It wasn't possible to parse color " + this._value);
@@ -274,6 +315,45 @@ export class CSS extends Color {
     } else {
       super.value = val as Color;
     }
+  }
+
+  private extractValues(val: string):string[]{
+    
+    //if it's , separated make it space separated
+    //in order to use only one method to split values
+    if (val.indexOf(",") > -1) {
+      val = val.replace(/,/g, " ");
+    }
+
+    //then it must be divided by blank spaces
+    return val.split("(")[1].split(")")[0].split(/\s+/g);
+  }
+
+  private parseAlpha(alp: string) {
+
+    if (!alp.endsWith("%")) {
+
+      this.alpha = Number(alp);
+
+    } else {
+      
+      this.alpha = Number(alp.slice(0, -1)) / 100;
+
+    }
+  }
+
+  /**
+   * return round value of calculate percentage
+   */
+  private roundPercentage(val: string, perc: number): number {
+    let result: number;
+    if (val.endsWith("%")) {
+      result = Number(val.slice(0, -1));
+      result = Math.round(result / 100 * perc);
+    } else {
+      result = Math.round(Number(val));
+    }
+    return result;
   }
 
   /**
@@ -290,28 +370,11 @@ export class CSS extends Color {
     return this._hexValue;
   }
 
-  /*
-  function parseColor(input) {
-    if (input.substr(0,1)=="#") {
-	var collen=(input.length-1)/3;
-	var fact=[17,1,0.062272][collen-1];
-	return [
-	    Math.round(parseInt(input.substr(1,collen),16)*fact),
-	    Math.round(parseInt(input.substr(1+collen,collen),16)*fact),
-	    Math.round(parseInt(input.substr(1+2*collen,collen),16)*fact)
-	];
-    }
-    else return input.split("(")[1].split(")")[0].split(",").map(Math.round);
-}
-  */
-
   /**
    * This class representation as a string, with h,s,l vals exposed.
    */
   toString(): string {
-    return `value: ${this.value}}`;
+    return `{css: ${this.hexValue}}`;
   }
-
-
 
 }
