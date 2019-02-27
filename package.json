@@ -1,17 +1,21 @@
 {
   "name": "color-culture",
-  "version": "1.0.2",
-  "description": "color naming and conversion library",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "2.0.0",
+  "description": "Library to convert, link and modify colors",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.spec.ts",
-    "build": "tsc",
-    "cover": "istanbul cover node_modules/mocha/bin/_mocha test/*.js - - -R spec",
-    "compodoc": "compodoc",
-    "generate-docs": "compodoc --theme postmark -p compodoc.json ",
-    "serve-docs": "compodoc -s compodoc.json"
+    "test": "clear; mocha -r ts-node/register tests/**/*.spec.ts",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "doc": "typedoc --mode modules --readme README.md --out ./docs/ ./src/",
+    "build": "tsc"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://otaviocsantos@github.com/otaviocsantos/color-culture.git"
@@ -20,8 +24,9 @@
     "color",
     "culture",
     "conversion",
-    "names",
-    "naming",
+    "convert",
+    "link",
+    "relate",
     "library",
     "plugin",
     "lib",
@@ -29,20 +34,24 @@
   ],
   "author": "Otavio Santos",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/otaviocsantos/color-culture/issues"
+  },
+  "homepage": "https://github.com/otaviocsantos/color-culture#readme",
   "devDependencies": {
-    "@compodoc/compodoc": "^1.1.2",
-    "@types/chai": "^4.1.3",
-    "@types/mocha": "^5.2.0",
-    "@types/node": "^10.0.4",
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.1.1",
-    "ts-node": "^6.0.2",
-    "typescript": "^2.8.3"
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^11.9.5",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "prettier": "^1.16.4",
+    "ts-node": "^8.0.2",
+    "tslint": "^5.13.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.3333"
   },
   "dependencies": {
-    "ngraph.graph": "0.0.14",
-    "ngraph.path": "^1.0.2"
+    "ngraph.graph": "0.0.17",
+    "ngraph.path": "^1.1.0"
   }
 }

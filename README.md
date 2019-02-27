@@ -25,75 +25,121 @@ let colorB:HSL = colorA.hsl();
 npm i color-culture --save
 
 ## Usage
+
+A "hello, world" style example, this will create a color black and display its value as a string in an alert window:
 ```ts
-import { ColorCulture } from 'color-culture';
+import { RGB } from 'color-culture';
+
+const color = new RGB();
+
+alert(color.rgba)
 ```
 
-Instantiate the main class:
+A color may also be created using its name as in:
 ```ts
+import { Color, RGB } from 'color-culture';
 
-const cc = new ColorCulture();
+const red = new Color('red'); // this will create a new red RGB color
+const blue = new Color('#00FF00'); // this will create a new blue RGB color
+```
+
+
+To define de values of the channels in a color use an array, this will create a green color:
+```ts
+const color = new RGB([0,250,0,1]);
+```
+
+In an RGB model the first three values represent the channles red, green and blue respectively and the last one the alpha channel.
+
+Color culture comes with predefined color models: RGB, HSL, CMYK, LAB and XYZ, to creat a CMYK color proceed like so;
+```ts
+import { CMYK } from 'color-culture';
+
+const color = new CMYK([100,100,0,0,1]); // which is blue
 ```
 
 ### Conversion
 
-Basic color conversion is provided to RGB, HSL and XYZ.
+Color Culture converts between CMYK, HSL, LAB, RGB and XYZ out of the box
 ```ts
-// import models
-import { RGB } from 'rgb';
-import { HSL } from 'hsl';
+import { CMYK, HSL, LAB, RGB } from 'color-culture';
 
-// instantiate Color Culture
-const cc = new ColorCulture();
 
-let colorA: RGB = new RGB(0, 0, 255); //blue
-let colorB: HSL = colorA.hsl();
+let colorA = new RGB([0, 0, 255, 1]);
+let colorB = colorA.hsl();
+let colorC = colorB.to(LAB.MODEL);
+let colorD = colorC.to('xyz');
 ```
 
 ### How to work with new color models
 
-In case you have a new color model there's no need to create conversion functions to all others color models, Color Culture will automatically find the shortest path between models. 
+In case you have a new color model there's no need to create conversion functions to all others color models, Color Culture uses https://www.npmjs.com/package/ngraph.path to automatically find the shortest path between models.
 
-Conversion work as long as there's at least **one** function converting **to** **RGB** or **HSL**, and **one** function converting **from** **RGB** or **HSL** to your new model
+Conversion work as long as there's at least **one** function converting **to** RGB, HSL, CMYK, LAB or XYZ and **one** function converting **from** RGB, HSL, CMYK, LAB or XYZ to your new model.
+
+First pick a call name to your model, in this example 'hip' will be used, then register functions on how to convert **to** and **from** your model:
 ```ts
-// import color culture
-import { ColorCulture } from 'color-culture';
-// import color class to extend it
-import { Color } from 'color';
+import { Base, BaseFactory, Color, HSL, Converter } from 'color-culture';
 
-// import converter to register your converting functions
-import { Converter } from 'converter';
+Converter.register('hsl', 'hip',
+      (value: Base): Base => { 
+            // code to convert, check /tests/custom_model.spec.ts in repository for the full example
+       }); 
 
-// import models
-import { RGB } from 'rgb';
-import { HSL } from 'hsl';
-import { Hip } from 'hipothetical-colormodel'; // your hipothetical new color model
+Converter.register('hip', 'hsl',
+      (value: Base): Base => { 
+            // code to convert, check /tests/custom_model.spec.ts in repository for the full example
+       }); 
+//to use
+
+let original = new CMYK([48,78,10,5,1]);
+let converted = original.to('hip');
+```
+
+## Cultures
+Are like palettes in the sense that they are groups of colors, but with cultures have two main new functionalities:
+
+1. You can link one color to another, so changing one color will affect all colors linked to it.
+
+2. You can create colors based on functions that are executed every time the culture is read.
+
+```ts
+import { Color, CMYK, RGB, Culture, Relation } from 'color-culture';
+
+// RGB yellow plus CMYK K20% should result in dark CMYK yellow
+  const darkCMKYYellow = new CMYK([0, 0, 100, 20, 1]);
+  const cmykMod = new CMYK([0, 0, 0, 20, 0]);
+
+  const culture = new Culture();
+  const source = culture.addColor(yellow);
 
 
-// instantiate Color Culture
-const cc = new ColorCulture();
+  const relation = culture.addRelation(cmykMod, source);
+  const result = relation.result;
+  alert(result.toString()) // dark yellow
+  
 
-// register your converting functions
-// from RGB to your color model
-Converter.register("RGB", "HIP", Converter.register(RGB.model, HIP.model,
-      function (value: any): HIP { ... })
+```
 
-// from your color model to RGB
-Converter.register(HIP.model, RGB.model,
-      function (value: any): RGB { ... })
+In this example if the first color is changed to blue, the color linked to it will appear as a dark blue:
 
-//now you can convert from your color model to and from any other color model registered
-//without the need to create functions to every color model
-let colorA: HIP = new HIP(...hipothetical values);
-let colorB: HSL = colorA.hsl(); // color culture will convert colorA->RGB->HSL
+```ts
+
+  source.modifier = new Color('blue');
+  alert(result.toString()) // dark blue
+  
+```
+
+This relation is a function independet of other colors and will return a shade of green every time this culture is read:
+```ts
+
+  
+  const randomGreen = culture.addRelation(() => {
+      return new HSL([150, 50, Math.random() * 75, 1]);
+  });
 
 ```
 
 ## Examples
-Examples can be found in __examples__ folder, remember to execute __npm install__ in order to install all packages needed.
+Examples can be found in the repository https://github.com/otaviocsantos/color-culture-examples, remember to execute __npm install__ in order to install all packages needed.
 
-## Test 
-To run tests execute in a terminal:
-```sh
-npm run test
-```
