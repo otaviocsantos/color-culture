@@ -141,5 +141,7 @@ This relation is a function independet of other colors and will return a shade o
 ```
 
 ## Examples
-Examples can be found in the repository https://github.com/otaviocsantos/color-culture-examples, remember to execute __npm install__ in order to install all packages needed.
+Examples can be found in:
+
+Angular application: https://github.com/otaviocsantos/color-culture-angular-example
 
