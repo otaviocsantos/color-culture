@@ -37,7 +37,7 @@
   "bugs": {
     "url": "https://github.com/otaviocsantos/color-culture/issues"
   },
-  "homepage": "https://github.com/otaviocsantos/color-culture#readme",
+  "homepage": "http://otaviosantos.com/color-culture",
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.6",

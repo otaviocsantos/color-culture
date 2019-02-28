@@ -1,28 +1,8 @@
 # Color Culture
 
-Color naming and conversion library, with automatic path finding between color models.
+Color Culture is a library to create Cultures - dynamic color palettes -, it also convert colors between models, accepts new color models defined by the user, offers out of the box modifier methods and many other functionalities.
 
-Color Culture makes color conversion easier by automatically finding a way to convert from one color model to another.
 
-To create on color you just need to select the desired color model:
-```ts
-
-import { RGB } from 'rgb';
-
-let colorA: RGB = new RGB(0, 0, 255); //blue
-```
-
-To convert to another color model just call the function connected to the desired color model:
-```ts
-
-import { HSL } from 'hsl';
-
-let colorB:HSL = colorA.hsl();
-```
-
-## Installation
-
-npm i color-culture --save
 
 ## Usage
 
@@ -139,6 +119,13 @@ This relation is a function independet of other colors and will return a shade o
   });
 
 ```
+
+
+## Installation
+
+npm i color-culture --save
+
+
 
 ## Examples
 Examples can be found in:
