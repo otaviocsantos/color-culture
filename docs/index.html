@@ -65,20 +65,7 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="color-culture">Color Culture</h1>
-				<p>Color naming and conversion library, with automatic path finding between color models.</p>
-				<p>Color Culture makes color conversion easier by automatically finding a way to convert from one color model to another.</p>
-				<p>To create on color you just need to select the desired color model:</p>
-				<pre><code class="language-ts">
-<span class="hljs-keyword">import</span> { RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">'rgb'</span>;
-
-<span class="hljs-keyword">let</span> colorA: RGB = <span class="hljs-keyword">new</span> RGB(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>); <span class="hljs-comment">//blue</span></code></pre>
-				<p>To convert to another color model just call the function connected to the desired color model:</p>
-				<pre><code class="language-ts">
-<span class="hljs-keyword">import</span> { HSL } <span class="hljs-keyword">from</span> <span class="hljs-string">'hsl'</span>;
-
-<span class="hljs-keyword">let</span> colorB:HSL = colorA.hsl();</code></pre>
-				<h2 id="installation">Installation</h2>
-				<p>npm i color-culture --save</p>
+				<p>Color Culture is a library to create Cultures - dynamic color palettes -, it also convert colors between models, accepts new color models defined by the user, offers out of the box modifier methods and many other functionalities.</p>
 				<h2 id="usage">Usage</h2>
 				<p>A &quot;hello, world&quot; style example, this will create a color black and display its value as a string in an alert window:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
@@ -153,17 +140,50 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 				<pre><code class="language-ts">
   source.modifier = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'blue'</span>);
   alert(result.toString()) <span class="hljs-comment">// dark blue</span>
+
 </code></pre>
 				<p>This relation is a function independet of other colors and will return a shade of green every time this culture is read:</p>
 				<pre><code class="language-ts">
-
   <span class="hljs-keyword">const</span> randomGreen = culture.addRelation(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HSL([<span class="hljs-number">150</span>, <span class="hljs-number">50</span>, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">75</span>, <span class="hljs-number">1</span>]);
   });
+
 </code></pre>
+				<h2 id="color-manipulation">Color Manipulation</h2>
+				<p>Every instance of the Color class contains commonly used functions for color manipulation.</p>
+				<pre><code class="language-ts">
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  <span class="hljs-built_in">console</span>.log(color.rgba);
+  <span class="hljs-built_in">console</span>.log(color.lighten().rgba);
+</code></pre>
+				<p>Modifications can also be chained.</p>
+				<pre><code class="language-ts">
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  <span class="hljs-built_in">console</span>.log(color.rgba);
+  <span class="hljs-built_in">console</span>.log(color.darken().desaturate());
+</code></pre>
+				<p>With the exception of negate a modification can be changed an amount.</p>
+				<pre><code class="language-ts">
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  <span class="hljs-built_in">console</span>.log(color.rgba); 
+  <span class="hljs-built_in">console</span>.log(color.rotate(<span class="hljs-number">120</span>).saturate(<span class="hljs-number">55</span>));
+</code></pre>
+				<p>A modification DO NOT change the original color, if you do wish to change it reassign the result of the modification like so:</p>
+				<pre><code class="language-ts">
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  color.negate(); <span class="hljs-comment">// this will NOT  change the value of the variable color</span>
+  color = color.negate(); <span class="hljs-comment">// this will update the value of the variable color</span>
+</code></pre>
+				<h2 id="installation">Installation</h2>
+				<p>npm i color-culture --save</p>
 				<h2 id="examples">Examples</h2>
 				<p>Examples can be found in:</p>
 				<p>Angular application: <a href="https://github.com/otaviocsantos/color-culture-angular-example">https://github.com/otaviocsantos/color-culture-angular-example</a></p>
+				<p>Vue application: <a href="https://github.com/otaviocsantos/color-culture-vue-example">https://github.com/otaviocsantos/color-culture-vue-example</a></p>
+				<h2 id="change-log">Change Log</h2>
+				<p>2.0.0 Ground up rewrite and streamlining.</p>
+				<p>2.0.1 Small fix in documentation and link to Angular app example.</p>
+				<p>2.0.2 Expanded documentation and link to Vue app example.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
