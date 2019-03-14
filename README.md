@@ -86,9 +86,9 @@ Are like palettes in the sense that they are groups of colors, but with cultures
 ```ts
 import { Color, CMYK, RGB, Culture, Relation } from 'color-culture';
 
-// RGB yellow plus CMYK K20% should result in dark CMYK yellow
-  const darkCMKYYellow = new CMYK([0, 0, 100, 20, 1]);
-  const cmykMod = new CMYK([0, 0, 0, 20, 0]);
+// pure yellow plus a bit of black (CMYK K30%) should result in darker CMYK yellow
+  const yellow = new CMYK([0, 0, 100, 0, 1]);
+  const cmykMod = new CMYK([0, 0, 0, 30, 0]);
 
   const culture = new Culture();
   const source = culture.addColor(yellow);
@@ -96,22 +96,22 @@ import { Color, CMYK, RGB, Culture, Relation } from 'color-culture';
 
   const relation = culture.addRelation(cmykMod, source);
   const result = relation.result;
-  alert(result.toString()) // dark yellow
+  alert(result.toString()) // darker yellow
   
 
 ```
 
-In this example if the first color is changed to blue, the color linked to it will appear as a dark blue:
+If the original color is changed from yellow to blue, the result will appear as a darker blue instead of darker yellow:
 
 ```ts
 
   source.modifier = new Color('blue');
-  alert(result.toString()) // dark blue
+  alert(result.toString()) // darker blue
 
   
 ```
 
-This relation is a function independet of other colors and will return a shade of green every time this culture is read:
+This an example of a Relation that is independet of other colors and will always return a specific shade of green:
 ```ts
   
   const randomGreen = culture.addRelation(() => {
