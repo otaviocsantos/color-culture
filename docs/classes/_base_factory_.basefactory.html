@@ -86,6 +86,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#create" class="tsd-kind-icon">create</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#createcmyk" class="tsd-kind-icon">createCMYK</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#creategeneric" class="tsd-kind-icon">create<wbr>Generic</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#createhsl" class="tsd-kind-icon">createHSL</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#createlab" class="tsd-kind-icon">createLAB</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#creatergb" class="tsd-kind-icon">createRGB</a></li>
@@ -107,7 +108,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/21ed79c/src/base-factory.ts#L4">base-factory.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/base-factory.ts#L4">base-factory.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -145,7 +146,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/21ed79c/src/base-factory.ts#L63">base-factory.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/base-factory.ts#L87">base-factory.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -173,6 +174,49 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="creategeneric" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> create<wbr>Generic</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Generic<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, model<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, doClamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_base_.base.html" class="tsd-signature-type">Base</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/base-factory.ts#L26">base-factory.ts:26</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Base using the model defined in model parameter</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> values: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel values</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> model: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;rgb&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel values</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> doClamp: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if values should be clamped, default is true</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_base_.base.html" class="tsd-signature-type">Base</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="createhsl" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> createHSL</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -182,7 +226,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/21ed79c/src/base-factory.ts#L37">base-factory.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/base-factory.ts#L61">base-factory.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -219,7 +263,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/21ed79c/src/base-factory.ts#L86">base-factory.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/base-factory.ts#L110">base-factory.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -256,7 +300,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/21ed79c/src/base-factory.ts#L24">base-factory.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/base-factory.ts#L48">base-factory.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +337,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/21ed79c/src/base-factory.ts#L109">base-factory.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/base-factory.ts#L133">base-factory.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,6 +437,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_base_factory_.basefactory.html#createcmyk" class="tsd-kind-icon">createCMYK</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_base_factory_.basefactory.html#creategeneric" class="tsd-kind-icon">create<wbr>Generic</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_base_factory_.basefactory.html#createhsl" class="tsd-kind-icon">createHSL</a>

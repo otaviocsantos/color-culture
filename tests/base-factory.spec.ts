@@ -85,6 +85,47 @@ describe('create Base tests', () => {
     expect(xyzBase.alpha).to.equal(4.5);
     expect(xyzBase.model).to.equal(XYZ.MODEL);
   });
+
+
+  it('Should create CMYK Base using generic method', () => {
+    const cmykBase = BaseFactory.createGeneric([370,-226,270, -0.0001, 4.5],CMYK.MODEL);
+    expect(cmykBase.channels.join()).to.equal([100,0,100,0,1].join());
+    expect(cmykBase.ranges.join()).to.equal([[0, 100], [0, 100], [0, 100], [0, 100], [0, 1]].join());
+    expect(cmykBase.alpha).to.equal(1);
+    expect(cmykBase.model).to.equal(CMYK.MODEL);
+  });
+
+  it('Should create HSL Base using generic method', () => {
+    const hslBase = BaseFactory.createGeneric([370,-26,27,0.5], HSL.MODEL);
+    expect(hslBase.channels.join()).to.equal([10,0,27,0.5].join());
+    expect(hslBase.ranges.join()).to.equal([[0,360],[0,100],[0,100],[0,1]].join());
+    expect(hslBase.alpha).to.equal(0.5);
+    expect(hslBase.model).to.equal(HSL.MODEL);
+  });
+
+  it('Should create LAB Base using generic method', () => {
+    const labBase = BaseFactory.createGeneric([370,-226,270,4.5], LAB.MODEL);
+    expect(labBase.channels.join()).to.equal([100,-128,128,1].join());
+    expect(labBase.ranges.join()).to.equal([[0, 100], [-128, 128], [-128, 128], [0, 1]].join());
+    expect(labBase.alpha).to.equal(1);
+    expect(labBase.model).to.equal(LAB.MODEL);
+  });
+
+  it('Should create RGB Base using generic method', () => {
+    const rgbBase = BaseFactory.createGeneric([325,-26,27,0.5], RGB.MODEL);
+    expect(rgbBase.channels.join()).to.equal([255,0,27,0.5].join());
+    expect(rgbBase.ranges.join()).to.equal([[0,255],[0,255],[0,255],[0,1]].join());
+    expect(rgbBase.alpha).to.equal(0.5);
+    expect(rgbBase.model).to.equal(RGB.MODEL);
+  });
+
+  it('Should create XYZ Base using generic method', () => {
+    const xyzBase = BaseFactory.createGeneric([370,-226, -0.0001, 4.5],XYZ.MODEL);
+    expect(xyzBase.channels.join()).to.equal([100,0,0,1].join());
+    expect(xyzBase.ranges.join()).to.equal([[0, 100], [0, 100], [0, 100], [0, 1]].join());
+    expect(xyzBase.alpha).to.equal(1);
+    expect(xyzBase.model).to.equal(XYZ.MODEL);
+  });
 });
 
 

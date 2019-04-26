@@ -16,6 +16,30 @@ export class BaseFactory {
     return result;
   }
 
+
+  /**
+   * Creates a Base using the model defined in model parameter
+   * @param values channel values
+   * @param model channel values
+   * @param doClamp if values should be clamped, default is true
+   */
+  public static createGeneric(values?:number[], model = 'rgb', doClamp = true): Base {
+    switch (model) {
+      case 'cmyk':
+        return this.createCMYK(values!=null ? values : [0, 0, 0, 0, 1], doClamp);
+      case 'hsl':
+        return this.createHSL(values!=null ? values : [0, 0, 0, 1], doClamp);
+      case 'lab':
+        return this.createLAB(values!=null ? values : [0, 0, 0, 1], doClamp);
+      case 'rgb':
+        return this.createRGB(values!=null ? values : [0, 0, 0, 1], doClamp);
+      case 'xyz':
+        return this.createXYZ(values!=null ? values : [0, 0, 0, 1], doClamp);
+    }
+    throw new Error('BaseFactory cannot recognise creation parameters');
+  }
+
+
   /**
    * Creates a Base using the RGB model
    * @param values channel values
@@ -44,8 +68,8 @@ export class BaseFactory {
           scope.ranges[i][0] > scope.channels[i]
             ? scope.ranges[i][0]
             : scope.ranges[i][1] < scope.channels[i]
-            ? scope.ranges[i][1]
-            : scope.channels[i];
+              ? scope.ranges[i][1]
+              : scope.channels[i];
       }
 
     });
@@ -68,8 +92,8 @@ export class BaseFactory {
           scope.ranges[i][0] > scope.channels[i]
             ? scope.ranges[i][0]
             : scope.ranges[i][1] < scope.channels[i]
-            ? scope.ranges[i][1]
-            : scope.channels[i];
+              ? scope.ranges[i][1]
+              : scope.channels[i];
       }
     });
     if (doClamp) {
@@ -91,8 +115,8 @@ export class BaseFactory {
           scope.ranges[i][0] > scope.channels[i]
             ? scope.ranges[i][0]
             : scope.ranges[i][1] < scope.channels[i]
-            ? scope.ranges[i][1]
-            : scope.channels[i];
+              ? scope.ranges[i][1]
+              : scope.channels[i];
       }
     });
     if (doClamp) {
@@ -114,8 +138,8 @@ export class BaseFactory {
           scope.ranges[i][0] > scope.channels[i]
             ? scope.ranges[i][0]
             : scope.ranges[i][1] < scope.channels[i]
-            ? scope.ranges[i][1]
-            : scope.channels[i];
+              ? scope.ranges[i][1]
+              : scope.channels[i];
       }
     });
     if (doClamp) {
