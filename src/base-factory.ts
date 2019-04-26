@@ -16,6 +16,11 @@ export class BaseFactory {
     return result;
   }
 
+  /**
+   * Creates a Base using the RGB model
+   * @param values channel values
+   * @param doClamp if values should be clamped, default is true
+   */
   public static createRGB(values = [0, 0, 0, 1], doClamp = true): Base {
     const result = new Base(values, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3);
     if (doClamp) {
@@ -24,11 +29,87 @@ export class BaseFactory {
     return result;
   }
 
+  /**
+   * Creates a Base using the HSL model
+   * @param values channel values
+   * @param doClamp if values should be clamped, default is true
+   */
   public static createHSL(values = [0, 0, 0, 1], doClamp = true): Base {
     const result = new Base(values, [[0, 360], [0, 100], [0, 100], [0, 1]], 'hsl', 3, (scope: Base) => {
+
       scope.channels[0] = ((scope.channels[0] % 360) + 360) % 360;
 
       for (let i = 1; i < scope.channels.length; i++) {
+        scope.channels[i] =
+          scope.ranges[i][0] > scope.channels[i]
+            ? scope.ranges[i][0]
+            : scope.ranges[i][1] < scope.channels[i]
+            ? scope.ranges[i][1]
+            : scope.channels[i];
+      }
+
+    });
+    if (doClamp) {
+      result.clamp();
+    }
+    return result;
+  }
+
+  /**
+   * Creates a Base using the CMYK model
+   * @param values channel values
+   * @param doClamp if values should be clamped, default is true
+   */
+  public static createCMYK(values = [0, 0, 0, 0, 1], doClamp = true): Base {
+    const result = new Base(values, [[0, 100], [0, 100], [0, 100], [0, 100], [0, 1]], 'cmyk', 4, (scope: Base) => {
+
+      for (let i = 0; i < scope.channels.length; i++) {
+        scope.channels[i] =
+          scope.ranges[i][0] > scope.channels[i]
+            ? scope.ranges[i][0]
+            : scope.ranges[i][1] < scope.channels[i]
+            ? scope.ranges[i][1]
+            : scope.channels[i];
+      }
+    });
+    if (doClamp) {
+      result.clamp();
+    }
+    return result;
+  }
+
+  /**
+   * Creates a Base using the LAB model
+   * @param values channel values
+   * @param doClamp if values should be clamped, default is true
+   */
+  public static createLAB(values = [0, 0, 0, 1], doClamp = true): Base {
+    const result = new Base(values, [[0, 100], [-128, 128], [-128, 128], [0, 1]], 'lab', 3, (scope: Base) => {
+
+      for (let i = 0; i < scope.channels.length; i++) {
+        scope.channels[i] =
+          scope.ranges[i][0] > scope.channels[i]
+            ? scope.ranges[i][0]
+            : scope.ranges[i][1] < scope.channels[i]
+            ? scope.ranges[i][1]
+            : scope.channels[i];
+      }
+    });
+    if (doClamp) {
+      result.clamp();
+    }
+    return result;
+  }
+
+  /**
+   * Creates a Base using the XYZ model
+   * @param values channel values
+   * @param doClamp if values should be clamped, default is true
+   */
+  public static createXYZ(values = [0, 0, 0, 1], doClamp = true): Base {
+    const result = new Base(values, [[0, 100], [0, 100], [0, 100], [0, 1]], 'xyz', 3, (scope: Base) => {
+
+      for (let i = 0; i < scope.channels.length; i++) {
         scope.channels[i] =
           scope.ranges[i][0] > scope.channels[i]
             ? scope.ranges[i][0]

@@ -85,8 +85,11 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#create" class="tsd-kind-icon">create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#createcmyk" class="tsd-kind-icon">createCMYK</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#createhsl" class="tsd-kind-icon">createHSL</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#createlab" class="tsd-kind-icon">createLAB</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#creatergb" class="tsd-kind-icon">createRGB</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_base_factory_.basefactory.html#createxyz" class="tsd-kind-icon">createXYZ</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,7 +107,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/19108ab/src/base-factory.ts#L4">base-factory.ts:4</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/ad41b6e/src/base-factory.ts#L4">base-factory.ts:4</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -133,6 +136,43 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="createcmyk" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> createCMYK</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">createCMYK<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, doClamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_base_.base.html" class="tsd-signature-type">Base</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/ad41b6e/src/base-factory.ts#L63">base-factory.ts:63</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Base using the CMYK model</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> values: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0, 0, 0, 1]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel values</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> doClamp: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if values should be clamped, default is true</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_base_.base.html" class="tsd-signature-type">Base</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="createhsl" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> createHSL</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -142,16 +182,64 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/19108ab/src/base-factory.ts#L27">base-factory.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/ad41b6e/src/base-factory.ts#L37">base-factory.ts:37</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Base using the HSL model</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> values: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0, 0, 1]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel values</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> doClamp: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if values should be clamped, default is true</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_base_.base.html" class="tsd-signature-type">Base</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="createlab" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> createLAB</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">createLAB<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, doClamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_base_.base.html" class="tsd-signature-type">Base</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/ad41b6e/src/base-factory.ts#L86">base-factory.ts:86</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Base using the LAB model</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> values: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0, 0, 1]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel values</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> doClamp: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if values should be clamped, default is true</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_base_.base.html" class="tsd-signature-type">Base</a></h4>
@@ -168,16 +256,64 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/19108ab/src/base-factory.ts#L19">base-factory.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/ad41b6e/src/base-factory.ts#L24">base-factory.ts:24</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Base using the RGB model</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> values: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0, 0, 1]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel values</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> doClamp: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if values should be clamped, default is true</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_base_.base.html" class="tsd-signature-type">Base</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="createxyz" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> createXYZ</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">createXYZ<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, doClamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_base_.base.html" class="tsd-signature-type">Base</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/ad41b6e/src/base-factory.ts#L109">base-factory.ts:109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a Base using the XYZ model</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> values: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[0, 0, 0, 1]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel values</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> doClamp: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if values should be clamped, default is true</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_base_.base.html" class="tsd-signature-type">Base</a></h4>
@@ -256,10 +392,19 @@
 								<a href="_base_factory_.basefactory.html#create" class="tsd-kind-icon">create</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_base_factory_.basefactory.html#createcmyk" class="tsd-kind-icon">createCMYK</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_base_factory_.basefactory.html#createhsl" class="tsd-kind-icon">createHSL</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_base_factory_.basefactory.html#createlab" class="tsd-kind-icon">createLAB</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_base_factory_.basefactory.html#creatergb" class="tsd-kind-icon">createRGB</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_base_factory_.basefactory.html#createxyz" class="tsd-kind-icon">createXYZ</a>
 							</li>
 						</ul>
 					</li>

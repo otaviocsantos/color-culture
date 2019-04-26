@@ -123,9 +123,9 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 				</ol>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Color, CMYK, RGB, Culture, Relation } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
 
-<span class="hljs-comment">// RGB yellow plus CMYK K20% should result in dark CMYK yellow</span>
-  <span class="hljs-keyword">const</span> darkCMKYYellow = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">20</span>, <span class="hljs-number">1</span>]);
-  <span class="hljs-keyword">const</span> cmykMod = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">20</span>, <span class="hljs-number">0</span>]);
+<span class="hljs-comment">// pure yellow plus a bit of black (CMYK K30%) should result in darker CMYK yellow</span>
+  <span class="hljs-keyword">const</span> yellow = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]);
+  <span class="hljs-keyword">const</span> cmykMod = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>]);
 
   <span class="hljs-keyword">const</span> culture = <span class="hljs-keyword">new</span> Culture();
   <span class="hljs-keyword">const</span> source = culture.addColor(yellow);
@@ -133,16 +133,16 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 
   <span class="hljs-keyword">const</span> relation = culture.addRelation(cmykMod, source);
   <span class="hljs-keyword">const</span> result = relation.result;
-  alert(result.toString()) <span class="hljs-comment">// dark yellow</span>
+  alert(result.toString()) <span class="hljs-comment">// darker yellow</span>
 
 </code></pre>
-				<p>In this example if the first color is changed to blue, the color linked to it will appear as a dark blue:</p>
+				<p>If the original color is changed from yellow to blue, the result will appear as a darker blue instead of darker yellow:</p>
 				<pre><code class="language-ts">
   source.modifier = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'blue'</span>);
-  alert(result.toString()) <span class="hljs-comment">// dark blue</span>
+  alert(result.toString()) <span class="hljs-comment">// darker blue</span>
 
 </code></pre>
-				<p>This relation is a function independet of other colors and will return a shade of green every time this culture is read:</p>
+				<p>This an example of a Relation that is independet of other colors and will always return a specific shade of green:</p>
 				<pre><code class="language-ts">
   <span class="hljs-keyword">const</span> randomGreen = culture.addRelation(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HSL([<span class="hljs-number">150</span>, <span class="hljs-number">50</span>, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">75</span>, <span class="hljs-number">1</span>]);
@@ -184,6 +184,7 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 				<p>2.0.0 Ground up rewrite and streamlining.</p>
 				<p>2.0.1 Small fix in documentation and link to Angular app example.</p>
 				<p>2.0.2 Expanded documentation and link to Vue app example.</p>
+				<p>2.1.0 Added new creation methods to BaseFactory, fixed some some creation methods in BaseFactory. Updated documentation.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
