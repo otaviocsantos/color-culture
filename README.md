@@ -241,3 +241,5 @@ Vue application: https://github.com/otaviocsantos/color-culture-vue-example
 2.1.0 Added new creation methods to BaseFactory, fixed some some creation methods in BaseFactory. Updated documentation.
 
 2.1.1 Fixed small typos in README
+
+2.1.2 Added custom color model CRUD methods to BaseFactory.
