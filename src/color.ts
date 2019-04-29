@@ -4,6 +4,7 @@ import { Converter } from './converter';
 import { Parser } from './parser';
 
 export class Color {
+
   public base: Base;
 
   /**
@@ -13,10 +14,6 @@ export class Color {
     return this.base.channels[this.base.alphaIndex];
   }
 
-  get alphaIndex(): number {
-    return this.base.alphaIndex;
-  }
-
   /**
    * set alpha channel value
    */
@@ -24,15 +21,24 @@ export class Color {
     this.base.channels[this.base.alphaIndex] = value;
   }
 
+  get alphaIndex(): number {
+    return this.base.alphaIndex;
+  }
+
   get channels(): number[] {
     return this.base.channels;
   }
+
   set channels(value: number[]) {
     if (value !== undefined) {
       this.base.channels = [...value];
     }
   }
 
+  /**
+   * Ranges of minium and maximum values channels may be set to.
+   * Ranges are used when clamping said values.
+   */
   get ranges(): any[] {
     return this.base.ranges;
   }
@@ -97,7 +103,7 @@ export class Color {
     if (value instanceof Base) {
       this.base = new Base(value.channels, value.ranges, value.model, value.alphaIndex, value.clampFunction);
     } else if (typeof value === 'string') {
-      this.base = Parser.fromString(value.toString());
+      this.base = Parser.fromString(value.toString(), clampValues);
     } else {
       this.base = new Base(value, ranges, model, alphaIndex, clampFunction);
     }
@@ -110,7 +116,7 @@ export class Color {
   public channel(model: string = 'rgb', index: number = 0, value?: number, doClamp = true) {
     const clone = this.to(model, doClamp);
 
-    if (value != undefined) {
+    if (value !== undefined) {
       clone.base.channels[index] = value;
       if (doClamp) {
         clone.base.channels[index] = Compute.clampValue(clone.channels[index], clone.ranges[index]);
@@ -154,7 +160,7 @@ export class Color {
   public h(value?: number, doClamp = true): any {
     const clone = this.to('hsl', doClamp);
 
-    if (value != undefined) {
+    if (value !== undefined) {
       clone.base.channels[0] = value;
       if (doClamp) {
         clone.base.channels[0] = Compute.clampRotation(clone.channels[0]);

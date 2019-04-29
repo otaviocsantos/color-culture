@@ -1,6 +1,6 @@
+import { Compute } from '.';
 import { Color } from './color';
 import { Relation } from './relation';
-import { Compute } from '.';
 
 /**
  * Ccollection of groups of colors indexed by names
@@ -35,10 +35,16 @@ export class Culture {
     throw new Error('Culture cant add an undefined color');
   }
 
+  /**
+   * 
+   * @param modifier A color or method that will modify
+   * @param from 
+   * @param list 
+   */
   public addRelation(modifier: any = null, from?: Relation | undefined, list = null): Relation {
     const relation = new Relation(modifier, from, list);
 
-    if (relation.from != undefined) {
+    if (relation.from !== undefined) {
       relation.fromList = this.m_items;
     }
 
@@ -62,19 +68,18 @@ export class Culture {
    * Remove item from culture
    * @param name Item id
    */
-  removeById(id: string): Relation | undefined {
-    let result = undefined;
-    if (id != '') {
-      const index = this.items.findIndex(o => o.id == id);
+  public removeById(id: string): Relation | undefined {
+    if (id !== '') {
+      const index = this.items.findIndex(o => o.id === id);
       if (index > -1) {
-        let result = this.items.splice(index, 1);
+        return this.items.splice(index, 1)[0];
       }
     }
-    return result;
+    return undefined;
   }
 
-  remove(relation: Relation): Relation | undefined {
-    if (relation == undefined) throw new Error('Culture cannot remove an undefined relation');
+  public remove(relation: Relation): Relation | undefined {
+    if (relation === undefined) { throw new Error('Culture cannot remove an undefined relation'); }
     return this.removeById(relation.id);
   }
 
@@ -82,22 +87,22 @@ export class Culture {
    * Get an item by its id
    * @param id Item id
    */
-  getById(id: string): Relation | undefined {
-    let result = undefined;
-    if (id != '') {
-      const index = this.items.findIndex(o => o.id == id);
+  public getById(id: string): Relation | undefined {
+    
+    if (id !== '') {
+      const index = this.items.findIndex(o => o.id === id);
       if (index > -1) {
-        let result = this.items[index];
+        return this.items[index];
       }
     }
-    return result;
+    return undefined;
   }
 
   /**
-  /* Pick a random color vertex of the path
-  */
-  randomColor(): Color | undefined {
-    if (this.items == undefined || this.items.length === 0) {
+   * Pick a random color vertex of the path
+   */
+  public randomColor(): Color | undefined {
+    if (this.items === undefined || this.items.length === 0) {
       throw new Error('Cannot pick random color of an empty culture');
     }
 
@@ -109,8 +114,8 @@ export class Culture {
   /**
    * Get a Color from mixing two random colors in this culture
    */
-  randomMix(): Color {
-    if (this.items == undefined || this.items.length === 0) {
+  public randomMix(): Color {
+    if (this.items === undefined || this.items.length === 0) {
       throw new Error('Cannot pick random color mix of an empty culture');
     }
     const pool = [...this.items];

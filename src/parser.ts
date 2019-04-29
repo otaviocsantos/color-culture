@@ -3,7 +3,7 @@ import { BaseFactory } from './base-factory';
 import { Named } from './named';
 
 export class Parser {
-  public static fromString(val: string): Base {
+  public static fromString(val: string, doClamp: boolean = true): Base {
     val = val.toLowerCase();
     let array;
     let alpha = 1;
@@ -20,12 +20,11 @@ export class Parser {
       const values: string[] = Parser.extractValues(val);
 
       if (values.length > 3) {
-        alpha = Parser.parseAlpha(values.pop() as string) * 1;
-        alpha = alpha < 0 ? 0 : alpha > 1 ? 1 : alpha;
+        alpha = Parser.getPercentage(values.pop() as string) * 1;
       }
 
       if (values.length < 3) {
-        throw new Error('Invalid value, an RGB model should have at least three parameters');
+        throw new Error('Parser invalid value, an RGB model should have at least three parameters');
       }
 
       // all values have % or none, otherwise issue an error
@@ -41,7 +40,7 @@ export class Parser {
         if (allOrNone === '') {
           allOrNone = checkOne;
         } else if (allOrNone !== checkOne) {
-          throw new Error("Don't mix integers and percentages.");
+          throw new Error("Parser couldn't understand mixed integers and percentages.");
         }
 
         if (checkOne === '%') {
@@ -49,7 +48,6 @@ export class Parser {
           asNumber = Math.round((asNumber / 100) * 255);
         } else {
           asNumber = Number(values[i]);
-          asNumber = asNumber < 0 ? 0 : asNumber > 255 ? 255 : asNumber;
         }
 
         array.push(asNumber);
@@ -57,7 +55,8 @@ export class Parser {
 
       array.push(alpha);
 
-      return BaseFactory.createRGB(array);
+      return BaseFactory.createRGB(array, doClamp);
+
     } else if (Named.css.has(val)) {
       return Parser.fromString(Named.css.get(val) as string);
     } else if (val.substr(0, 3) === 'hsl') {
@@ -65,11 +64,11 @@ export class Parser {
       const values: string[] = this.extractValues(val);
 
       if (values.length > 3) {
-        alpha = Parser.parseAlpha(values.pop() as string);
+        alpha = Parser.getPercentage(values.pop() as string);
       }
 
       if (values.length < 3) {
-        throw new Error('Invalid value, an HSL model should have at least three parameters');
+        throw new Error('Parser invalid value, an HSL model should have at least three parameters');
       }
 
       const hue = values[0];
@@ -81,40 +80,33 @@ export class Parser {
 
       if (hue.endsWith('deg')) {
         // exclude "deg" from end of string and "rotate around" 360 to shed exceeding turns
-        h = Number(hue.slice(0, -3)) % 360;
-        if (h < 0) {
-          h = 360 + h;
-        }
+        h = Number(hue.slice(0, -3));
+
       } else if (hue.endsWith('turn')) {
         h = Number(hue.slice(0, -4)); // exclude "turn" from end of string
-        if (Math.abs(h) > 1) {
-          h = h - Math.floor(h); // 4 - 4.75 = 0.75
-        }
-        if (h < 1) {
-          h = 1 + h;
-        }
+
         h = 360 * h;
       } else if (hue.endsWith('rad')) {
-        h = ((Math.abs(Number(hue.slice(0, -3))) * 180) / Math.PI) % 360;
+        h = ((Math.abs(Number(hue.slice(0, -3))) * 180) / Math.PI);
       } else {
         h = Number(hue);
       }
       if (Number.isNaN(h)) {
-        throw new Error('Invalid value for hue');
+        throw new Error('Parser invalid value for hue');
       }
 
-      s = Parser.roundPercentage(sat, 100);
+      s = Parser.getPercentage(sat, 100);
 
       if (Number.isNaN(s)) {
-        throw new Error('Invalid value for saturation');
+        throw new Error('Parser invalid value for saturation');
       }
 
-      l = Parser.roundPercentage(lgt, 100);
+      l = Parser.getPercentage(lgt, 100);
       if (Number.isNaN(l)) {
-        throw new Error('Invalid value for lightness');
+        throw new Error('Parser invalid value for lightness');
       }
 
-      const hsl = BaseFactory.createHSL([h, s, l, alpha]);
+      const hsl = BaseFactory.createHSL([h, s, l, alpha], doClamp);
       return hsl;
     }
     throw new Error("Parser couldn't understand value: " + val);
@@ -147,13 +139,13 @@ export class Parser {
   }
 
   /**
-   * parse string and return as number takint into acount if it's a percentage
+   * parse string and return as number taking into acount if it's a percentage
    */
-  public static parseAlpha(alp: string): number {
-    if (!alp.endsWith('%')) {
-      return Number(alp);
+  public static getPercentage(val: string, perc = 100): number {
+    if (!val.endsWith('%')) {
+      return Number(val);
     } else {
-      return Number(alp.slice(0, -1)) / 100;
+      return Number(val.slice(0, -1)) / perc;
     }
   }
 
