@@ -50,8 +50,55 @@ let colorB = colorA.hsl();
 let colorC = colorB.to(LAB.MODEL);
 let colorD = colorC.to('xyz');
 ```
+## Custom Color Models
 
-### How to work with new color models
+If you need to use a color model not available in Color Culture there are ways to register a new model as well as conversion functions that will allow you to convert between any other color model present.
+
+### How to register a new color model
+
+Note that without **also registering conversion functions** your custom model would not capable of much, to learn more about that look into next section.
+
+To have the values of your channels kept within ranges just register you model like so:
+```ts
+    
+    import { BaseFactory } from 'color-culture';
+
+    BaseFactory.setModel('hip', [[0, 65025], [0, 65025], [0, 65025], [0, 255]], 3);
+
+```
+
+In this case the first three channels are bound between values 0 to 65025 inclusive and the last channel between 0 to 255 also iclusive.
+Alpha channel is set to the forth channel (3, since we start to count from 0).
+
+Color Culture will automatically keep values in range by min/maxing through ranges, but if there's need to a different approach in keeping values within range you may specify a custom function to do so, for example:
+```ts
+
+    import { Base, BaseFactory } from 'color-culture';
+
+    BaseFactory.setModel('hip', [[0, 360], [0, 100], [0, 100], [0, 1]], 3, (model: Base) => {
+      model.channels[0] = ((model.channels[0] % 360) + 360) % 360;
+      for (let i = 1; i < model.channels.length; i++) {
+        model.channels[i] =
+          model.ranges[i][0] > model.channels[i]
+            ? model.ranges[i][0]
+            : model.ranges[i][1] < model.channels[i]
+            ? model.ranges[i][1]
+            : model.channels[i];
+      });
+```
+
+After registration you may create a new instance of your color using BaseFactory: 
+
+```ts
+
+    import { BaseFactory } from 'color-culture';
+
+    const color = BaseFactory.createGeneric([100, 50, 50, 1], 'hip');
+
+```
+
+
+### How to convert to and from a new color model
 
 In case you have a new color model there's no need to create conversion functions to all others color models, Color Culture uses https://www.npmjs.com/package/ngraph.path to automatically find the shortest path between models.
 
@@ -75,6 +122,8 @@ Converter.register('hip', 'hsl',
 let original = new CMYK([48,78,10,5,1]);
 let converted = original.to('hip');
 ```
+
+
 
 ## Cultures
 Are like palettes in the sense that they are groups of colors, but with cultures have two main new functionalities:

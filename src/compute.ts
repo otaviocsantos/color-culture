@@ -29,84 +29,84 @@ export class Compute {
     return !Compute.isDark(value);
   }
 
-  public static lighten(color: Color, amount: number = 0.25, doClamp = true) {
-    const hsl = color.to('hsl', doClamp);
+  public static lighten(color: Color, amount: number = 0.25, clampValues = true) {
+    const hsl = color.to('hsl', clampValues);
     hsl.channels[2] += hsl.ranges[2][1] * amount;
-    return hsl.to(color.model, doClamp);
+    return hsl.to(color.model, clampValues);
   }
 
-  public static darken(color: Color, amount: number = 0.25, doClamp = true) {
-    const hsl = color.to('hsl', doClamp);
+  public static darken(color: Color, amount: number = 0.25, clampValues = true) {
+    const hsl = color.to('hsl', clampValues);
 
     hsl.channels[2] -= hsl.channels[2] * amount;
 
-    return hsl.to(color.model, doClamp);
+    return hsl.to(color.model, clampValues);
   }
 
-  public static negate(color: Color, doClamp = true) {
-    const rgb = color.to('rgb', doClamp);
+  public static negate(color: Color, clampValues = true) {
+    const rgb = color.to('rgb', clampValues);
     for (let i = 0; i < 3; i++) {
       rgb.channels[i] = 255 - rgb.channels[i];
     }
-    return rgb.to(color.model, doClamp);
+    return rgb.to(color.model, clampValues);
   }
 
-  public static saturate(color: Color, amount: number = 0.25, doClamp = true) {
-    const hsl = color.to('hsl', doClamp);
+  public static saturate(color: Color, amount: number = 0.25, clampValues = true) {
+    const hsl = color.to('hsl', clampValues);
     if (hsl.channels[1] > 0) {
       hsl.channels[1] += hsl.channels[1] * amount;
     } else {
       hsl.channels[1] = amount;
     }
-    return hsl.to(color.model, doClamp);
+    return hsl.to(color.model, clampValues);
   }
 
-  public static desaturate(color: Color, amount: number = 0.25, doClamp = true) {
-    const hsl = color.to('hsl', doClamp);
+  public static desaturate(color: Color, amount: number = 0.25, clampValues = true) {
+    const hsl = color.to('hsl', clampValues);
     hsl.channels[1] -= hsl.channels[1] * amount;
-    return hsl.to(color.model, doClamp);
+    return hsl.to(color.model, clampValues);
   }
 
-  public static grayscale(color: Color, amount = 1, doClamp = true) {
-    const rgb = color.to('rgb', doClamp);
+  public static grayscale(color: Color, amount = 1, clampValues = true) {
+    const rgb = color.to('rgb', clampValues);
 
     const gray = rgb.channels[0] * 0.21 * amount + rgb.channels[1] * 0.72 * amount + rgb.channels[2] * 0.07 * amount;
     rgb.channels = [gray, gray, gray, color.alpha];
 
-    return rgb.to(color.model, doClamp);
+    return rgb.to(color.model, clampValues);
   }
 
-  public static rotate(color: Color, amount: number = 180, doClamp = true) {
-    const hsl = color.to('hsl', doClamp);
+  public static rotate(color: Color, amount: number = 180, clampValues = true) {
+    const hsl = color.to('hsl', clampValues);
     let hue = hsl.channels[0];
     hue = (((hue + amount) % 360) + 360) % 360;
     hsl.channels[0] = hue;
     return hsl.to(color.model);
   }
 
-  public static luma(color: Color, doClamp = true): number {
-    const rgb = color.to('rgb', doClamp);
+  public static luma(color: Color, clampValues = true): number {
+    const rgb = color.to('rgb', clampValues);
     return (0.3 * rgb.channels[0] + 0.59 * rgb.channels[1] + 0.11 * rgb.channels[0]) / 255;
   }
 
-  public static fade(color: Color, amount = 1, doClamp = true) {
-    const copy = color.clone(doClamp);
+  public static fade(color: Color, amount = 1, clampValues = true) {
+    const copy = color.clone(clampValues);
     color.alpha = copy.alpha - copy.alpha * amount;
-    if (doClamp) {
+    if (clampValues) {
       color.alpha = Compute.clampValue(color.alpha, color.ranges[color.alphaIndex]);
     }
     return color;
   }
 
-  public static opaque(color: Color, amount = 1, doClamp = true) {
-    const copy = color.clone(doClamp);
+  public static opaque(color: Color, amount = 1, clampValues = true) {
+    const copy = color.clone(clampValues);
     if (color.alpha > 0) {
       color.alpha = copy.alpha + copy.alpha * amount;
     } else {
       color.alpha = amount;
     }
 
-    if (doClamp) {
+    if (clampValues) {
       color.alpha = Compute.clampValue(color.alpha, color.ranges[color.alphaIndex]);
     }
     return color;
@@ -183,24 +183,24 @@ export class Compute {
     return result;
   }
 
-  public static mix(source: Color, destiny: Color, amount = 0.5, doClamp = true): Color {
+  public static mix(source: Color, destiny: Color, amount = 0.5, clampValues = true): Color {
     const copy = source.clone(false);
     destiny = destiny.to(copy.model, false);
     copy.channels.map((o, i, l) => {
       l[i] = l[i] + (destiny.channels[i] - l[i]) * amount;
     });
-    if (doClamp) {
+    if (clampValues) {
       copy.clamp(false);
     }
     return copy;
   }
 
-  public static add(source: Color, destiny: Color, doClamp = true): Color {
+  public static add(source: Color, destiny: Color, clampValues = true): Color {
     const copy = source.to(destiny.model, false);
     copy.channels.map((o, i, l) => {
       l[i] = l[i] + destiny.channels[i];
     });
-    if (doClamp) {
+    if (clampValues) {
       copy.clamp(false);
     }
     return copy;

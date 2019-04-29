@@ -87,7 +87,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_parser_.parser.html#channelsfromhex" class="tsd-kind-icon">Channels<wbr>FromHEX</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_parser_.parser.html#extractvalues" class="tsd-kind-icon">extract<wbr>Values</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_parser_.parser.html#fromstring" class="tsd-kind-icon">from<wbr>String</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_parser_.parser.html#parsealpha" class="tsd-kind-icon">parse<wbr>Alpha</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_parser_.parser.html#getpercentage" class="tsd-kind-icon">get<wbr>Percentage</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_parser_.parser.html#roundpercentage" class="tsd-kind-icon">round<wbr>Percentage</a></li>
 							</ul>
 						</section>
@@ -106,7 +106,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/parser.ts#L123">parser.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/parser.ts#L115">parser.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -132,7 +132,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/parser.ts#L178">parser.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/parser.ts#L170">parser.ts:170</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,13 +157,13 @@
 					<a name="fromstring" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> from<wbr>String</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">from<wbr>String<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_base_.base.html" class="tsd-signature-type">Base</a></li>
+						<li class="tsd-signature tsd-kind-icon">from<wbr>String<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, clampValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_base_.base.html" class="tsd-signature-type">Base</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/parser.ts#L6">parser.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/parser.ts#L6">parser.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -171,33 +171,39 @@
 								<li>
 									<h5>val: <span class="tsd-signature-type">string</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_base_.base.html" class="tsd-signature-type">Base</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="parsealpha" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> parse<wbr>Alpha</h3>
+					<a name="getpercentage" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Percentage</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">parse<wbr>Alpha<span class="tsd-signature-symbol">(</span>alp<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Percentage<span class="tsd-signature-symbol">(</span>val<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, perc<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/parser.ts#L152">parser.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/parser.ts#L144">parser.ts:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>parse string and return as number takint into acount if it&#39;s a percentage</p>
+									<p>parse string and return as number taking into acount if it&#39;s a percentage</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>alp: <span class="tsd-signature-type">string</span></h5>
+									<h5>val: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> perc: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;100</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -214,7 +220,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/99c7d1b/src/parser.ts#L163">parser.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/parser.ts#L155">parser.ts:155</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,7 +319,7 @@
 								<a href="_parser_.parser.html#fromstring" class="tsd-kind-icon">from<wbr>String</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_parser_.parser.html#parsealpha" class="tsd-kind-icon">parse<wbr>Alpha</a>
+								<a href="_parser_.parser.html#getpercentage" class="tsd-kind-icon">get<wbr>Percentage</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_parser_.parser.html#roundpercentage" class="tsd-kind-icon">round<wbr>Percentage</a>

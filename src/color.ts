@@ -113,12 +113,12 @@ export class Color {
     }
   }
 
-  public channel(model: string = 'rgb', index: number = 0, value?: number, doClamp = true) {
-    const clone = this.to(model, doClamp);
+  public channel(model: string = 'rgb', index: number = 0, value?: number, clampValues = true) {
+    const clone = this.to(model, clampValues);
 
     if (value !== undefined) {
       clone.base.channels[index] = value;
-      if (doClamp) {
+      if (clampValues) {
         clone.base.channels[index] = Compute.clampValue(clone.channels[index], clone.ranges[index]);
       }
       return clone;
@@ -130,39 +130,39 @@ export class Color {
   /**
    * Creates an RGB clone and set Red channel to value, or returns Red channel's value
    * @param value Red channel value
-   * @param doClamp Keep value in range, defaults to true
+   * @param clampValues Keep value in range, defaults to true
    */
-  public r(value?: number, doClamp = true): any {
-    return this.channel('rgb', 0, value, doClamp);
+  public r(value?: number, clampValues = true): any {
+    return this.channel('rgb', 0, value, clampValues);
   }
   /**
    * Creates an RGB clone and set Green channel to value, or returns Green channel's value
    * @param value Green channel value
-   * @param doClamp Keep value in range, defaults to true
+   * @param clampValues Keep value in range, defaults to true
    */
-  public g(value?: number, doClamp = true): any {
-    return this.channel('rgb', 1, value, doClamp);
+  public g(value?: number, clampValues = true): any {
+    return this.channel('rgb', 1, value, clampValues);
   }
   /**
    * Creates an RGB clone and set Blue channel to value, or returns Blue channel's value
    * @param value Blue channel value
-   * @param doClamp Keep value in range, defaults to true
+   * @param clampValues Keep value in range, defaults to true
    */
-  public b(value?: number, doClamp = true): any {
-    return this.channel('rgb', 2, value, doClamp);
+  public b(value?: number, clampValues = true): any {
+    return this.channel('rgb', 2, value, clampValues);
   }
 
   /**
    * Creates an HSL clone and set Hue channel to value, or returns Hue channel's value
    * @param value Hue channel value
-   * @param doClamp Keep value in range, defaults to true
+   * @param clampValues Keep value in range, defaults to true
    */
-  public h(value?: number, doClamp = true): any {
-    const clone = this.to('hsl', doClamp);
+  public h(value?: number, clampValues = true): any {
+    const clone = this.to('hsl', clampValues);
 
     if (value !== undefined) {
       clone.base.channels[0] = value;
-      if (doClamp) {
+      if (clampValues) {
         clone.base.channels[0] = Compute.clampRotation(clone.channels[0]);
       }
       return clone;
@@ -173,19 +173,19 @@ export class Color {
   /**
    * Creates an HSL clone and set Saturation channel to value, or returns Saturation channel's value
    * @param value Saturation channel value
-   * @param doClamp Keep value in range, defaults to true
+   * @param clampValues Keep value in range, defaults to true
    */
-  public s(value?: number, doClamp = true): any {
-    return this.channel('hsl', 1, value, doClamp);
+  public s(value?: number, clampValues = true): any {
+    return this.channel('hsl', 1, value, clampValues);
   }
 
   /**
    * Creates an HSL clone and set Lightness channel to value, or returns Lightness channel's value
    * @param value Lightness channel value
-   * @param doClamp Keep value in range, defaults to true
+   * @param clampValues Keep value in range, defaults to true
    */
-  public l(value?: number, doClamp = true): any {
-    return this.channel('hsl', 2, value, doClamp);
+  public l(value?: number, clampValues = true): any {
+    return this.channel('hsl', 2, value, clampValues);
   }
 
   /**
@@ -203,115 +203,115 @@ export class Color {
 
   /**
    * Return a copy of this color
-   * @param doClamp Default is true, clamp channels this clone
+   * @param clampValues Default is true, clamp channels this clone
    */
-  public clone(doClamp = true): Color {
-    return new Color(this.base, doClamp);
+  public clone(clampValues = true): Color {
+    return new Color(this.base, clampValues);
   }
 
   /**
    * Convert this color to another color model
    * @param model Model to which this color should be converted
-   * @param doClamp Default is true, clamp channels of the color returned
+   * @param clampValues Default is true, clamp channels of the color returned
    */
-  public to(model = '', doClamp = true): Color {
-    const copy = this.clone(doClamp);
-    copy.base = Converter.convert(copy.base, model, doClamp);
+  public to(model = '', clampValues = true): Color {
+    const copy = this.clone(clampValues);
+    copy.base = Converter.convert(copy.base, model, clampValues);
     return copy;
   }
 
   /**
    * Returns a copy of this color converted to  RGB model
-   * @param doClamp Default is true, clamp channels of the color returned
+   * @param clampValues Default is true, clamp channels of the color returned
    */
-  public rgb(doClamp = true): Color {
-    return this.to('rgb', doClamp);
+  public rgb(clampValues = true): Color {
+    return this.to('rgb', clampValues);
   }
 
   /**
    * Returns a copy of this color converted to HSL model
-   * @param doClamp Default is true, clamp channels of the color returned
+   * @param clampValues Default is true, clamp channels of the color returned
    */
-  public hsl(doClamp = true): Color {
-    return this.to('hsl', doClamp);
+  public hsl(clampValues = true): Color {
+    return this.to('hsl', clampValues);
   }
 
   /**
    * Returns a copy of this color converted to CMYK model
-   * @param doClamp Default is true, clamp channels of the color returned
+   * @param clampValues Default is true, clamp channels of the color returned
    */
-  public cmyk(doClamp = true): Color {
-    return this.to('cmyk', doClamp);
+  public cmyk(clampValues = true): Color {
+    return this.to('cmyk', clampValues);
   }
 
   /**
    * Returns a copy of this color converted to LAB model
-   * @param doClamp Default is true, clamp channels of the color returned
+   * @param clampValues Default is true, clamp channels of the color returned
    */
-  public lab(doClamp = true): Color {
-    return this.to('lab', doClamp);
+  public lab(clampValues = true): Color {
+    return this.to('lab', clampValues);
   }
 
   /**
    * Returns a copy of this color converted to XYZ model
-   * @param doClamp Default is true, clamp channels of the color returned
+   * @param clampValues Default is true, clamp channels of the color returned
    */
-  public xyz(doClamp = true): Color {
-    return this.to('xyz', doClamp);
+  public xyz(clampValues = true): Color {
+    return this.to('xyz', clampValues);
   }
 
-  public add(other: Color, doClamp = true): Color {
-    return Compute.add(this, other, doClamp);
+  public add(other: Color, clampValues = true): Color {
+    return Compute.add(this, other, clampValues);
   }
 
-  public mix(other: Color, amount: number = 0.5, doClamp = true): Color {
-    return Compute.mix(this, other, amount, doClamp);
+  public mix(other: Color, amount: number = 0.5, clampValues = true): Color {
+    return Compute.mix(this, other, amount, clampValues);
   }
 
-  public blacken(amount: number = 0.25, doClamp = true) {
+  public blacken(amount: number = 0.25, clampValues = true) {
     return this.mix(
-      new Color([0, 0, 0, this.alpha], doClamp, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3),
+      new Color([0, 0, 0, this.alpha], clampValues, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3),
       amount,
     );
   }
 
-  public whiten(amount: number = 0.25, doClamp = true) {
+  public whiten(amount: number = 0.25, clampValues = true) {
     return this.mix(
-      new Color([255, 255, 255, this.alpha], doClamp, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3),
+      new Color([255, 255, 255, this.alpha], clampValues, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3),
       amount,
     );
   }
 
-  public lighten(amount: number = 0.25, doClamp = true) {
-    return Compute.lighten(this, amount, doClamp);
+  public lighten(amount: number = 0.25, clampValues = true) {
+    return Compute.lighten(this, amount, clampValues);
   }
 
-  public darken(amount: number = 0.25, doClamp = true) {
-    return Compute.darken(this, amount, doClamp);
+  public darken(amount: number = 0.25, clampValues = true) {
+    return Compute.darken(this, amount, clampValues);
   }
 
-  public negate(doClamp = true) {
-    return Compute.negate(this, doClamp);
+  public negate(clampValues = true) {
+    return Compute.negate(this, clampValues);
   }
 
-  public saturate(amount: number = 0.25, doClamp = true) {
-    return Compute.saturate(this, amount, doClamp);
+  public saturate(amount: number = 0.25, clampValues = true) {
+    return Compute.saturate(this, amount, clampValues);
   }
 
-  public desaturate(amount: number = 0.25, doClamp = true) {
-    return Compute.desaturate(this, amount, doClamp);
+  public desaturate(amount: number = 0.25, clampValues = true) {
+    return Compute.desaturate(this, amount, clampValues);
   }
 
-  public grayscale(amount = 1, doClamp = true) {
-    return Compute.grayscale(this, amount, doClamp);
+  public grayscale(amount = 1, clampValues = true) {
+    return Compute.grayscale(this, amount, clampValues);
   }
 
-  public rotate(amount: number = 180, doClamp = true) {
-    return Compute.rotate(this, amount, doClamp);
+  public rotate(amount: number = 180, clampValues = true) {
+    return Compute.rotate(this, amount, clampValues);
   }
 
-  public luma(doClamp = true) {
-    return Compute.luma(this, doClamp);
+  public luma(clampValues = true) {
+    return Compute.luma(this, clampValues);
   }
 
   public toString(): string {

@@ -46,7 +46,7 @@ export class Converter {
    * @param from Color model signature from which color will be converted
    * @param to Color model signature to which color will be converted
    */
-  public static convert(from: Base, to: string, doClamp = true): Base {
+  public static convert(from: Base, to: string, clampValues = true): Base {
     // do not convert to same color model
     if (from.model === to) {
       return from;
@@ -77,7 +77,7 @@ export class Converter {
         if (result.model !== p[index].id) {
           const func = Converter.conversions.get(result.model + '_' + p[index].id);
           if (func !== undefined) {
-            result = func(result, doClamp);
+            result = func(result, clampValues);
           } else {
             throw new Error("Conveter couldn't find caller to: " + (result.model + '_' + p[index].id));
           }
@@ -88,7 +88,7 @@ export class Converter {
     throw new Error("It wasn't possible to convert: " + pair);
   }
 
-  public static hsl_rgb(value: Base, doClamp = true): Base {
+  public static hsl_rgb(value: Base, clampValues = true): Base {
     const h = value.channels[0] / 360;
     const s = value.channels[1] / 100;
     const l = value.channels[2] / 100;
@@ -137,10 +137,10 @@ export class Converter {
       rgb[i] = val * 255;
     }
 
-    return BaseFactory.createRGB([rgb[0], rgb[1], rgb[2], value.alpha], doClamp);
+    return BaseFactory.createRGB([rgb[0], rgb[1], rgb[2], value.alpha], clampValues);
   }
 
-  public static rgb_hsl(value: Base, doClamp = true): Base {
+  public static rgb_hsl(value: Base, clampValues = true): Base {
     const fr = value.channels[0] / 255;
     const fg = value.channels[1] / 255;
     const fb = value.channels[2] / 255;
@@ -177,10 +177,10 @@ export class Converter {
       s = delta / (2 - max - min);
     }
 
-    return BaseFactory.createHSL([h, s * 100, l * 100, value.alpha], doClamp);
+    return BaseFactory.createHSL([h, s * 100, l * 100, value.alpha], clampValues);
   }
 
-  public static xyz_rgb(value: Base, doClamp = true) {
+  public static xyz_rgb(value: Base, clampValues = true) {
     const x = value.channels[0] / 100;
     const y = value.channels[1] / 100;
     const z = value.channels[2] / 100;
@@ -204,10 +204,10 @@ export class Converter {
     g = Math.min(Math.max(0, g), 1);
     b = Math.min(Math.max(0, b), 1);
 
-    return BaseFactory.createRGB([r * 255, g * 255, b * 255, value.alpha], doClamp);
+    return BaseFactory.createRGB([r * 255, g * 255, b * 255, value.alpha], clampValues);
   }
 
-  public static rgb_xyz(value: Base, doClamp = true): Base {
+  public static rgb_xyz(value: Base, clampValues = true): Base {
     let r = value.channels[0] / 255;
     let g = value.channels[1] / 255;
     let b = value.channels[2] / 255;
@@ -223,7 +223,7 @@ export class Converter {
 
     const result = BaseFactory.create(
       [x * 100, y * 100, z * 100, value.alpha],
-      doClamp,
+      clampValues,
       [[0, 100], [0, 100], [0, 100], [0, 1]],
       'xyz',
       3,
@@ -231,7 +231,7 @@ export class Converter {
     return result;
   }
 
-  public static xyz_lab(value: Base, doClamp = true): Base {
+  public static xyz_lab(value: Base, clampValues = true): Base {
     let x = value.channels[0];
     let y = value.channels[1];
     let z = value.channels[2];
@@ -253,7 +253,7 @@ export class Converter {
 
     const result = BaseFactory.create(
       [l, a, b, value.alpha],
-      doClamp,
+      clampValues,
       [[0, 100], [-128, 128], [-128, 128], [0, 1]],
       'lab',
       3,
@@ -261,7 +261,7 @@ export class Converter {
     return result;
   }
 
-  public static lab_xyz(value: Base, doClamp = true): Base {
+  public static lab_xyz(value: Base, clampValues = true): Base {
     let l = (value.channels[0] + 16) / 116.0;
     let a = l + value.channels[1] / 500.0;
     let b = l - value.channels[2] / 200.0;
@@ -278,7 +278,7 @@ export class Converter {
 
     const result = BaseFactory.create(
       [x, y, z, value.alpha],
-      doClamp,
+      clampValues,
       [[0, 100], [0, 100], [0, 100], [0, 1]],
       'xyz',
       3,
@@ -286,7 +286,7 @@ export class Converter {
     return result;
   }
 
-  public static cmyk_rgb(value: Base, doClamp = true): Base {
+  public static cmyk_rgb(value: Base, clampValues = true): Base {
     const fc = value.channels[0] / 100;
     const fm = value.channels[1] / 100;
     const fy = value.channels[2] / 100;
@@ -296,12 +296,12 @@ export class Converter {
     const g = 1 - Math.min(1, fm * (1 - fk) + fk);
     const b = 1 - Math.min(1, fy * (1 - fk) + fk);
 
-    const result = BaseFactory.createRGB([r * 255, g * 255, b * 255, value.alpha], doClamp);
+    const result = BaseFactory.createRGB([r * 255, g * 255, b * 255, value.alpha], clampValues);
 
     return result;
   }
 
-  public static rgb_cmyk(value: Base, doClamp = true): Base {
+  public static rgb_cmyk(value: Base, clampValues = true): Base {
     const fr = value.channels[0] / 255;
     const fg = value.channels[1] / 255;
     const fb = value.channels[2] / 255;
@@ -313,7 +313,7 @@ export class Converter {
 
     const result = BaseFactory.create(
       [c * 100, m * 100, y * 100, k * 100, value.alpha],
-      doClamp,
+      clampValues,
       [[0, 100], [0, 100], [0, 100], [0, 100], [0, 1]],
       'cmyk',
       4,
@@ -324,7 +324,7 @@ export class Converter {
   /**
    * internal list of conversion functions
    */
-  protected static conversions = new Map<string, (n: any, doClamp: boolean) => any>();
+  protected static conversions = new Map<string, (n: any, clampValues: boolean) => any>();
 
   /**
    * internal graph of conversion functions, used to find shortest path between functions

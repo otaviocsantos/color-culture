@@ -3,7 +3,7 @@ import { BaseFactory } from './base-factory';
 import { Named } from './named';
 
 export class Parser {
-  public static fromString(val: string, doClamp: boolean = true): Base {
+  public static fromString(val: string, clampValues: boolean = true): Base {
     val = val.toLowerCase();
     let array;
     let alpha = 1;
@@ -55,7 +55,7 @@ export class Parser {
 
       array.push(alpha);
 
-      return BaseFactory.createRGB(array, doClamp);
+      return BaseFactory.createRGB(array, clampValues);
 
     } else if (Named.css.has(val)) {
       return Parser.fromString(Named.css.get(val) as string);
@@ -106,7 +106,7 @@ export class Parser {
         throw new Error('Parser invalid value for lightness');
       }
 
-      const hsl = BaseFactory.createHSL([h, s, l, alpha], doClamp);
+      const hsl = BaseFactory.createHSL([h, s, l, alpha], clampValues);
       return hsl;
     }
     throw new Error("Parser couldn't understand value: " + val);

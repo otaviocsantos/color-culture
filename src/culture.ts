@@ -15,10 +15,6 @@ export class Culture {
    */
   protected m_items = new Array<Relation>();
 
-  /**
-   * Create a collection of groups of colors indexed by names
-   */
-  constructor() {}
 
   /**
    * Add a color to this culture

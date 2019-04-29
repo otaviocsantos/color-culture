@@ -94,7 +94,39 @@ alert(color.rgba)</code></pre>
 <span class="hljs-keyword">let</span> colorB = colorA.hsl();
 <span class="hljs-keyword">let</span> colorC = colorB.to(LAB.MODEL);
 <span class="hljs-keyword">let</span> colorD = colorC.to(<span class="hljs-string">'xyz'</span>);</code></pre>
-				<h3 id="how-to-work-with-new-color-models">How to work with new color models</h3>
+				<h2 id="custom-color-models">Custom Color Models</h2>
+				<p>If you need to use a color model not available in Color Culture there are ways to register a new model as well as conversion functions that will allow you to convert between any other color model present.</p>
+				<h3 id="how-to-register-a-new-color-model">How to register a new color model</h3>
+				<p>Note that without <strong>also registering conversion functions</strong> your custom model would not capable of much, to learn more about that look into next section.</p>
+				<p>To have the values of your channels kept within ranges just register you model like so:</p>
+				<pre><code class="language-ts">
+    <span class="hljs-keyword">import</span> { BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+
+    BaseFactory.setModel(<span class="hljs-string">'hip'</span>, [[<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">255</span>]], <span class="hljs-number">3</span>);
+</code></pre>
+				<p>In this case the first three channels are bound between values 0 to 65025 inclusive and the last channel between 0 to 255 also iclusive.
+				Alpha channel is set to the forth channel (3, since we start to count from 0).</p>
+				<p>Color Culture will automatically keep values in range by min/maxing through ranges, but if there&#39;s need to a different approach in keeping values within range you may specify a custom function to do so, for example:</p>
+				<pre><code class="language-ts">
+    <span class="hljs-keyword">import</span> { Base, BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+
+    BaseFactory.setModel(<span class="hljs-string">'hip'</span>, [[<span class="hljs-number">0</span>, <span class="hljs-number">360</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]], <span class="hljs-number">3</span>, <span class="hljs-function">(<span class="hljs-params">model: Base</span>) =&gt;</span> {
+      model.channels[<span class="hljs-number">0</span>] = ((model.channels[<span class="hljs-number">0</span>] % <span class="hljs-number">360</span>) + <span class="hljs-number">360</span>) % <span class="hljs-number">360</span>;
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; model.channels.length; i++) {
+        model.channels[i] =
+          model.ranges[i][<span class="hljs-number">0</span>] &gt; model.channels[i]
+            ? model.ranges[i][<span class="hljs-number">0</span>]
+            : model.ranges[i][<span class="hljs-number">1</span>] &lt; model.channels[i]
+            ? model.ranges[i][<span class="hljs-number">1</span>]
+            : model.channels[i];
+      });</code></pre>
+				<p>After registration you may create a new instance of your color using BaseFactory: </p>
+				<pre><code class="language-ts">
+    <span class="hljs-keyword">import</span> { BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+
+    <span class="hljs-keyword">const</span> color = BaseFactory.createGeneric([<span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">1</span>], <span class="hljs-string">'hip'</span>);
+</code></pre>
+				<h3 id="how-to-convert-to-and-from-a-new-color-model">How to convert to and from a new color model</h3>
 				<p>In case you have a new color model there&#39;s no need to create conversion functions to all others color models, Color Culture uses <a href="https://www.npmjs.com/package/ngraph.path">https://www.npmjs.com/package/ngraph.path</a> to automatically find the shortest path between models.</p>
 				<p>Conversion work as long as there&#39;s at least <strong>one</strong> function converting <strong>to</strong> RGB, HSL, CMYK, LAB or XYZ and <strong>one</strong> function converting <strong>from</strong> RGB, HSL, CMYK, LAB or XYZ to your new model.</p>
 				<p>First pick a call name to your model, in this example &#39;hip&#39; will be used, then register functions on how to convert <strong>to</strong> and <strong>from</strong> your model:</p>
