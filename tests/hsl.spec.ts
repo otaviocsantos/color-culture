@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import 'mocha';
 
 import { Color } from '../src/color';
+import {Culture} from '../src/culture';
 import { HSL, LAB, RGB, XYZ } from '../src/models';
 
 describe('HSL tests', () => {
@@ -23,4 +24,7 @@ describe('HSL Convert tests', () => {
     expect(result.toString()).to.equal(confirm.toString());
 
   });
+
 });
+
+

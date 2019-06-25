@@ -167,34 +167,45 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Color<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, clampValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, ranges<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span>, model<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, alphaIndex<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, clampFunction<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Color<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, model<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, clampValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L93">color.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L117">color.ts:117</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a new color.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Values that will compose this color</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> model: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;rgb&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Model to which this color will be outputed.</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> ranges: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[[0, 255], [0, 255], [0, 255], [0, 1]]</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> model: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;RGB&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> alphaIndex: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;3</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampFunction: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Should channels values be kept with range? Defaults to true.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -210,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">base<span class="tsd-signature-symbol">:</span> <a href="_base_.base.html" class="tsd-signature-type">Base</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L8">color.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L9">color.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,7 +239,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L13">color.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L14">color.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -241,7 +252,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L20">color.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L21">color.ts:21</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -269,9 +280,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L24">color.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L28">color.ts:28</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns position in the matrix that contains value for the alpha channel</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
@@ -287,17 +303,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L28">color.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L35">color.ts:35</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>returns colors and alpha values</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L32">color.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L42">color.ts:42</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>sets colors and alpha values</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -318,12 +344,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L64">color.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L82">color.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>returns hexadecimal version of this color WITHOUT alpha channel</p>
+									<p>Returns hexadecimal version of this color WITHOUT alpha channel</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -340,12 +366,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L72">color.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L90">color.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>returns hexadecimal version of this color with alpha channel</p>
+									<p>Returns eight digits hexadecimal version of this color, last two digits represent the alpha channel</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -362,9 +388,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L87">color.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L108">color.ts:108</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Boolean, is this a dark color ?</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -379,9 +410,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L91">color.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L115">color.ts:115</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Boolean, is this a light color ?</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
@@ -396,7 +432,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L49">color.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L59">color.ts:59</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -418,7 +454,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L42">color.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L52">color.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -441,13 +477,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L57">color.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L68">color.ts:68</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>CSS helper method
-									Clamp, and returns this color as a string using rgba as its model</p>
+										Clamp, ROUND and returns this color as a string using rgba as its model
+									Alpha value is not rounded, for obvious reasons</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -467,16 +504,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L263">color.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L306">color.ts:306</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns  a new color after summingup this color channels to another&#39;s</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>other: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Second color that will be added to this</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -493,7 +541,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L151">color.ts:151</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L188">color.ts:188</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -530,16 +578,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L271">color.ts:271</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L327">color.ts:327</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new color after mixing this color to black by an x amount
+									0 = this color, 0.5 halfway between the two, 1 = black</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Amount by wich this color will turn black, default is 0.5</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -556,22 +616,39 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L116">color.ts:116</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L150">color.ts:150</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Auxiliar method, convert a clone of this color to model and set this channel&#39;s value or return this channel&#39;s value</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> model: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;rgb&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>model to which this color&#39;s clone should be converted</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> index: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel&#39;s index</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>channel&#39;s value</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>boolean, should this value be clamped ?</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span>
@@ -591,7 +668,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L195">color.ts:195</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L233">color.ts:233</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -622,7 +699,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L208">color.ts:208</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L246">color.ts:246</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -653,7 +730,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L243">color.ts:243</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L281">color.ts:281</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -684,16 +761,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L289">color.ts:289</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L361">color.ts:361</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new color after making this color darker by an x amount</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Amount by wich this color will be darker, default is 0.5</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -710,16 +798,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L301">color.ts:301</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L387">color.ts:387</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clones this color and returns a grayscale version</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>How much should be changed 0 = no change, 1 = only gray tones</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -736,7 +835,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L143">color.ts:143</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L179">color.ts:179</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -773,16 +872,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L305">color.ts:305</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L396">color.ts:396</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clones this color and returns a desaturated version</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>How much should be changed 0 = no change, 1 = completly desaturated</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -799,7 +909,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L160">color.ts:160</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L197">color.ts:197</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -836,7 +946,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L235">color.ts:235</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L273">color.ts:273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -867,7 +977,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L187">color.ts:187</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L225">color.ts:225</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -904,7 +1014,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L251">color.ts:251</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L289">color.ts:289</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -935,16 +1045,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L285">color.ts:285</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L352">color.ts:352</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new color after making this color lighter by an x amount</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Amount by wich this color will be lighten, default is 0.5</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -961,13 +1082,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L313">color.ts:313</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L413">color.ts:413</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Calculates luma of this color</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -984,19 +1113,34 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L267">color.ts:267</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L317">color.ts:317</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new color after mixing this color to another by an x amount
+									0 = this color, 0.5 halfway between the two, 1 = another color</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>other: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Second color that will be added to this</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.5</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Amount by wich each color will be represented, default is 0.5 a perfect mix</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -1013,13 +1157,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L293">color.ts:293</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L369">color.ts:369</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new color after making a negative version of this color</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -1036,7 +1188,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L135">color.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L169">color.ts:169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1073,7 +1225,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L227">color.ts:227</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L265">color.ts:265</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1104,16 +1256,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L309">color.ts:309</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L405">color.ts:405</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clones this color as an HSL model and rotates Hue value amount degrees</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;180</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>degrees by which Hue should be rotate</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -1130,7 +1293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L178">color.ts:178</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L216">color.ts:216</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1167,16 +1330,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L297">color.ts:297</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L378">color.ts:378</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clones this color and returns a saturated version</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>How much should be changed 0 = no change, 1 = completly saturated</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -1193,7 +1367,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L217">color.ts:217</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L255">color.ts:255</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1230,9 +1404,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L317">color.ts:317</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L420">color.ts:420</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>String representation of this color</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -1247,16 +1426,28 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L278">color.ts:278</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L340">color.ts:340</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new color after mixing this color to white by an x amount
+									0 = this color, 0.5 halfway between the two, 1 = white</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Amount by wich this color will turn white, default is 0.5</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -1273,7 +1464,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/3e589f1/src/color.ts#L259">color.ts:259</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/color.ts#L297">color.ts:297</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1346,9 +1537,6 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_parser_.html">"parser"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_random_.html">"random"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_relation_.html">"relation"</a>

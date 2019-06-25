@@ -5,32 +5,36 @@ import { Base, BaseFactory, Color, Converter } from '../src';
 import { CMYK, HSL, LAB, XYZ } from '../src/models';
 
 describe('Should accept a new color model', () => {
+
   it('should provide a correct toString() to a new color model', () => {
-    const color = new Color([10, 20, 30, 0.5], true, [[0, 255], [0, 255], [0, 255], [0, 1]], 'hip', 3);
+    const color = new Color([10, 20, 30, 0.5], 'hip');
     expect(color.toString()).to.equal('hip(10,20,30,0.5)');
   });
 
   it('should clamp correctly a new color model', () => {
-    const color = new Color([1000, -2000, 128, 10.5], true, [[0, 255], [0, 255], [0, 255], [0, 1]], 'hip', 3);
-    expect(color.toString()).to.equal('hip(255,0,128,1)');
+  
+    BaseFactory.setModel('hip', [[0, 25], [0, 250], [0, 2500], [0, 2.5]], 3);
+
+    const color = new Color([1000, -2000, 128, 10.5], 'hip');
+    expect(color.toString()).to.equal('hip(25,0,128,2.5)');
   });
 
   it('should NOT clamp a new color model when requested', () => {
-    const color = new Color([1000, -2000, 128, 10.5], false, [[0, 255], [0, 255], [0, 255], [0, 1]], 'hip', 3);
+    const color = new Color([1000, -2000, 128, 10.5], 'hip', false);
     expect(color.toString()).to.equal('hip(1000,-2000,128,10.5)');
   });
 
 
-  it('should clamp a new color model to a custom function', () => {
-    const color = new Color([1000, -2000, 128, 10.5], true, [[0, 255], [0, 255], [0, 255], [0, 1]], 'hip', 3,
-      (scope: Base) => {
-        scope.channels[0] = scope.channels[0] > 500 ? 500 : scope.channels[0];
-        scope.channels[1] = scope.channels[1] < 0 ? 0 : scope.channels[1];
-        scope.channels[2] = scope.channels[2] < 0 ? 0 : scope.channels[2];
-        scope.channels[3] = scope.channels[3] > 1 ? 1 : scope.channels[3];
-      });
-    expect(color.toString()).to.equal('hip(500,0,128,1)');
+
+  it('should create a new color model with minimal arguments', () => {
+
+    BaseFactory.setModel('hip', [[0, 25], [0, 250], [0, 2500], [0, 2.5]], 3);
+    const color = new Color([1000, -2000, 128000, 10.5], 'hip');
+    // console.log('color', color.base.clampFunction);
+    expect(color.toString()).to.equal('hip(25,0,2500,2.5)');
+
   });
+
 
 
   it('should convert to a new color model', () => {
@@ -92,7 +96,7 @@ describe('Should accept a new color model', () => {
 
       })
     const hsl = new HSL([0, 100, 50, 1]);
-    const result = new Color([255, 0, 0, 1], true, [[0, 255], [0, 255], [0, 255], [0, 1]], 'hip', 3);
+    const result = new Color([255, 0, 0, 1], 'hip');
     expect(hsl.to('hip').toString()).to.equal('hip(255,0,0,1)');
   });
 
@@ -100,6 +104,7 @@ describe('Should accept a new color model', () => {
 
 
   it('should convert from a new color model', () => {
+
     Converter.register('hip', 'hsl',
       (value: Base): Base => {
 
@@ -142,9 +147,21 @@ describe('Should accept a new color model', () => {
         return BaseFactory.createHSL([h, s * 100, l * 100, value.alpha]);
 
       });
-    const hip = new Color([255, 0, 0, 1],true,  [[0, 255], [0, 255], [0, 255], [0, 1]], 'hip', 3);
+    BaseFactory.setModel('hip', [[0, 255], [0, 255], [0, 255], [0, 1]], 3);
+
+    const hip = new Color([255, 0, 0, 1],'hip');
     const result = new HSL([0, 100, 50, 1]);
     expect(hip.to(HSL.MODEL).toString()).to.equal(result.toString());
   });
-});
 
+
+  it('should create from a string', () => {
+
+    BaseFactory.setModel('hip', [[0, 255], [0, 255], [0, 255], [0, 1]], 3);
+
+    const hip = new Color('hip(255, 0, 0, 1)');
+
+    expect(hip.toString()).to.equal('hip(255,0,0,1)');
+  });
+
+});

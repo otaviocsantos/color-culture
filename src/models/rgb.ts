@@ -6,6 +6,6 @@ export class RGB extends Color {
   public static readonly RANGES = [[0, 255], [0, 255], [0, 255], [0, 1]];
 
   constructor(value?: any, clampValues = true) {
-    super(value, clampValues, RGB.RANGES, RGB.MODEL, RGB.ALPHA_INDEX);
+    super(value, RGB.MODEL, clampValues);
   }
 }

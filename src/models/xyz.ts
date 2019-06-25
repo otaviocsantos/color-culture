@@ -6,6 +6,6 @@ export class XYZ extends Color {
   public static readonly RANGES = [[0, 100], [0, 100], [0, 100], [0, 1]];
 
   constructor(value?: any, clampValues = true) {
-    super(value, clampValues, XYZ.RANGES, XYZ.MODEL, XYZ.ALPHA_INDEX);
+    super(value, XYZ.MODEL, clampValues);
   }
 }

@@ -6,6 +6,6 @@ export class LAB extends Color {
   public static readonly RANGES = [[0, 100], [-128, 128], [-128, 128], [0, 1]];
 
   constructor(value?: any, clampValues = true) {
-    super(value, clampValues, LAB.RANGES, LAB.MODEL, LAB.ALPHA_INDEX);
+    super(value, LAB.MODEL, clampValues);
   }
 }

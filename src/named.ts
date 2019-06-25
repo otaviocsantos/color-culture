@@ -1,4 +1,4 @@
-import { BaseFactory, Parser, HSL, Color } from '.';
+import { BaseFactory, Color, HSL, Parser } from '.';
 
 export class Named {
   /**

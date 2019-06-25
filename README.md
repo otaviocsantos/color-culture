@@ -6,7 +6,7 @@ Color Culture is a library to create Cultures - dynamic color palettes -, it als
 
 ## Usage
 
-A "hello, world" style example, this will create a color black and display its value as a string in an alert window:
+A "hello, world" example, this will create a color black and display its value as a string in an alert window:
 ```ts
 import { RGB } from 'color-culture';
 
@@ -15,23 +15,25 @@ const color = new RGB();
 alert(color.rgba)
 ```
 
-A color may also be created using its name as in:
+A color may also be created using a string:
 ```ts
 import { Color, RGB } from 'color-culture';
 
 const red = new Color('red'); // this will create a new red RGB color
 const blue = new Color('#00FF00'); // this will create a new blue RGB color
+const yellow = new Color('#DDDD0080'); // this will create a new yellow RGB color, the last two digits represent its alpha channel
+const green = new Color('rgb(0,255,0)'); // this will create a new green RGB color
 ```
 
 
-To define de values of the channels in a color use an array, this will create a green color:
+You may also create a color using an array, this will create a green color:
 ```ts
 const color = new RGB([0,250,0,1]);
 ```
 
-In an RGB model the first three values represent the channles red, green and blue respectively and the last one the alpha channel.
+In an RGB model the first three values represent the channles red, green and blue respectively and the last one the alpha channel; alpha channels are used to define transparency.
 
-Color culture comes with predefined color models: RGB, HSL, CMYK, LAB and XYZ, to creat a CMYK color proceed like so;
+Color culture comes with some predefined color models: RGB, HSL, CMYK, LAB and XYZ, for example, to creat a CMYK color you may proceed like so;
 ```ts
 import { CMYK } from 'color-culture';
 
@@ -52,11 +54,11 @@ let colorD = colorC.to('xyz');
 ```
 ## Custom Color Models
 
-If you need to use a color model not available in Color Culture there are ways to register a new model as well as conversion functions that will allow you to convert between any other color model present.
+If you need to use a color model not available in Color Culture there are ways to register a new model, as well as conversion functions that will allow you to convert between any other color model present.
 
 ### How to register a new color model
 
-Note that without **also registering conversion functions** your custom model would not capable of much, to learn more about that look into next section.
+Note that without **also registering conversion functions** your custom model would not be capable of much, to learn more about that look into next section.
 
 To have the values of your channels kept within ranges just register you model like so:
 ```ts
@@ -123,27 +125,33 @@ let original = new CMYK([48,78,10,5,1]);
 let converted = original.to('hip');
 ```
 
-
+Registration only needs to be done once.
 
 ## Cultures
-Are like palettes in the sense that they are groups of colors, but with cultures have two main new functionalities:
+Cultures are like color palettes in the sense that they are groups of colors, but cultures have two distinctive functionalities:
 
-1. You can link one color to another, so changing one color will affect all colors linked to it.
+1. You can link one color to another, so changing the source color will affect all colors linked to it.
 
 2. You can create colors based on functions that are executed every time the culture is read.
 
+How is a culture created:
 ```ts
 import { Color, CMYK, RGB, Culture, Relation } from 'color-culture';
 
-// pure yellow plus a bit of black (CMYK K30%) should result in darker CMYK yellow
+
+// adding a bit of black to a pure yellow should result in a darker yellow
+
+  const bitOfBlack = new CMYK([0, 0, 0, 30, 0]);
   const yellow = new CMYK([0, 0, 100, 0, 1]);
-  const cmykMod = new CMYK([0, 0, 0, 30, 0]);
 
   const culture = new Culture();
   const source = culture.addColor(yellow);
 
 
-  const relation = culture.addRelation(cmykMod, source);
+  const relation = culture.addRelation( ()=>{
+      return bitOfBlack.add(source)
+  } );
+
   const result = relation.result;
   alert(result.toString()) // darker yellow
   
@@ -154,18 +162,40 @@ If the original color is changed from yellow to blue, the result will appear as 
 
 ```ts
 
-  source.modifier = new Color('blue');
-  alert(result.toString()) // darker blue
+  const darkCMKYYellow = new CMYK([0, 0, 100, 30, 1]);
+    const darkCMKYBlue = new CMYK([100, 100, 0, 30, 1]);
+
+    const bitOfBlack = new CMYK([0, 0, 0, 30, 0]);
+    const CMYKyellow = new CMYK([0, 0, 100, 0, 1]);
+
+    const culture = new Culture();
+
+    // add a pure yellow to the culture
+    const source = culture.addColor(CMYKyellow);
+
+    // relation is a function
+    const relation = culture.addRelation( ()=>{
+      // it calls upon the source color using source result
+      // and adds a bitOfBlack to it
+        return bitOfBlack.add(source.result)
+    } );
+    
+    alert(relation.result.toString()) // this will result in a darker yellow
+    
+    // if we change the source color to blue
+    source.modifier = new CMYK([100, 100, 0, 0, 1]);
+
+    alert(relation.result.toString()) // this will result in a darker blue
 
   
 ```
 
-This an example of a Relation that is independet of other colors and will always return a specific shade of green:
+This an example of a Relation that is independent of any other colors and will always return a random shade of green:
 ```ts
   
-  const randomGreen = culture.addRelation(() => {
+  const randomGreen = culture.addRelation( () => {
       return new HSL([150, 50, Math.random() * 75, 1]);
-  });
+  } );
 
 
 ```
@@ -215,7 +245,37 @@ A modification DO NOT change the original color, if you do wish to change it rea
 
 ```
   
+## Color as string
 
+A string representation of a color may be expressed in many ways.
+
+as a hexadecimal:
+```ts
+
+  let color = new Color('red');
+  color.hex; // #FF0000
+
+```
+
+as a alpha hexadecimal, where the ending two digist represent the alpha channel:
+```ts
+
+  let color = new Color('red');
+  color.hexa; // #FF0000FF 
+
+```
+
+
+and, of course, using toString:
+```ts
+
+  let color = new Color('red');
+  color.toString(); // rgb(255,0,0,1)
+
+  color = new CMYK([0,100,100,0,1])
+  color.toString(); // cmyk(0,100,100,0,1)
+  
+```
 
 ## Installation
 
@@ -231,6 +291,8 @@ Vue application: https://github.com/otaviocsantos/color-culture-vue-example
 
 
 ## Change Log
+
+3.0.0 Made Relation more flexible, expanded documentation, added test cases, fixed round bug when calling rgba, better creation from string, better support for custom models.
 
 2.0.0 Ground up rewrite and streamlining.
 

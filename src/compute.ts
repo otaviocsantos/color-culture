@@ -11,20 +11,32 @@ export class Compute {
     return range[0] > value ? range[0] : range[1] < value ? range[1] : value;
   }
 
+  /**
+   * Clamps a rotation between 0 and 360
+   * @param value value to be clamped
+   */
   public static clampRotation(value: number): number {
-    if (value == Infinity || value == -Infinity) {
+    if (value === Infinity || value === -Infinity) {
       return 0;
     }
     return ((value % 360) + 360) % 360;
   }
 
+  /**
+   * Returns true if this is a dark color, false otherwise
+   * @param value Color to be evaluated
+   */
   public static isDark(value: Color): boolean {
     // YIQ equation from http://24ways.org/2010/calculating-color-contrast
     const copy = value.rgb();
-    var yiq = (copy.channels[0] * 299 + copy.channels[1] * 587 + copy.channels[2] * 114) / 1000;
+    const yiq = (copy.channels[0] * 299 + copy.channels[1] * 587 + copy.channels[2] * 114) / 1000;
     return yiq < 128;
   }
 
+  /**
+   * Returns true if this is a light color, false otherwise
+   * @param value Color to be evaluated
+   */
   public static isLight(value: Color): boolean {
     return !Compute.isDark(value);
   }
@@ -146,7 +158,7 @@ export class Compute {
       }
 
       midchan[3] = sourchan[3] * (1 - compt) + destchan[3] * compt;
-      const mid = new Color(midchan, false, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3);
+      const mid = new Color(midchan, 'rgb', false);
 
       result.push(mid);
     }
@@ -161,11 +173,11 @@ export class Compute {
    * Average color of the items in this Culture
    */
   public static average(values: Color[]): Color {
-    if (values == undefined || values.length === 0) {
+    if (values === undefined || values.length === 0) {
       throw new Error('Cannot compute average of an empty array of colors');
     }
 
-    const result = new Color([0, 0, 0, 0], false, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3);
+    const result = new Color([0, 0, 0, 0], 'rgb', false);
     values.map(o => {
       const rgb = o.rgb();
       result.channels[0] += rgb.r() * rgb.r();

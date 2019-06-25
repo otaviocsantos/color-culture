@@ -1,4 +1,5 @@
 import { Base } from './base';
+import { BaseFactory } from './base-factory';
 import { Compute } from './compute';
 import { Converter } from './converter';
 import { Parser } from './parser';
@@ -21,14 +22,23 @@ export class Color {
     this.base.channels[this.base.alphaIndex] = value;
   }
 
+  /**
+   * returns position in the matrix that contains value for the alpha channel 
+   */
   get alphaIndex(): number {
     return this.base.alphaIndex;
   }
 
+  /**
+   * returns colors and alpha values
+   */
   get channels(): number[] {
     return this.base.channels;
   }
 
+  /**
+   * sets colors and alpha values
+   */
   set channels(value: number[]) {
     if (value !== undefined) {
       this.base.channels = [...value];
@@ -52,14 +62,22 @@ export class Color {
 
   /**
    * CSS helper method
-   * Clamp, and returns this color as a string using rgba as its model
+   * Clamp, ROUND and returns this color as a string using rgba as its model
+   * Alpha value is not rounded, for obvious reasons
    */
   get rgba(): string {
-    return 'rgba(' + this.to('rgb').channels.join() + ')';
+    const c = this.to('rgb');
+    let result = 'rgba(';
+    for (let i = 0; i < 3; i++) {
+      result += Math.round(c.channels[i]).toString() + ',';
+    }
+    result += c.alpha.toString();
+    result += ')';
+    return result;
   }
 
   /**
-   * returns hexadecimal version of this color WITHOUT alpha channel
+   * Returns hexadecimal version of this color WITHOUT alpha channel
    */
   get hex(): string {
     const result = this.hexa;
@@ -67,7 +85,7 @@ export class Color {
   }
 
   /**
-   * returns hexadecimal version of this color with alpha channel
+   * Returns eight digits hexadecimal version of this color, last two digits represent the alpha channel
    */
   get hexa(): string {
     const rgb = this.to('rgb');
@@ -84,28 +102,37 @@ export class Color {
     return result;
   }
 
+  /**
+   * Boolean, is this a dark color ?
+   */
   get isDark(): boolean {
     return Compute.isDark(this);
   }
 
+  /**
+   * Boolean, is this a light color ?
+   */
   get isLight(): boolean {
     return Compute.isLight(this);
   }
 
+  /**
+   * Create a new color.
+   * @param value Values that will compose this color
+   * @param model Model to which this color will be outputed.
+   * @param clampValues Should channels values be kept with range? Defaults to true.
+   */
   constructor(
     value?: any,
+    model = 'rgb',
     clampValues = true,
-    ranges: number[][] = [[0, 255], [0, 255], [0, 255], [0, 1]],
-    model = 'RGB',
-    alphaIndex = 3,
-    clampFunction: any = null,
   ) {
     if (value instanceof Base) {
       this.base = new Base(value.channels, value.ranges, value.model, value.alphaIndex, value.clampFunction);
     } else if (typeof value === 'string') {
       this.base = Parser.fromString(value.toString(), clampValues);
     } else {
-      this.base = new Base(value, ranges, model, alphaIndex, clampFunction);
+      this.base = BaseFactory.createGeneric(value, model, clampValues);
     }
 
     if (clampValues) {
@@ -113,6 +140,13 @@ export class Color {
     }
   }
 
+  /**
+   * Auxiliar method, convert a clone of this color to model and set this channel's value or return this channel's value
+   * @param model model to which this color's clone should be converted
+   * @param index channel's index
+   * @param value channel's value
+   * @param clampValues boolean, should this value be clamped ?
+   */
   public channel(model: string = 'rgb', index: number = 0, value?: number, clampValues = true) {
     const clone = this.to(model, clampValues);
 
@@ -135,14 +169,17 @@ export class Color {
   public r(value?: number, clampValues = true): any {
     return this.channel('rgb', 0, value, clampValues);
   }
+
   /**
    * Creates an RGB clone and set Green channel to value, or returns Green channel's value
    * @param value Green channel value
    * @param clampValues Keep value in range, defaults to true
    */
+
   public g(value?: number, clampValues = true): any {
     return this.channel('rgb', 1, value, clampValues);
   }
+
   /**
    * Creates an RGB clone and set Blue channel to value, or returns Blue channel's value
    * @param value Blue channel value
@@ -170,6 +207,7 @@ export class Color {
 
     return clone.channels[0];
   }
+
   /**
    * Creates an HSL clone and set Saturation channel to value, or returns Saturation channel's value
    * @param value Saturation channel value
@@ -206,7 +244,7 @@ export class Color {
    * @param clampValues Default is true, clamp channels this clone
    */
   public clone(clampValues = true): Color {
-    return new Color(this.base, clampValues);
+    return new Color(this.base, this.model, clampValues);
   }
 
   /**
@@ -260,60 +298,125 @@ export class Color {
     return this.to('xyz', clampValues);
   }
 
+  /**
+   * Returns  a new color after summingup this color channels to another's
+   * @param other Second color that will be added to this
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public add(other: Color, clampValues = true): Color {
     return Compute.add(this, other, clampValues);
   }
 
+  /**
+   * Returns a new color after mixing this color to another by an x amount
+   * 0 = this color, 0.5 halfway between the two, 1 = another color
+   * @param other Second color that will be added to this
+   * @param amount Amount by wich each color will be represented, default is 0.5 a perfect mix
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public mix(other: Color, amount: number = 0.5, clampValues = true): Color {
     return Compute.mix(this, other, amount, clampValues);
   }
 
+  /**
+   * Returns a new color after mixing this color to black by an x amount
+   * 0 = this color, 0.5 halfway between the two, 1 = black
+   * @param amount Amount by wich this color will turn black, default is 0.5
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public blacken(amount: number = 0.25, clampValues = true) {
     return this.mix(
-      new Color([0, 0, 0, this.alpha], clampValues, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3),
+      new Color([0, 0, 0, this.alpha]),
       amount,
     );
   }
 
+  /**
+   * Returns a new color after mixing this color to white by an x amount
+   * 0 = this color, 0.5 halfway between the two, 1 = white
+   * @param amount Amount by wich this color will turn white, default is 0.5
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public whiten(amount: number = 0.25, clampValues = true) {
     return this.mix(
-      new Color([255, 255, 255, this.alpha], clampValues, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3),
+      new Color([255, 255, 255, this.alpha]),
       amount,
     );
   }
 
+  /**
+   * Returns a new color after making this color lighter by an x amount
+   * @param amount Amount by wich this color will be lighten, default is 0.5
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public lighten(amount: number = 0.25, clampValues = true) {
     return Compute.lighten(this, amount, clampValues);
   }
 
+  /**
+   * Returns a new color after making this color darker by an x amount
+   * @param amount Amount by wich this color will be darker, default is 0.5
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public darken(amount: number = 0.25, clampValues = true) {
     return Compute.darken(this, amount, clampValues);
   }
 
+  /**
+   * Returns a new color after making a negative version of this color
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public negate(clampValues = true) {
     return Compute.negate(this, clampValues);
   }
 
+  /**
+   * Clones this color and returns a saturated version
+   * @param amount How much should be changed 0 = no change, 1 = completly saturated
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public saturate(amount: number = 0.25, clampValues = true) {
     return Compute.saturate(this, amount, clampValues);
   }
 
+  /**
+   * Clones this color and returns a grayscale version
+   * @param amount How much should be changed 0 = no change, 1 = only gray tones
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public desaturate(amount: number = 0.25, clampValues = true) {
     return Compute.desaturate(this, amount, clampValues);
   }
 
+  /**
+   * Clones this color and returns a desaturated version
+   * @param amount How much should be changed 0 = no change, 1 = completly desaturated
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public grayscale(amount = 1, clampValues = true) {
     return Compute.grayscale(this, amount, clampValues);
   }
 
+  /**
+   * Clones this color as an HSL model and rotates Hue value amount degrees
+   * @param amount degrees by which Hue should be rotate
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public rotate(amount: number = 180, clampValues = true) {
     return Compute.rotate(this, amount, clampValues);
   }
 
+  /**
+   * Calculates luma of this color
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public luma(clampValues = true) {
     return Compute.luma(this, clampValues);
   }
 
+  /**
+   * String representation of this color
+   */
   public toString(): string {
     return this.base.model + '(' + this.base.channels.join() + ')';
   }

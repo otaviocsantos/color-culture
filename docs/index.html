@@ -67,21 +67,23 @@
 				<h1 id="color-culture">Color Culture</h1>
 				<p>Color Culture is a library to create Cultures - dynamic color palettes -, it also convert colors between models, accepts new color models defined by the user, offers out of the box modifier methods and many other functionalities.</p>
 				<h2 id="usage">Usage</h2>
-				<p>A &quot;hello, world&quot; style example, this will create a color black and display its value as a string in an alert window:</p>
+				<p>A &quot;hello, world&quot; example, this will create a color black and display its value as a string in an alert window:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
 
 <span class="hljs-keyword">const</span> color = <span class="hljs-keyword">new</span> RGB();
 
 alert(color.rgba)</code></pre>
-				<p>A color may also be created using its name as in:</p>
+				<p>A color may also be created using a string:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Color, RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
 
 <span class="hljs-keyword">const</span> red = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>); <span class="hljs-comment">// this will create a new red RGB color</span>
-<span class="hljs-keyword">const</span> blue = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'#00FF00'</span>); <span class="hljs-comment">// this will create a new blue RGB color</span></code></pre>
-				<p>To define de values of the channels in a color use an array, this will create a green color:</p>
+<span class="hljs-keyword">const</span> blue = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'#00FF00'</span>); <span class="hljs-comment">// this will create a new blue RGB color</span>
+<span class="hljs-keyword">const</span> yellow = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'#DDDD0080'</span>); <span class="hljs-comment">// this will create a new yellow RGB color, the last two digits represent its alpha channel</span>
+<span class="hljs-keyword">const</span> green = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'rgb(0,255,0)'</span>); <span class="hljs-comment">// this will create a new green RGB color</span></code></pre>
+				<p>You may also create a color using an array, this will create a green color:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> color = <span class="hljs-keyword">new</span> RGB([<span class="hljs-number">0</span>,<span class="hljs-number">250</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]);</code></pre>
-				<p>In an RGB model the first three values represent the channles red, green and blue respectively and the last one the alpha channel.</p>
-				<p>Color culture comes with predefined color models: RGB, HSL, CMYK, LAB and XYZ, to creat a CMYK color proceed like so;</p>
+				<p>In an RGB model the first three values represent the channles red, green and blue respectively and the last one the alpha channel; alpha channels are used to define transparency.</p>
+				<p>Color culture comes with some predefined color models: RGB, HSL, CMYK, LAB and XYZ, for example, to creat a CMYK color you may proceed like so;</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { CMYK } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
 
 <span class="hljs-keyword">const</span> color = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]); <span class="hljs-comment">// which is blue</span></code></pre>
@@ -95,9 +97,9 @@ alert(color.rgba)</code></pre>
 <span class="hljs-keyword">let</span> colorC = colorB.to(LAB.MODEL);
 <span class="hljs-keyword">let</span> colorD = colorC.to(<span class="hljs-string">'xyz'</span>);</code></pre>
 				<h2 id="custom-color-models">Custom Color Models</h2>
-				<p>If you need to use a color model not available in Color Culture there are ways to register a new model as well as conversion functions that will allow you to convert between any other color model present.</p>
+				<p>If you need to use a color model not available in Color Culture there are ways to register a new model, as well as conversion functions that will allow you to convert between any other color model present.</p>
 				<h3 id="how-to-register-a-new-color-model">How to register a new color model</h3>
-				<p>Note that without <strong>also registering conversion functions</strong> your custom model would not capable of much, to learn more about that look into next section.</p>
+				<p>Note that without <strong>also registering conversion functions</strong> your custom model would not be capable of much, to learn more about that look into next section.</p>
 				<p>To have the values of your channels kept within ranges just register you model like so:</p>
 				<pre><code class="language-ts">
     <span class="hljs-keyword">import</span> { BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
@@ -145,40 +147,69 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 
 <span class="hljs-keyword">let</span> original = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">48</span>,<span class="hljs-number">78</span>,<span class="hljs-number">10</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>]);
 <span class="hljs-keyword">let</span> converted = original.to(<span class="hljs-string">'hip'</span>);</code></pre>
+				<p>Registration only needs to be done once.</p>
 				<h2 id="cultures">Cultures</h2>
-				<p>Are like palettes in the sense that they are groups of colors, but with cultures have two main new functionalities:</p>
+				<p>Cultures are like color palettes in the sense that they are groups of colors, but cultures have two distinctive functionalities:</p>
 				<ol>
-					<li><p>You can link one color to another, so changing one color will affect all colors linked to it.</p>
+					<li><p>You can link one color to another, so changing the source color will affect all colors linked to it.</p>
 					</li>
 					<li><p>You can create colors based on functions that are executed every time the culture is read.</p>
 					</li>
 				</ol>
+				<p>How is a culture created:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Color, CMYK, RGB, Culture, Relation } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
 
-<span class="hljs-comment">// pure yellow plus a bit of black (CMYK K30%) should result in darker CMYK yellow</span>
+
+<span class="hljs-comment">// adding a bit of black to a pure yellow should result in a darker yellow</span>
+
+  <span class="hljs-keyword">const</span> bitOfBlack = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>]);
   <span class="hljs-keyword">const</span> yellow = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]);
-  <span class="hljs-keyword">const</span> cmykMod = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>]);
 
   <span class="hljs-keyword">const</span> culture = <span class="hljs-keyword">new</span> Culture();
   <span class="hljs-keyword">const</span> source = culture.addColor(yellow);
 
 
-  <span class="hljs-keyword">const</span> relation = culture.addRelation(cmykMod, source);
+  <span class="hljs-keyword">const</span> relation = culture.addRelation( <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{
+      <span class="hljs-keyword">return</span> bitOfBlack.add(source)
+  } );
+
   <span class="hljs-keyword">const</span> result = relation.result;
   alert(result.toString()) <span class="hljs-comment">// darker yellow</span>
 
 </code></pre>
 				<p>If the original color is changed from yellow to blue, the result will appear as a darker blue instead of darker yellow:</p>
 				<pre><code class="language-ts">
-  source.modifier = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'blue'</span>);
-  alert(result.toString()) <span class="hljs-comment">// darker blue</span>
+  <span class="hljs-keyword">const</span> darkCMKYYellow = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">30</span>, <span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">const</span> darkCMKYBlue = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">1</span>]);
+
+    <span class="hljs-keyword">const</span> bitOfBlack = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>]);
+    <span class="hljs-keyword">const</span> CMYKyellow = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]);
+
+    <span class="hljs-keyword">const</span> culture = <span class="hljs-keyword">new</span> Culture();
+
+    <span class="hljs-comment">// add a pure yellow to the culture</span>
+    <span class="hljs-keyword">const</span> source = culture.addColor(CMYKyellow);
+
+    <span class="hljs-comment">// relation is a function</span>
+    <span class="hljs-keyword">const</span> relation = culture.addRelation( <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{
+      <span class="hljs-comment">// it calls upon the source color using source result</span>
+      <span class="hljs-comment">// and adds a bitOfBlack to it</span>
+        <span class="hljs-keyword">return</span> bitOfBlack.add(source.result)
+    } );
+
+    alert(relation.result.toString()) <span class="hljs-comment">// this will result in a darker yellow</span>
+
+    <span class="hljs-comment">// if we change the source color to blue</span>
+    source.modifier = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>]);
+
+    alert(relation.result.toString()) <span class="hljs-comment">// this will result in a darker blue</span>
 
 </code></pre>
-				<p>This an example of a Relation that is independet of other colors and will always return a specific shade of green:</p>
+				<p>This an example of a Relation that is independent of any other colors and will always return a random shade of green:</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">const</span> randomGreen = culture.addRelation(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> randomGreen = culture.addRelation( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HSL([<span class="hljs-number">150</span>, <span class="hljs-number">50</span>, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">75</span>, <span class="hljs-number">1</span>]);
-  });
+  } );
 
 </code></pre>
 				<h2 id="color-manipulation">Color Manipulation</h2>
@@ -206,6 +237,26 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
   color.negate(); <span class="hljs-comment">// this will NOT  change the value of the variable color</span>
   color = color.negate(); <span class="hljs-comment">// this will update the value of the variable color</span>
 </code></pre>
+				<h2 id="color-as-string">Color as string</h2>
+				<p>A string representation of a color may be expressed in many ways.</p>
+				<p>as a hexadecimal:</p>
+				<pre><code class="language-ts">
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>);
+  color.hex; <span class="hljs-comment">// #FF0000</span>
+</code></pre>
+				<p>as a alpha hexadecimal, where the ending two digist represent the alpha channel:</p>
+				<pre><code class="language-ts">
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>);
+  color.hexa; <span class="hljs-comment">// #FF0000FF </span>
+</code></pre>
+				<p>and, of course, using toString:</p>
+				<pre><code class="language-ts">
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>);
+  color.toString(); <span class="hljs-comment">// rgb(255,0,0,1)</span>
+
+  color = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>,<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])
+  color.toString(); <span class="hljs-comment">// cmyk(0,100,100,0,1)</span>
+</code></pre>
 				<h2 id="installation">Installation</h2>
 				<p>npm i color-culture --save</p>
 				<h2 id="examples">Examples</h2>
@@ -213,11 +264,13 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 				<p>Angular application: <a href="https://github.com/otaviocsantos/color-culture-angular-example">https://github.com/otaviocsantos/color-culture-angular-example</a></p>
 				<p>Vue application: <a href="https://github.com/otaviocsantos/color-culture-vue-example">https://github.com/otaviocsantos/color-culture-vue-example</a></p>
 				<h2 id="change-log">Change Log</h2>
+				<p>3.0.0 Made Relation more flexible, expanded documentation, added test cases, fixed round bug when calling rgba.</p>
 				<p>2.0.0 Ground up rewrite and streamlining.</p>
 				<p>2.0.1 Small fix in documentation and link to Angular app example.</p>
 				<p>2.0.2 Expanded documentation and link to Vue app example.</p>
 				<p>2.1.0 Added new creation methods to BaseFactory, fixed some some creation methods in BaseFactory. Updated documentation.</p>
 				<p>2.1.1 Fixed small typos in README</p>
+				<p>2.1.2 Added custom color model CRUD methods to BaseFactory.</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -270,9 +323,6 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_parser_.html">"parser"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_random_.html">"random"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_relation_.html">"relation"</a>

@@ -10,8 +10,8 @@ describe('R channel in RGB', () => {
     const color = new RGB([205, 0.8, 11, 0.5]);
 
     expect(color.r()).to.equal(205);
-    expect(color.r(64).rgba).to.equal('rgba(64,0.8,11,0.5)');
-    expect(color.r(364).rgba).to.equal('rgba(255,0.8,11,0.5)');
+    expect(color.r(64).rgba).to.equal('rgba(64,1,11,0.5)');
+    expect(color.r(364).rgba).to.equal('rgba(255,1,11,0.5)');
 
   });
 });
@@ -23,7 +23,7 @@ describe('G channel in RGB', () => {
 
     expect(color.g()).to.equal(0.8);
     expect(color.g(64).rgba).to.equal('rgba(205,64,11,0.5)');
-    expect(color.g(color.g() + 64).rgba).to.equal('rgba(205,64.8,11,0.5)');
+    expect(color.g(color.g() + 64).rgba).to.equal('rgba(205,65,11,0.5)');
     expect(color.g(364).rgba).to.equal('rgba(205,255,11,0.5)');
     expect(color.g(-364).rgba).to.equal('rgba(205,0,11,0.5)');
     expect(color.g(Infinity).rgba).to.equal('rgba(205,255,11,0.5)');
@@ -38,9 +38,9 @@ describe('B channel in RGB', () => {
     const color = new RGB([205, 0.8, 11, 0.5]);
 
     expect(color.b()).to.equal(11);
-    expect(color.b(64).rgba).to.equal('rgba(205,0.8,64,0.5)');
-    expect(color.b(364).rgba).to.equal('rgba(205,0.8,255,0.5)');
-    expect(color.b(-Infinity).rgba).to.equal('rgba(205,0.8,0,0.5)');
+    expect(color.b(64).rgba).to.equal('rgba(205,1,64,0.5)');
+    expect(color.b(364).rgba).to.equal('rgba(205,1,255,0.5)');
+    expect(color.b(-Infinity).rgba).to.equal('rgba(205,1,0,0.5)');
 
   });
 });
@@ -119,8 +119,8 @@ describe('Channel clamp', () => {
 
     const color = new RGB([205, 0.8, 11, 0.5]);
 
-    expect(color.r(364).rgba).to.equal('rgba(255,0.8,11,0.5)');
-    expect(color.r(-364).rgba).to.equal('rgba(0,0.8,11,0.5)');
+    expect(color.r(364).rgba).to.equal('rgba(255,1,11,0.5)');
+    expect(color.r(-364).rgba).to.equal('rgba(0,1,11,0.5)');
     expect(color.r(-764, false).toString()).to.equal('rgb(-764,0.8,11,0.5)');
 
   });
