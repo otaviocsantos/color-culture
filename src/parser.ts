@@ -4,12 +4,12 @@ import { Named } from './named';
 
 export class Parser {
   public static fromString(val: string, clampValues: boolean = true): Base {
-    val = val.toLowerCase();
+    val = val.trim().toLowerCase();
     let array;
     let alpha = 1;
     let prefix = '';
     const splitValue = val.split("(");
-    if(splitValue.length > 1){
+    if (splitValue.length > 1) {
       prefix = splitValue[0].trim();
     }
 
@@ -23,7 +23,7 @@ export class Parser {
 
 
     } else if (prefix === 'rgb' || prefix === 'rgba') {
-      
+
       const values: string[] = Parser.extractValues(val);
 
       if (values.length > 3) {
@@ -70,7 +70,7 @@ export class Parser {
 
 
     } else if (prefix === 'hsl' || prefix === 'hsla') {
-      
+
       const values: string[] = this.extractValues(val);
 
       if (values.length > 3) {
@@ -121,7 +121,7 @@ export class Parser {
 
     } else if (prefix === 'cmyk') {
 
-      const values = this.extractValues(val).map(e=>Number(e));
+      const values = this.extractValues(val).map(e => Number(e));
 
       if (values.length === 4) {
         values.push(1);
@@ -130,12 +130,12 @@ export class Parser {
       return BaseFactory.createCMYK(values, clampValues);
 
     }
-    
-    if(prefix){
-      const values = this.extractValues(val).map(e=>Number(e));
-      
+
+    if (prefix) {
+      const values = this.extractValues(val).map(e => Number(e));
+
       const tryBase = BaseFactory.createGeneric(values, prefix, clampValues);
-      if(tryBase){
+      if (tryBase) {
         return tryBase;
       }
     }
@@ -144,10 +144,13 @@ export class Parser {
   }
 
   public static ChannelsFromHEX(val: string): number[] | null {
+
     if (val.length < 3) {
       return null;
     }
 
+    // shorter than RRGGBB, treat channels as representing repeated values
+    // and repeat them
     if (val.length < 6) {
       let res = '';
       const size = val.length - 1;
@@ -157,10 +160,11 @@ export class Parser {
       }
       val = res;
     }
-
+    
     if (val.length === 6) {
       val += 'FF';
     }
+    
     return [
       parseInt(val.substr(0, 2), 16),
       parseInt(val.substr(2, 2), 16),

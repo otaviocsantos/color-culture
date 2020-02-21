@@ -1,10 +1,11 @@
 import * as path from 'ngraph.path';
+
 import { Base } from './base';
 import { BaseFactory } from './base-factory';
 
 export class Converter {
   // used to register standard conversions when a conversion is requested for the first time
-  public static initied = false;
+  public static initiated = false;
 
   /**
    * Assigns a function to string pair FROM, TO, the function must be able to convert between color models
@@ -38,7 +39,9 @@ export class Converter {
     Converter.register('xyz', 'lab', Converter.xyz_lab);
     Converter.register('rgb', 'cmyk', Converter.rgb_cmyk);
     Converter.register('cmyk', 'rgb', Converter.cmyk_rgb);
-    Converter.initied = true;
+    Converter.register('lab', 'lch', Converter.lab_lch);
+    Converter.register('lch', 'lab', Converter.lch_lab);
+    Converter.initiated = true;
   }
 
   /**
@@ -52,7 +55,7 @@ export class Converter {
       return from;
     }
 
-    if (!Converter.initied) {
+    if (!Converter.initiated) {
       Converter.init();
     }
 
@@ -262,19 +265,29 @@ export class Converter {
   }
 
   public static lab_xyz(value: Base, clampValues = true): Base {
-    let l = (value.channels[0] + 16) / 116.0;
-    let a = l + value.channels[1] / 500.0;
-    let b = l - value.channels[2] / 200.0;
 
-    const stimulus = [95.047, 100.0, 108.883];
+    const l = value.channels[0];
+    const a = value.channels[1];
+    const b = value.channels[2];
+    let x;
+    let y;
+    let z;
 
-    a = a * a * a > 8856e-6 ? a * a * a : (-16.0 / 116.0 + a) / 7.787;
-    l = l * l * l > 8856e-6 ? l * l * l : (-16.0 / 116.0 + l) / 7.787;
-    b = b * b * b > 8856e-6 ? b * b * b : (-16.0 / 116.0 + b) / 7.787;
+    y = (l + 16) / 116;
+    x = a / 500 + y;
+    z = y - b / 200;
 
-    const x = stimulus[0] * a;
-    const y = stimulus[2] * l;
-    const z = stimulus[1] * b;
+    const y2 = Math.pow(y, 3);
+    const x2 = Math.pow(x, 3);
+    const z2 = Math.pow(z, 3);
+    y = y2 > 0.008856 ? y2 : (y - 16 / 116) / 7.787;
+    x = x2 > 0.008856 ? x2 : (x - 16 / 116) / 7.787;
+    z = z2 > 0.008856 ? z2 : (z - 16 / 116) / 7.787;
+
+    x *= 95.047;
+    y *= 100;
+    z *= 108.883;
+
 
     const result = BaseFactory.create(
       [x, y, z, value.alpha],
@@ -321,6 +334,55 @@ export class Converter {
     return result;
   }
 
+  public static lch_lab(value: Base, clampValues = true): Base {
+
+    const l = value.channels[0];
+    const c = value.channels[1];
+    const h = value.channels[2];
+
+    const hr = h / 360 * 2 * Math.PI;
+    const a = c * Math.cos(hr);
+    const b = c * Math.sin(hr);
+
+    const result = BaseFactory.create(
+      [l, a, b, value.alpha],
+      clampValues,
+      // TODO: Check ranges
+      [[0, 180], [0, 180], [0, 360], [0, 1]],
+      'lab',
+      3,
+    );
+
+    return result;
+  }
+
+  public static lab_lch(value: Base, clampValues = true): Base {
+    const l = value.channels[0];
+    const a = value.channels[1];
+    const b = value.channels[2];
+
+    const hr = Math.atan2(b, a);
+    let h = hr * 360 / 2 / Math.PI;
+
+    if (h < 0) {
+      h += 360;
+    }
+
+    const c = Math.sqrt(a * a + b * b);
+
+    const result = BaseFactory.create(
+      [l, c, h, value.alpha],
+      clampValues,
+      // TODO: Check ranges
+      [[0, 180], [0, 180], [0, 360], [0, 1]],
+      'lch',
+      3,
+    );
+
+    return result;
+
+  }
+
   /**
    * internal list of conversion functions
    */
@@ -331,4 +393,5 @@ export class Converter {
    */
   protected static createGraph = require('ngraph.graph');
   protected static graph = Converter.createGraph();
+
 }

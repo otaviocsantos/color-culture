@@ -162,7 +162,7 @@ If the original color is changed from yellow to blue, the result will appear as 
 
 ```ts
 
-  const darkCMKYYellow = new CMYK([0, 0, 100, 30, 1]);
+    const darkCMKYYellow = new CMYK([0, 0, 100, 30, 1]);
     const darkCMKYBlue = new CMYK([100, 100, 0, 30, 1]);
 
     const bitOfBlack = new CMYK([0, 0, 0, 30, 0]);
@@ -190,7 +190,7 @@ If the original color is changed from yellow to blue, the result will appear as 
   
 ```
 
-This an example of a Relation that is independent of any other colors and will always return a random shade of green:
+This is an example of a Relation that is independent of any other colors and will return a random shade of green:
 ```ts
   
   const randomGreen = culture.addRelation( () => {
@@ -224,7 +224,7 @@ Modifications can also be chained.
 ```
   
 
-With the exception of negate a modification can be changed an amount.
+Modifications may be changed by an amount ( with the exception of negate, which is absolute ).
 
 ```ts
  
@@ -235,7 +235,7 @@ With the exception of negate a modification can be changed an amount.
 ```
   
 
-A modification DO NOT change the original color, if you do wish to change it reassign the result of the modification like so:
+A modification DOES NOT change the original color, but if your intent is to change the original color proceed like so:
 
 ```ts
 
@@ -257,14 +257,13 @@ as a hexadecimal:
 
 ```
 
-as a alpha hexadecimal, where the ending two digist represent the alpha channel:
+as an alpha hexadecimal, where the ending two digist represent the alpha channel:
 ```ts
 
   let color = new Color('red');
   color.hexa; // #FF0000FF 
 
 ```
-
 
 and, of course, using toString:
 ```ts

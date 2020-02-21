@@ -6,8 +6,6 @@ import { Parser } from './parser';
 
 export class Color {
 
-  public base: Base;
-
   /**
    * get alpha channel value
    */
@@ -69,7 +67,7 @@ export class Color {
     const c = this.to('rgb');
     let result = 'rgba(';
     for (let i = 0; i < 3; i++) {
-      result += Math.round(c.channels[i]).toString() + ',';
+      result += Math.round(c.channels[i]).toString() + ', ';
     }
     result += c.alpha.toString();
     result += ')';
@@ -81,7 +79,7 @@ export class Color {
    */
   get hex(): string {
     const result = this.hexa;
-    return result.substr(0, 6);
+    return result.substr(0, 7);
   }
 
   /**
@@ -99,7 +97,7 @@ export class Color {
     }
 
     result += ('0' + Number((rgb.alpha * 255).toFixed(0)).toString(16)).slice(-2).toUpperCase();
-    return result;
+    return '#' + result;
   }
 
   /**
@@ -116,6 +114,8 @@ export class Color {
     return Compute.isLight(this);
   }
 
+  public base: Base;
+
   /**
    * Create a new color.
    * @param value Values that will compose this color
@@ -127,10 +127,18 @@ export class Color {
     model = 'rgb',
     clampValues = true,
   ) {
+    if (model === '') {
+      model = 'rgb';
+    }
+
     if (value instanceof Base) {
       this.base = new Base(value.channels, value.ranges, value.model, value.alphaIndex, value.clampFunction);
     } else if (typeof value === 'string') {
+
       this.base = Parser.fromString(value.toString(), clampValues);
+      if (model !== 'rgb') {
+        this.base = this.to(model).base;
+      }
     } else {
       this.base = BaseFactory.createGeneric(value, model, clampValues);
     }
@@ -139,6 +147,7 @@ export class Color {
       this.clamp(false);
     }
   }
+
 
   /**
    * Auxiliar method, convert a clone of this color to model and set this channel's value or return this channel's value
@@ -291,6 +300,14 @@ export class Color {
   }
 
   /**
+   * Returns a copy of this color converted to LCH model
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
+  public lch(clampValues = true): Color {
+    return this.to('lch', clampValues);
+  }
+
+  /**
    * Returns a copy of this color converted to XYZ model
    * @param clampValues Default is true, clamp channels of the color returned
    */
@@ -299,7 +316,7 @@ export class Color {
   }
 
   /**
-   * Returns  a new color after summingup this color channels to another's
+   * Returns  a new color after summing up this color channels to another's
    * @param other Second color that will be added to this
    * @param clampValues Default is true, clamp channels of the color returned
    */
@@ -314,8 +331,8 @@ export class Color {
    * @param amount Amount by wich each color will be represented, default is 0.5 a perfect mix
    * @param clampValues Default is true, clamp channels of the color returned
    */
-  public mix(other: Color, amount: number = 0.5, clampValues = true): Color {
-    return Compute.mix(this, other, amount, clampValues);
+  public mixChannels(other: Color, amount: number = 0.5, clampValues = true): Color {
+    return Compute.mixChannels(this, other, amount, clampValues);
   }
 
   /**
@@ -325,7 +342,7 @@ export class Color {
    * @param clampValues Default is true, clamp channels of the color returned
    */
   public blacken(amount: number = 0.25, clampValues = true) {
-    return this.mix(
+    return this.mixChannels(
       new Color([0, 0, 0, this.alpha]),
       amount,
     );
@@ -338,7 +355,7 @@ export class Color {
    * @param clampValues Default is true, clamp channels of the color returned
    */
   public whiten(amount: number = 0.25, clampValues = true) {
-    return this.mix(
+    return this.mixChannels(
       new Color([255, 255, 255, this.alpha]),
       amount,
     );
@@ -414,10 +431,33 @@ export class Color {
     return Compute.luma(this, clampValues);
   }
 
+  public distance(other: Color, clampValues = true) {
+    return Compute.distance(this, other, clampValues);
+  }
+
   /**
    * String representation of this color
    */
   public toString(): string {
-    return this.base.model + '(' + this.base.channels.join() + ')';
+    return this.base.model + '(' + this.base.channels.join(', ') + ')';
   }
+
+  /**
+   * Returns channel value in fixed-point notation.
+   * @param fractionDigits Number of digits after the decimal point. Must be in the range 0 - 20, inclusive.
+   * @param skipAlpha Should alpha channel be ignored when values are processed.
+   */
+  public toFixed(fractionDigits = 2, skipAlpha = false) {
+    const result = new Array<string>();
+    this.channels.map((o, i) => {
+      if (i !== this.alphaIndex) {
+        result.push(o.toFixed(fractionDigits));
+      } else {
+        result.push(skipAlpha ? o.toString() : o.toFixed(fractionDigits));
+      }
+    });
+    return this.base.model + '(' + result.join(', ') + ')';
+  }
+
+
 }

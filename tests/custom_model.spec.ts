@@ -1,5 +1,6 @@
-import { expect } from 'chai';
 import 'mocha';
+
+import { expect } from 'chai';
 
 import { Base, BaseFactory, Color, Converter } from '../src';
 import { CMYK, HSL, LAB, XYZ } from '../src/models';
@@ -8,7 +9,7 @@ describe('Should accept a new color model', () => {
 
   it('should provide a correct toString() to a new color model', () => {
     const color = new Color([10, 20, 30, 0.5], 'hip');
-    expect(color.toString()).to.equal('hip(10,20,30,0.5)');
+    expect(color.toString()).to.equal('hip(10, 20, 30, 0.5)');
   });
 
   it('should clamp correctly a new color model', () => {
@@ -16,12 +17,12 @@ describe('Should accept a new color model', () => {
     BaseFactory.setModel('hip', [[0, 25], [0, 250], [0, 2500], [0, 2.5]], 3);
 
     const color = new Color([1000, -2000, 128, 10.5], 'hip');
-    expect(color.toString()).to.equal('hip(25,0,128,2.5)');
+    expect(color.toString()).to.equal('hip(25, 0, 128, 2.5)');
   });
 
   it('should NOT clamp a new color model when requested', () => {
     const color = new Color([1000, -2000, 128, 10.5], 'hip', false);
-    expect(color.toString()).to.equal('hip(1000,-2000,128,10.5)');
+    expect(color.toString()).to.equal('hip(1000, -2000, 128, 10.5)');
   });
 
 
@@ -31,7 +32,7 @@ describe('Should accept a new color model', () => {
     BaseFactory.setModel('hip', [[0, 25], [0, 250], [0, 2500], [0, 2.5]], 3);
     const color = new Color([1000, -2000, 128000, 10.5], 'hip');
     // console.log('color', color.base.clampFunction);
-    expect(color.toString()).to.equal('hip(25,0,2500,2.5)');
+    expect(color.toString()).to.equal('hip(25, 0, 2500, 2.5)');
 
   });
 
@@ -97,7 +98,7 @@ describe('Should accept a new color model', () => {
       })
     const hsl = new HSL([0, 100, 50, 1]);
     const result = new Color([255, 0, 0, 1], 'hip');
-    expect(hsl.to('hip').toString()).to.equal('hip(255,0,0,1)');
+    expect(hsl.to('hip').toString()).to.equal('hip(255, 0, 0, 1)');
   });
 
 
@@ -161,7 +162,7 @@ describe('Should accept a new color model', () => {
 
     const hip = new Color('hip(255, 0, 0, 1)');
 
-    expect(hip.toString()).to.equal('hip(255,0,0,1)');
+    expect(hip.toString()).to.equal('hip(255, 0, 0, 1)');
   });
 
 });

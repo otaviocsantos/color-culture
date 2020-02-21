@@ -1,5 +1,6 @@
-import { expect } from 'chai';
 import 'mocha';
+
+import { expect } from 'chai';
 
 import { Color } from '../src/color';
 import { CMYK, HSL, LAB, RGB, XYZ } from '../src/models';
@@ -16,7 +17,15 @@ describe('CMYK string tests', () => {
   it('should return a corret toString value', () => {
     const color = new CMYK([12, 34, 45, 56, 0.34]);
     const result = color.toString();
-    const confirm = 'cmyk(12,34,45,56,0.34)';
+    const confirm = 'cmyk(12, 34, 45, 56, 0.34)';
+    expect(result).to.equal(confirm);
+  });
+
+
+  it('should create a corret CMYK value from a string', () => {
+    const color = new CMYK('blue');
+    const result = color.toString();
+    const confirm = 'cmyk(100, 100, 0, 0, 1)';
     expect(result).to.equal(confirm);
   });
 });

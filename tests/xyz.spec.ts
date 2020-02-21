@@ -1,5 +1,6 @@
-import { expect } from 'chai';
 import 'mocha';
+
+import { expect } from 'chai';
 
 import { Color } from '../src/color';
 import { HSL, RGB, XYZ } from '../src/models';
@@ -21,7 +22,7 @@ describe('XYZ Convert tests', () => {
   it('XYZ(100, 100, 100) should convert to RGB(255, 249, 244) using function to', () => {
     const result = white.to(RGB.MODEL);
     const confirm = new RGB([255, 249, 244, 0]);
-    expect(white.toString()).to.equal('xyz(100,100,100,0)');
+    expect(white.toString()).to.equal('xyz(100, 100, 100, 0)');
 
     expect(result.channels[0]).to.be.within(confirm.channels[0] - 0.5, confirm.channels[0] + 0.5);
     expect(result.channels[1]).to.be.within(confirm.channels[1] - 0.5, confirm.channels[1] + 0.5);

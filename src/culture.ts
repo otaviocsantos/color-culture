@@ -119,6 +119,6 @@ export class Culture {
     size = pool.length;
     const secondColor = pool.splice(Math.floor(Math.random() * size))[0].result;
 
-    return secondColor.mix(firstColor, Math.random());
+    return secondColor.mixChannels(firstColor, Math.random());
   }
 }
