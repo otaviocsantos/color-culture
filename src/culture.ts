@@ -3,7 +3,7 @@ import { Color } from './color';
 import { Relation } from './relation';
 
 /**
- * Ccollection of groups of colors indexed by names
+ * Collection of groups of colors indexed by names
  */
 export class Culture {
   get items() {
@@ -11,10 +11,9 @@ export class Culture {
   }
 
   /**
-   * Ccollection of groups of colors indexed by names
+   * Collection of groups of colors indexed by names
    */
   protected m_items = new Array<Relation>();
-
 
   /**
    * Add a color to this culture
@@ -32,10 +31,10 @@ export class Culture {
   }
 
   /**
-   * 
+   *
    * @param modifier A color or method that will modify
-   * @param from 
-   * @param list 
+   * @param from
+   * @param list
    */
   public addRelation(modifier: any = null): Relation {
     const relation = new Relation(modifier);
@@ -71,7 +70,9 @@ export class Culture {
   }
 
   public remove(relation: Relation): Relation | undefined {
-    if (relation === undefined) { throw new Error('Culture cannot remove an undefined relation'); }
+    if (relation === undefined) {
+      throw new Error('Culture cannot remove an undefined relation');
+    }
     return this.removeById(relation.id);
   }
 
@@ -80,7 +81,6 @@ export class Culture {
    * @param id Item id
    */
   public getById(id: string): Relation | undefined {
-    
     if (id !== '') {
       const index = this.items.findIndex(o => o.id === id);
       if (index > -1) {

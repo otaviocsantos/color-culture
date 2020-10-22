@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Compute | color-culture</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for color-culture">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -88,20 +88,25 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#average" class="tsd-kind-icon">average</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#clamprotation" class="tsd-kind-icon">clamp<wbr>Rotation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#clampvalue" class="tsd-kind-icon">clamp<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#contrast" class="tsd-kind-icon">contrast</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#darken" class="tsd-kind-icon">darken</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#desaturate" class="tsd-kind-icon">desaturate</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#distance" class="tsd-kind-icon">distance</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#fade" class="tsd-kind-icon">fade</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#grayscale" class="tsd-kind-icon">grayscale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#interpolate" class="tsd-kind-icon">interpolate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#isdark" class="tsd-kind-icon">is<wbr>Dark</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#islight" class="tsd-kind-icon">is<wbr>Light</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#lighten" class="tsd-kind-icon">lighten</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#luma" class="tsd-kind-icon">luma</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#mix" class="tsd-kind-icon">mix</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#mixchannels" class="tsd-kind-icon">mix<wbr>Channels</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#negate" class="tsd-kind-icon">negate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#opaque" class="tsd-kind-icon">opaque</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#randomcolor" class="tsd-kind-icon">random<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#randominrange" class="tsd-kind-icon">random<wbr>InRange</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#rotate" class="tsd-kind-icon">rotate</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#saturate" class="tsd-kind-icon">saturate</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_compute_.compute.html#steps" class="tsd-kind-icon">steps</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,7 +124,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L210">compute.ts:210</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L26">compute.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -131,7 +136,7 @@
 									<h5>destiny: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -142,13 +147,13 @@
 					<a name="average" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> average</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">average<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a></li>
+						<li class="tsd-signature tsd-kind-icon">average<span class="tsd-signature-symbol">(</span>values<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span>, model<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L175">compute.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L41">compute.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -160,6 +165,9 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>values: <a href="_color_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> model: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;rgb&quot;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -176,7 +184,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L18">compute.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L19">compute.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,7 +215,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L10">compute.ts:10</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L11">compute.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,6 +243,45 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="contrast" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> contrast</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">contrast<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, clampValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L288">compute.ts:288</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Increase or decrease contrast in a color</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>between -1 and 1</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Error</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
 					<a name="darken" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> darken</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -244,7 +291,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L50">compute.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L90">compute.ts:90</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -253,10 +300,10 @@
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.25</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -273,7 +320,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L76">compute.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L98">compute.ts:98</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -282,13 +329,42 @@
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.25</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="distance" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> distance</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">distance<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, destiny<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, clampValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L104">compute.ts:104</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>source: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+								<li>
+									<h5>destiny: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -302,7 +378,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L104">compute.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L115">compute.ts:115</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -311,10 +387,10 @@
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -331,7 +407,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L82">compute.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L124">compute.ts:124</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -340,10 +416,42 @@
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="interpolate" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> interpolate</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">interpolate<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, destiny<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, clampValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L133">compute.ts:133</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>source: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+								<li>
+									<h5>destiny: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.5</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -360,7 +468,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L29">compute.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L75">compute.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -391,7 +499,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L40">compute.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L86">compute.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -422,7 +530,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L44">compute.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L145">compute.ts:145</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -431,10 +539,10 @@
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.25</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -451,16 +559,24 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L99">compute.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L157">compute.ts:157</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns luma of a color
+									Following: <a href="https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.601-7-201103-I!!PDF-E.pdf">https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.601-7-201103-I!!PDF-E.pdf</a></p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -477,7 +593,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L198">compute.ts:198</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L168">compute.ts:168</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -489,10 +605,42 @@
 									<h5>destiny: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.5</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.5</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="mixchannels" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> mix<wbr>Channels</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">mix<wbr>Channels<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, destiny<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, clampValues<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L195">compute.ts:195</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>source: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+								<li>
+									<h5>destiny: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.5</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -509,16 +657,27 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L58">compute.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L212">compute.ts:212</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a new color after making a negative version of this color</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>source color</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -535,7 +694,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L113">compute.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L220">compute.ts:220</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -544,13 +703,70 @@
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 1</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="randomcolor" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> random<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">random<wbr>Color<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L239">compute.ts:239</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a random color in the desired model</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> model: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;rgb&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>In which model the random color should be represented</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="randominrange" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> random<wbr>InRange</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">random<wbr>InRange<span class="tsd-signature-symbol">(</span>start<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, end<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L248">compute.ts:248</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>start: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>end: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -564,19 +780,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L91">compute.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L258">compute.ts:258</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clones this color as an HSL model and rotates Hue value amount degrees</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>source color</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;180</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 180</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>degrees by which Hue should be rotate</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Default is true, clamp channels of the color returned</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
@@ -593,65 +823,32 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L66">compute.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/e9972b7/src/compute.ts#L272">compute.ts:272</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Increase or decrease saturation in a color</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>color: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;0.25</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0.25</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>between -1 and 1</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;true</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> clampValues: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
-					<a name="steps" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> steps</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, destiny<span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a>, amount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_color_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/otaviocsantos/color-culture/blob/5a1031c/src/compute.ts#L133">compute.ts:133</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Creates a Color array of n steps with the RGB gradient from source to destiny colors</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>source: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Color at start of gradient</p>
-									</div>
-								</li>
-								<li>
-									<h5>destiny: <a href="_color_.color.html" class="tsd-signature-type">Color</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Color at the end of gradient</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> amount: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;1</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Number of steps in this gradient</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_color_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -663,53 +860,59 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_base_.html">"base"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_base_.html">&quot;base&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_base_factory_.html">"base-<wbr>factory"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_base_factory_.html">&quot;base-<wbr>factory&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_color_.html">"color"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_color_.html">&quot;color&quot;</a>
 					</li>
-					<li class="current tsd-kind-external-module">
-						<a href="../modules/_compute_.html">"compute"</a>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_compute_.html">&quot;compute&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_converter_.html">"converter"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_converter_.html">&quot;converter&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_culture_.html">"culture"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_culture_.html">&quot;culture&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_index_.html">"index"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_index_.html">&quot;index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_cmyk_.html">"models/cmyk"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_cmyk_.html">&quot;models/cmyk&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_hsl_.html">"models/hsl"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_hsl_.html">&quot;models/hsl&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_index_.html">"models/index"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_hsv_.html">&quot;models/hsv&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_lab_.html">"models/lab"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_index_.html">&quot;models/index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_rgb_.html">"models/rgb"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_lab_.html">&quot;models/lab&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_models_xyz_.html">"models/xyz"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_rgb_.html">&quot;models/rgb&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_named_.html">"named"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_models_xyz_.html">&quot;models/xyz&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_parser_.html">"parser"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_named_.html">&quot;named&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_relation_.html">"relation"</a>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_parser_.html">&quot;parser&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_range_.html">&quot;range&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/_relation_.html">&quot;relation&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -717,7 +920,7 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-external-module">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_compute_.compute.html" class="tsd-kind-icon">Compute</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
@@ -733,16 +936,25 @@
 								<a href="_compute_.compute.html#clampvalue" class="tsd-kind-icon">clamp<wbr>Value</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_compute_.compute.html#contrast" class="tsd-kind-icon">contrast</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#darken" class="tsd-kind-icon">darken</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#desaturate" class="tsd-kind-icon">desaturate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_compute_.compute.html#distance" class="tsd-kind-icon">distance</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#fade" class="tsd-kind-icon">fade</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#grayscale" class="tsd-kind-icon">grayscale</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_compute_.compute.html#interpolate" class="tsd-kind-icon">interpolate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#isdark" class="tsd-kind-icon">is<wbr>Dark</a>
@@ -760,19 +972,25 @@
 								<a href="_compute_.compute.html#mix" class="tsd-kind-icon">mix</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_compute_.compute.html#mixchannels" class="tsd-kind-icon">mix<wbr>Channels</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#negate" class="tsd-kind-icon">negate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#opaque" class="tsd-kind-icon">opaque</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_compute_.compute.html#randomcolor" class="tsd-kind-icon">random<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_compute_.compute.html#randominrange" class="tsd-kind-icon">random<wbr>InRange</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#rotate" class="tsd-kind-icon">rotate</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
 								<a href="_compute_.compute.html#saturate" class="tsd-kind-icon">saturate</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
-								<a href="_compute_.compute.html#steps" class="tsd-kind-icon">steps</a>
 							</li>
 						</ul>
 					</li>
@@ -788,65 +1006,18 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

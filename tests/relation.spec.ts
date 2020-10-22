@@ -1,5 +1,6 @@
-import { expect } from 'chai';
 import 'mocha';
+
+import { expect } from 'chai';
 
 import { BaseFactory, Color, Culture, Relation } from '../src';
 import { CMYK, HSL, LAB, RGB, XYZ } from '../src/models';
@@ -31,28 +32,24 @@ describe('Color relation tests', () => {
     it('Relation should able to change a modifier', () => {
       const culture = new Culture();
 
-    const rel = culture.addColor(green);
+      const rel = culture.addColor(green);
 
-    const relation = culture.addRelation(() => {
-      
+      const relation = culture.addRelation(() => {
+
         return new RGB([255, 0, 0, 0]).add(rel.result);
-      
-    });
-    expect(relation.result.toString()).to.equal(yellow.toString());
+
+      });
+      expect(relation.result.toString()).to.equal(yellow.toString());
 
       relation.modifier = () => {
-        
-          return new RGB([0, 0, 255, 0]).add(rel.result);
-        
+
+        return new RGB([0, 0, 255, 0]).add(rel.result);
+
       }
 
-    expect(relation.result.toString()).to.equal(cyan.toString());
-
-
+      expect(relation.result.toString()).to.equal(cyan.toString());
 
     });
-
-
 
   });
 
@@ -119,12 +116,12 @@ describe('Color relation tests', () => {
     const source = culture.addColor(CMYKyellow);
 
 
-    const relation = culture.addRelation( ()=>{
-        return bitOfBlack.add(source.result)
-    } );
-    
+    const relation = culture.addRelation(() => {
+      return bitOfBlack.add(source.result)
+    });
+
     const result = relation.result;
-    
+
     expect(result.toString()).to.equal(darkCMKYYellow.toString());
   });
 
@@ -138,10 +135,10 @@ describe('Color relation tests', () => {
     const culture = new Culture();
     const source = culture.addColor(CMYKyellow);
 
-    const relation = culture.addRelation( ()=>{
-        return bitOfBlack.add(source.result)
-    } );
-    
+    const relation = culture.addRelation(() => {
+      return bitOfBlack.add(source.result)
+    });
+
     expect(relation.result.toString()).to.equal(darkCMKYYellow.toString());
 
     source.modifier = new CMYK([100, 100, 0, 0, 1]);

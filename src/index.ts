@@ -4,6 +4,12 @@ import { Color } from './color';
 import { Compute } from './compute';
 import { Converter } from './converter';
 import { Culture } from './culture';
+import { CMYK } from './models/cmyk';
+import { HSL } from './models/hsl';
+import { HSV } from './models/hsv';
+import { LAB } from './models/lab';
+import { RGB } from './models/rgb';
+import { XYZ } from './models/xyz';
 import { Named } from './named';
 import { Parser } from './parser';
 import { Relation } from './relation';
@@ -18,14 +24,9 @@ export { Base };
 export { BaseFactory };
 export { Color };
 
-import { CMYK } from './models/cmyk';
-import { HSL } from './models/hsl';
-import { LAB } from './models/lab';
-import { RGB } from './models/rgb';
-import { XYZ } from './models/xyz';
-
 export { CMYK };
 export { HSL };
+export { HSV };
 export { LAB };
 export { RGB };
 export { XYZ };

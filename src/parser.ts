@@ -8,7 +8,7 @@ export class Parser {
     let array;
     let alpha = 1;
     let prefix = '';
-    const splitValue = val.split("(");
+    const splitValue = val.split('(');
     if (splitValue.length > 1) {
       prefix = splitValue[0].trim();
     }
@@ -20,10 +20,7 @@ export class Parser {
       if (array) {
         return BaseFactory.createRGB(array);
       }
-
-
     } else if (prefix === 'rgb' || prefix === 'rgba') {
-
       const values: string[] = Parser.extractValues(val);
 
       if (values.length > 3) {
@@ -63,14 +60,9 @@ export class Parser {
       array.push(alpha);
 
       return BaseFactory.createRGB(array, clampValues);
-
-
-    } else if (Named.css.has(val)) {
-      return Parser.fromString(Named.css.get(val) as string);
-
-
+    } else if (Named.has(val)) {
+      return Parser.fromString(Named.getName(val) as string);
     } else if (prefix === 'hsl' || prefix === 'hsla') {
-
       const values: string[] = this.extractValues(val);
 
       if (values.length > 3) {
@@ -91,13 +83,12 @@ export class Parser {
       if (hue.endsWith('deg')) {
         // exclude "deg" from end of string and "rotate around" 360 to shed exceeding turns
         h = Number(hue.slice(0, -3));
-
       } else if (hue.endsWith('turn')) {
         h = Number(hue.slice(0, -4)); // exclude "turn" from end of string
 
         h = 360 * h;
       } else if (hue.endsWith('rad')) {
-        h = ((Math.abs(Number(hue.slice(0, -3))) * 180) / Math.PI);
+        h = (Math.abs(Number(hue.slice(0, -3))) * 180) / Math.PI;
       } else {
         h = Number(hue);
       }
@@ -117,10 +108,7 @@ export class Parser {
       }
 
       return BaseFactory.createHSL([h, s, l, alpha], clampValues);
-
-
     } else if (prefix === 'cmyk') {
-
       const values = this.extractValues(val).map(e => Number(e));
 
       if (values.length === 4) {
@@ -128,7 +116,6 @@ export class Parser {
       }
 
       return BaseFactory.createCMYK(values, clampValues);
-
     }
 
     if (prefix) {
@@ -144,7 +131,6 @@ export class Parser {
   }
 
   public static ChannelsFromHEX(val: string): number[] | null {
-
     if (val.length < 3) {
       return null;
     }
@@ -160,11 +146,11 @@ export class Parser {
       }
       val = res;
     }
-    
+
     if (val.length === 6) {
       val += 'FF';
     }
-    
+
     return [
       parseInt(val.substr(0, 2), 16),
       parseInt(val.substr(2, 2), 16),

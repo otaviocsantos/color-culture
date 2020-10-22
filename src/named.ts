@@ -4,7 +4,7 @@ export class Named {
   /**
    * Index of named colors: https://www.w3.org/TR/css-color-4/
    */
-  public static readonly css: Map<string, string> = new Map<string, string>([
+  public static readonly names: Map<string, string> = new Map<string, string>([
     ['aliceblue', '#F0F8FF'],
     ['antiquewhite', '#FAEBD7'],
     ['aqua', '#00FFFF'],
@@ -64,8 +64,8 @@ export class Named {
     ['greenyellow', '#ADFF2F'],
     ['honeydew', '#F0FFF0'],
     ['hotpink', '#FF69B4'],
-    ['indianred ', '#CD5C5C'],
-    ['indigo ', '#4B0082'],
+    ['indianred', '#CD5C5C'],
+    ['indigo', '#4B0082'],
     ['ivory', '#FFFFF0'],
     ['khaki', '#F0E68C'],
     ['lavender', '#E6E6FA'],
@@ -155,4 +155,38 @@ export class Named {
     ['yellow', '#FFFF00'],
     ['yellowgreen', '#9ACD32'],
   ]);
+
+  /**
+   * Update or add string pair of a color
+   * @param key Color's name
+   * @param value Color value as string
+   */
+  public static setName(key: string, value: string) {
+    Named.names.set(key, value);
+    return true;
+  }
+
+  /**
+   * Get a string value of a color by its name
+   * @param key Color's name
+   */
+  public static getName(key: string): string | undefined {
+    return Named.names.get(key);
+  }
+
+  /**
+   * Check if there's a register for this name
+   * @param key Color's name
+   */
+  public static has(key: string): boolean {
+    return Named.names.has(key);
+  }
+
+  /**
+   * Delete key, value pair of a color
+   * @param key Color's name
+   */
+  public static delete(key: string): boolean {
+    return Named.names.delete(key);
+  }
 }

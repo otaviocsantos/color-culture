@@ -1,7 +1,6 @@
 import { Base } from './base';
 
 export class BaseFactory {
-
   public static create(
     values: any,
     clampValues: boolean,
@@ -32,7 +31,7 @@ export class BaseFactory {
    * Remove this entry from the map of color models
    * @param name Model's name
    */
-  public static deleteModel(name: string):boolean {
+  public static deleteModel(name: string): boolean {
     return BaseFactory.models.delete(name);
   }
 
@@ -40,7 +39,7 @@ export class BaseFactory {
    * Check if there's an entry on map of color models under this name
    * @param name Model's name
    */
-  public static hasModel(name: string):boolean {
+  public static hasModel(name: string): boolean {
     return BaseFactory.models.has(name);
   }
 
@@ -48,10 +47,9 @@ export class BaseFactory {
    * Return the color model indexed under this name
    * @param name Model's name
    */
-  public static getModel(name: string):Base | undefined {
+  public static getModel(name: string): Base | undefined {
     return BaseFactory.models.get(name);
   }
-
 
   /**
    * Creates a Base using the model defined in model parameter
@@ -65,6 +63,8 @@ export class BaseFactory {
         return this.createCMYK(values != null ? values : [0, 0, 0, 0, 1], clampValues);
       case 'hsl':
         return this.createHSL(values != null ? values : [0, 0, 0, 1], clampValues);
+      case 'hsv':
+        return this.createHSV(values != null ? values : [0, 0, 0, 1], clampValues);
       case 'lab':
         return this.createLAB(values != null ? values : [0, 0, 0, 1], clampValues);
       case 'rgb':
@@ -72,18 +72,17 @@ export class BaseFactory {
       case 'xyz':
         return this.createXYZ(values != null ? values : [0, 0, 0, 1], clampValues);
       default:
-        if(BaseFactory.models.has(model)){
+        if (BaseFactory.models.has(model)) {
           const b = BaseFactory.models.get(model);
-          if( b != null){
+          if (b != null) {
             return BaseFactory.create(values, clampValues, b.ranges, b.model, b.alphaIndex, b.clampFunction);
           }
         }
-        throw new Error('BaseFactory couldn\'t recognise model: '+model);
-  }
+        throw new Error("BaseFactory couldn't recognise model: " + model);
+    }
 
-    throw new Error('BaseFactory couldn\'t recognise creation parameters');
+    throw new Error("BaseFactory couldn't recognise creation parameters");
   }
-
 
   /**
    * Creates a Base using the RGB model
@@ -104,9 +103,7 @@ export class BaseFactory {
    * @param clampValues if values should be clamped, default is true
    */
   public static createHSL(values = [0, 0, 0, 1], clampValues = true): Base {
-
     const result = new Base(values, [[0, 360], [0, 100], [0, 100], [0, 1]], 'hsl', 3, (scope: Base) => {
-
       scope.channels[0] = ((scope.channels[0] % 360) + 360) % 360;
 
       for (let i = 1; i < scope.channels.length; i++) {
@@ -114,10 +111,33 @@ export class BaseFactory {
           scope.ranges[i][0] > scope.channels[i]
             ? scope.ranges[i][0]
             : scope.ranges[i][1] < scope.channels[i]
-              ? scope.ranges[i][1]
-              : scope.channels[i];
+            ? scope.ranges[i][1]
+            : scope.channels[i];
       }
+    });
+    if (clampValues) {
+      result.clamp();
+    }
+    return result;
+  }
 
+  /**
+   * Creates a Base using the HSV model
+   * @param values channel values
+   * @param clampValues if values should be clamped, default is true
+   */
+  public static createHSV(values = [0, 0, 0, 1], clampValues = true): Base {
+    const result = new Base(values, [[0, 360], [0, 100], [0, 100], [0, 1]], 'hsv', 3, (scope: Base) => {
+      scope.channels[0] = ((scope.channels[0] % 360) + 360) % 360;
+
+      for (let i = 1; i < scope.channels.length; i++) {
+        scope.channels[i] =
+          scope.ranges[i][0] > scope.channels[i]
+            ? scope.ranges[i][0]
+            : scope.ranges[i][1] < scope.channels[i]
+            ? scope.ranges[i][1]
+            : scope.channels[i];
+      }
     });
     if (clampValues) {
       result.clamp();

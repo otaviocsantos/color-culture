@@ -34,13 +34,12 @@ export class Base {
     if (clampFunction === undefined || clampFunction === null) {
       this.clampFunction = (scope: Base) => {
         scope.channels.map((o, i, l) => {
-
           scope.channels[i] =
             scope.ranges[i][0] > scope.channels[i]
               ? scope.ranges[i][0]
               : scope.ranges[i][1] < scope.channels[i]
-                ? scope.ranges[i][1]
-                : scope.channels[i];
+              ? scope.ranges[i][1]
+              : scope.channels[i];
         });
       };
     } else {

@@ -50,3 +50,30 @@ describe('Distance tests', () => {
   });
 
 });
+
+
+describe('contrast tests', () => {
+ 
+
+  it('Contrast should be properly enhanced ', () => {
+
+    const middle = new RGB([200, 55, 127.5, 1]);
+    const contrasted = new RGB([255, 0, 127.5, 1]);
+
+    const result = middle.contrast(1);
+
+    expect(result.toString()).to.equal(contrasted.toString());
+  });
+
+  it('Contrast should be properly diminished ', () => {
+
+    const middle = new RGB([200, 55, 127.5, 1]);
+    const contrasted = new RGB([127.5, 127.5, 127.5, 1]);
+
+    const result = middle.contrast(-1);
+
+    expect(result.toString()).to.equal(contrasted.toString());
+  });
+
+});
+

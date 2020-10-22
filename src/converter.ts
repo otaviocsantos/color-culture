@@ -9,8 +9,8 @@ export class Converter {
 
   /**
    * Assigns a function to string pair FROM, TO, the function must be able to convert between color models
-   * @param from Color signature from wich the conversion will be made, eg: "RGB"
-   * @param to Color signature to wich the conversion will be made, eg: "HSL"
+   * @param from Color signature from which the conversion will be made, eg: "RGB"
+   * @param to Color signature to which the conversion will be made, eg: "HSL"
    * @param func Function that does the color conversion
    */
   public static register(from: string, to: string, func: (n: any) => any) {
@@ -35,12 +35,16 @@ export class Converter {
     Converter.register('rgb', 'hsl', Converter.rgb_hsl);
     Converter.register('rgb', 'xyz', Converter.rgb_xyz);
     Converter.register('xyz', 'rgb', Converter.xyz_rgb);
+    Converter.register('lab', 'rgb', Converter.lab_rgb);
     Converter.register('lab', 'xyz', Converter.lab_xyz);
     Converter.register('xyz', 'lab', Converter.xyz_lab);
     Converter.register('rgb', 'cmyk', Converter.rgb_cmyk);
+    Converter.register('rgb', 'lab', Converter.rgb_lab);
     Converter.register('cmyk', 'rgb', Converter.cmyk_rgb);
     Converter.register('lab', 'lch', Converter.lab_lch);
     Converter.register('lch', 'lab', Converter.lch_lab);
+    Converter.register('hsv', 'rgb', Converter.hsv_rgb);
+    Converter.register('rgb', 'hsv', Converter.rgb_hsv);
     Converter.initiated = true;
   }
 
@@ -224,13 +228,7 @@ export class Converter {
     const y = r * 0.21263900587151 + g * 0.71516867876775 + b * 0.072192315360733;
     const z = r * 0.019330818715591 + g * 0.11919477979462 + b * 0.95053215224966;
 
-    const result = BaseFactory.create(
-      [x * 100, y * 100, z * 100, value.alpha],
-      clampValues,
-      [[0, 100], [0, 100], [0, 100], [0, 1]],
-      'xyz',
-      3,
-    );
+    const result = BaseFactory.createXYZ([x * 100, y * 100, z * 100, value.alpha], clampValues);
     return result;
   }
 
@@ -254,18 +252,11 @@ export class Converter {
     a = 500 * (x - y);
     b = 200 * (y - z);
 
-    const result = BaseFactory.create(
-      [l, a, b, value.alpha],
-      clampValues,
-      [[0, 100], [-128, 128], [-128, 128], [0, 1]],
-      'lab',
-      3,
-    );
+    const result = BaseFactory.createLAB([l, a, b, value.alpha], clampValues);
     return result;
   }
 
   public static lab_xyz(value: Base, clampValues = true): Base {
-
     const l = value.channels[0];
     const a = value.channels[1];
     const b = value.channels[2];
@@ -288,13 +279,36 @@ export class Converter {
     y *= 100;
     z *= 108.883;
 
+    const result = BaseFactory.createXYZ([x, y, z, value.alpha], clampValues);
+    return result;
+  }
 
-    const result = BaseFactory.create(
-      [x, y, z, value.alpha],
+  // Adapted from https://github.com/antimatter15/rgb-lab/blob/master/color.js
+  public static lab_rgb(value: Base, clampValues = true): Base {
+    let y = (value.channels[0] + 16) / 116;
+    let x = value.channels[1] / 500 + y;
+    let z = y - value.channels[2] / 200;
+
+    x = 0.95047 * (x * x * x > 0.008856 ? x * x * x : (x - 16 / 116) / 7.787);
+    y = 1.0 * (y * y * y > 0.008856 ? y * y * y : (y - 16 / 116) / 7.787);
+    z = 1.08883 * (z * z * z > 0.008856 ? z * z * z : (z - 16 / 116) / 7.787);
+
+    let r = x * 3.2406 + y * -1.5372 + z * -0.4986;
+    let g = x * -0.9689 + y * 1.8758 + z * 0.0415;
+    let b = x * 0.0557 + y * -0.204 + z * 1.057;
+
+    r = r > 0.0031308 ? 1.055 * Math.pow(r, 1 / 2.4) - 0.055 : 12.92 * r;
+    g = g > 0.0031308 ? 1.055 * Math.pow(g, 1 / 2.4) - 0.055 : 12.92 * g;
+    b = b > 0.0031308 ? 1.055 * Math.pow(b, 1 / 2.4) - 0.055 : 12.92 * b;
+
+    const result = BaseFactory.createRGB(
+      [
+        Math.max(0, Math.min(1, r)) * 255,
+        Math.max(0, Math.min(1, g)) * 255,
+        Math.max(0, Math.min(1, b)) * 255,
+        value.alpha,
+      ],
       clampValues,
-      [[0, 100], [0, 100], [0, 100], [0, 1]],
-      'xyz',
-      3,
     );
     return result;
   }
@@ -324,34 +338,42 @@ export class Converter {
     const m = (1 - fg - k) / (1 - k) || 0;
     const y = (1 - fb - k) / (1 - k) || 0;
 
-    const result = BaseFactory.create(
-      [c * 100, m * 100, y * 100, k * 100, value.alpha],
-      clampValues,
-      [[0, 100], [0, 100], [0, 100], [0, 100], [0, 1]],
-      'cmyk',
-      4,
-    );
+    const result = BaseFactory.createCMYK([c * 100, m * 100, y * 100, k * 100, value.alpha], clampValues);
+    return result;
+  }
+
+  // Adapted from https://github.com/antimatter15/rgb-lab/blob/master/color.js
+  public static rgb_lab(value: Base, clampValues = true): Base {
+    let r = value.channels[0] / 255;
+    let g = value.channels[1] / 255;
+    let b = value.channels[2] / 255;
+
+    r = r > 0.04045 ? Math.pow((r + 0.055) / 1.055, 2.4) : r / 12.92;
+    g = g > 0.04045 ? Math.pow((g + 0.055) / 1.055, 2.4) : g / 12.92;
+    b = b > 0.04045 ? Math.pow((b + 0.055) / 1.055, 2.4) : b / 12.92;
+
+    let x = (r * 0.4124 + g * 0.3576 + b * 0.1805) / 0.95047;
+    let y = (r * 0.2126 + g * 0.7152 + b * 0.0722) / 1.0;
+    let z = (r * 0.0193 + g * 0.1192 + b * 0.9505) / 1.08883;
+
+    x = x > 0.008856 ? Math.pow(x, 1 / 3) : 7.787 * x + 16 / 116;
+    y = y > 0.008856 ? Math.pow(y, 1 / 3) : 7.787 * y + 16 / 116;
+    z = z > 0.008856 ? Math.pow(z, 1 / 3) : 7.787 * z + 16 / 116;
+
+    const result = BaseFactory.createLAB([116 * y - 16, 500 * (x - y), 200 * (y - z), value.alpha], clampValues);
     return result;
   }
 
   public static lch_lab(value: Base, clampValues = true): Base {
-
     const l = value.channels[0];
     const c = value.channels[1];
     const h = value.channels[2];
 
-    const hr = h / 360 * 2 * Math.PI;
+    const hr = (h / 360) * 2 * Math.PI;
     const a = c * Math.cos(hr);
     const b = c * Math.sin(hr);
 
-    const result = BaseFactory.create(
-      [l, a, b, value.alpha],
-      clampValues,
-      // TODO: Check ranges
-      [[0, 180], [0, 180], [0, 360], [0, 1]],
-      'lab',
-      3,
-    );
+    const result = BaseFactory.createLAB([l, a, b, value.alpha], clampValues);
 
     return result;
   }
@@ -362,7 +384,7 @@ export class Converter {
     const b = value.channels[2];
 
     const hr = Math.atan2(b, a);
-    let h = hr * 360 / 2 / Math.PI;
+    let h = (hr * 360) / 2 / Math.PI;
 
     if (h < 0) {
       h += 360;
@@ -380,7 +402,68 @@ export class Converter {
     );
 
     return result;
+  }
 
+  /**
+   * Based on: TinyColor
+   */
+  public static rgb_hsv(value: Base, clampValues = true) {
+    const r = value.channels[0] / 255;
+    const g = value.channels[1] / 255;
+    const b = value.channels[2] / 255;
+
+    const max = Math.max(r, g, b);
+    const min = Math.min(r, g, b);
+    let h = 0;
+    let s = 0;
+    const v = max;
+
+    const d = max - min;
+    s = max === 0 ? 0 : d / max;
+
+    if (max === min) {
+      h = 0; // achromatic
+    } else {
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
+      }
+      h /= 6;
+    }
+
+    const result = BaseFactory.createHSV([h * 360, s * 100, v * 100, value.alpha], clampValues);
+
+    return result;
+  }
+
+  /**
+   * Based on: TinyColor
+   */
+  public static hsv_rgb(value: Base, clampValues = true) {
+    const h = value.channels[0] / 60;
+    const s = value.channels[1] / 100;
+    const v = value.channels[2] / 100;
+
+    const i = Math.floor(h);
+    const f = h - i;
+    const p = v * (1 - s);
+    const q = v * (1 - f * s);
+    const t = v * (1 - (1 - f) * s);
+    const mod = i % 6;
+    const r = [v, q, p, p, t, v][mod];
+    const g = [t, v, v, q, p, p][mod];
+    const b = [p, p, t, v, v, q][mod];
+
+    const result = BaseFactory.createRGB([r * 255, g * 255, b * 255, value.channels[3]], clampValues);
+
+    return result;
   }
 
   /**
@@ -393,5 +476,4 @@ export class Converter {
    */
   protected static createGraph = require('ngraph.graph');
   protected static graph = Converter.createGraph();
-
 }

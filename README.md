@@ -290,6 +290,20 @@ Vue application: https://github.com/otaviocsantos/color-culture-vue-example
 
 
 ## Change Log
+5.0.0 
+  Breaking changes:
+    Removed spaces from names in Named.css.
+    Renamed Named.css to Named.names.
+  New features: 
+    Added HSV color model.
+    New contrast modifier: makes sure your color is readable.
+    New Range class to create gradients.
+    Named now accepts user defined names.
+    Expanded tests.
+  Fixes:
+    Color convertions fixes between RGB <-> XYZ
+
+4.0.0 New and improved, hopefully better maintained in the future...
 
 3.0.0 Made Relation more flexible, expanded documentation, added test cases, fixed round bug when calling rgba, better creation from string, better support for custom models.
 

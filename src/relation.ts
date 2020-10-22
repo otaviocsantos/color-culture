@@ -10,7 +10,7 @@ export class Relation {
   }
 
   private newID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
       // tslint:disable-next-line:no-bitwise
       const r = (Math.random() * 16) | 0;
       // tslint:disable-next-line:no-bitwise
@@ -18,7 +18,6 @@ export class Relation {
       return v.toString(16);
     });
   }
-
 
   get result(): Color {
     if (this.modifier instanceof Color) {

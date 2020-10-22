@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>color-culture</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for color-culture">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -56,7 +56,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> color-culture</h1>
+			<h1>color-culture</h1>
 		</div>
 	</div>
 </header>
@@ -64,55 +64,65 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="color-culture">Color Culture</h1>
+				<a href="#color-culture" id="color-culture" style="color: inherit; text-decoration: none;">
+					<h1>Color Culture</h1>
+				</a>
 				<p>Color Culture is a library to create Cultures - dynamic color palettes -, it also convert colors between models, accepts new color models defined by the user, offers out of the box modifier methods and many other functionalities.</p>
-				<h2 id="usage">Usage</h2>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
 				<p>A &quot;hello, world&quot; example, this will create a color black and display its value as a string in an alert window:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
 <span class="hljs-keyword">const</span> color = <span class="hljs-keyword">new</span> RGB();
 
 alert(color.rgba)</code></pre>
 				<p>A color may also be created using a string:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Color, RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Color, RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
-<span class="hljs-keyword">const</span> red = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>); <span class="hljs-comment">// this will create a new red RGB color</span>
-<span class="hljs-keyword">const</span> blue = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'#00FF00'</span>); <span class="hljs-comment">// this will create a new blue RGB color</span>
-<span class="hljs-keyword">const</span> yellow = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'#DDDD0080'</span>); <span class="hljs-comment">// this will create a new yellow RGB color, the last two digits represent its alpha channel</span>
-<span class="hljs-keyword">const</span> green = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'rgb(0,255,0)'</span>); <span class="hljs-comment">// this will create a new green RGB color</span></code></pre>
+<span class="hljs-keyword">const</span> red = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;red&#x27;</span>); <span class="hljs-comment">// this will create a new red RGB color</span>
+<span class="hljs-keyword">const</span> blue = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;#00FF00&#x27;</span>); <span class="hljs-comment">// this will create a new blue RGB color</span>
+<span class="hljs-keyword">const</span> yellow = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;#DDDD0080&#x27;</span>); <span class="hljs-comment">// this will create a new yellow RGB color, the last two digits represent its alpha channel</span>
+<span class="hljs-keyword">const</span> green = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;rgb(0,255,0)&#x27;</span>); <span class="hljs-comment">// this will create a new green RGB color</span></code></pre>
 				<p>You may also create a color using an array, this will create a green color:</p>
 				<pre><code class="language-ts"><span class="hljs-keyword">const</span> color = <span class="hljs-keyword">new</span> RGB([<span class="hljs-number">0</span>,<span class="hljs-number">250</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]);</code></pre>
 				<p>In an RGB model the first three values represent the channles red, green and blue respectively and the last one the alpha channel; alpha channels are used to define transparency.</p>
 				<p>Color culture comes with some predefined color models: RGB, HSL, CMYK, LAB and XYZ, for example, to creat a CMYK color you may proceed like so;</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { CMYK } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { CMYK } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
 <span class="hljs-keyword">const</span> color = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]); <span class="hljs-comment">// which is blue</span></code></pre>
-				<h3 id="conversion">Conversion</h3>
+				<a href="#conversion" id="conversion" style="color: inherit; text-decoration: none;">
+					<h3>Conversion</h3>
+				</a>
 				<p>Color Culture converts between CMYK, HSL, LAB, RGB and XYZ out of the box</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { CMYK, HSL, LAB, RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { CMYK, HSL, LAB, RGB } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
 
 <span class="hljs-keyword">let</span> colorA = <span class="hljs-keyword">new</span> RGB([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">255</span>, <span class="hljs-number">1</span>]);
 <span class="hljs-keyword">let</span> colorB = colorA.hsl();
 <span class="hljs-keyword">let</span> colorC = colorB.to(LAB.MODEL);
-<span class="hljs-keyword">let</span> colorD = colorC.to(<span class="hljs-string">'xyz'</span>);</code></pre>
-				<h2 id="custom-color-models">Custom Color Models</h2>
+<span class="hljs-keyword">let</span> colorD = colorC.to(<span class="hljs-string">&#x27;xyz&#x27;</span>);</code></pre>
+				<a href="#custom-color-models" id="custom-color-models" style="color: inherit; text-decoration: none;">
+					<h2>Custom Color Models</h2>
+				</a>
 				<p>If you need to use a color model not available in Color Culture there are ways to register a new model, as well as conversion functions that will allow you to convert between any other color model present.</p>
-				<h3 id="how-to-register-a-new-color-model">How to register a new color model</h3>
+				<a href="#how-to-register-a-new-color-model" id="how-to-register-a-new-color-model" style="color: inherit; text-decoration: none;">
+					<h3>How to register a new color model</h3>
+				</a>
 				<p>Note that without <strong>also registering conversion functions</strong> your custom model would not be capable of much, to learn more about that look into next section.</p>
 				<p>To have the values of your channels kept within ranges just register you model like so:</p>
 				<pre><code class="language-ts">
-    <span class="hljs-keyword">import</span> { BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+    <span class="hljs-keyword">import</span> { BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
-    BaseFactory.setModel(<span class="hljs-string">'hip'</span>, [[<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">255</span>]], <span class="hljs-number">3</span>);
+    BaseFactory.setModel(<span class="hljs-string">&#x27;hip&#x27;</span>, [[<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">65025</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">255</span>]], <span class="hljs-number">3</span>);
 </code></pre>
 				<p>In this case the first three channels are bound between values 0 to 65025 inclusive and the last channel between 0 to 255 also iclusive.
 				Alpha channel is set to the forth channel (3, since we start to count from 0).</p>
 				<p>Color Culture will automatically keep values in range by min/maxing through ranges, but if there&#39;s need to a different approach in keeping values within range you may specify a custom function to do so, for example:</p>
 				<pre><code class="language-ts">
-    <span class="hljs-keyword">import</span> { Base, BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+    <span class="hljs-keyword">import</span> { Base, BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
-    BaseFactory.setModel(<span class="hljs-string">'hip'</span>, [[<span class="hljs-number">0</span>, <span class="hljs-number">360</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]], <span class="hljs-number">3</span>, <span class="hljs-function">(<span class="hljs-params">model: Base</span>) =&gt;</span> {
+    BaseFactory.setModel(<span class="hljs-string">&#x27;hip&#x27;</span>, [[<span class="hljs-number">0</span>, <span class="hljs-number">360</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">100</span>], [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>]], <span class="hljs-number">3</span>, <span class="hljs-function">(<span class="hljs-params">model: Base</span>) =&gt;</span> {
       model.channels[<span class="hljs-number">0</span>] = ((model.channels[<span class="hljs-number">0</span>] % <span class="hljs-number">360</span>) + <span class="hljs-number">360</span>) % <span class="hljs-number">360</span>;
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; model.channels.length; i++) {
         model.channels[i] =
@@ -124,31 +134,35 @@ alert(color.rgba)</code></pre>
       });</code></pre>
 				<p>After registration you may create a new instance of your color using BaseFactory: </p>
 				<pre><code class="language-ts">
-    <span class="hljs-keyword">import</span> { BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+    <span class="hljs-keyword">import</span> { BaseFactory } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
-    <span class="hljs-keyword">const</span> color = BaseFactory.createGeneric([<span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">1</span>], <span class="hljs-string">'hip'</span>);
+    <span class="hljs-keyword">const</span> color = BaseFactory.createGeneric([<span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">1</span>], <span class="hljs-string">&#x27;hip&#x27;</span>);
 </code></pre>
-				<h3 id="how-to-convert-to-and-from-a-new-color-model">How to convert to and from a new color model</h3>
+				<a href="#how-to-convert-to-and-from-a-new-color-model" id="how-to-convert-to-and-from-a-new-color-model" style="color: inherit; text-decoration: none;">
+					<h3>How to convert to and from a new color model</h3>
+				</a>
 				<p>In case you have a new color model there&#39;s no need to create conversion functions to all others color models, Color Culture uses <a href="https://www.npmjs.com/package/ngraph.path">https://www.npmjs.com/package/ngraph.path</a> to automatically find the shortest path between models.</p>
 				<p>Conversion work as long as there&#39;s at least <strong>one</strong> function converting <strong>to</strong> RGB, HSL, CMYK, LAB or XYZ and <strong>one</strong> function converting <strong>from</strong> RGB, HSL, CMYK, LAB or XYZ to your new model.</p>
 				<p>First pick a call name to your model, in this example &#39;hip&#39; will be used, then register functions on how to convert <strong>to</strong> and <strong>from</strong> your model:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Base, BaseFactory, Color, HSL, Converter } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Base, BaseFactory, Color, HSL, Converter } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
-Converter.register(<span class="hljs-string">'hsl'</span>, <span class="hljs-string">'hip'</span>,
+Converter.register(<span class="hljs-string">&#x27;hsl&#x27;</span>, <span class="hljs-string">&#x27;hip&#x27;</span>,
       (value: Base): <span class="hljs-function"><span class="hljs-params">Base</span> =&gt;</span> { 
             <span class="hljs-comment">// code to convert, check /tests/custom_model.spec.ts in repository for the full example</span>
        }); 
 
-Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-string">'hsl'</span>,
+Converter.register(<span class="hljs-string">&#x27;hip&#x27;</span>, <span class="hljs-string">&#x27;hsl&#x27;</span>,
       (value: Base): <span class="hljs-function"><span class="hljs-params">Base</span> =&gt;</span> { 
             <span class="hljs-comment">// code to convert, check /tests/custom_model.spec.ts in repository for the full example</span>
        }); 
 <span class="hljs-comment">//to use</span>
 
 <span class="hljs-keyword">let</span> original = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">48</span>,<span class="hljs-number">78</span>,<span class="hljs-number">10</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>]);
-<span class="hljs-keyword">let</span> converted = original.to(<span class="hljs-string">'hip'</span>);</code></pre>
+<span class="hljs-keyword">let</span> converted = original.to(<span class="hljs-string">&#x27;hip&#x27;</span>);</code></pre>
 				<p>Registration only needs to be done once.</p>
-				<h2 id="cultures">Cultures</h2>
+				<a href="#cultures" id="cultures" style="color: inherit; text-decoration: none;">
+					<h2>Cultures</h2>
+				</a>
 				<p>Cultures are like color palettes in the sense that they are groups of colors, but cultures have two distinctive functionalities:</p>
 				<ol>
 					<li><p>You can link one color to another, so changing the source color will affect all colors linked to it.</p>
@@ -157,7 +171,7 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 					</li>
 				</ol>
 				<p>How is a culture created:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Color, CMYK, RGB, Culture, Relation } <span class="hljs-keyword">from</span> <span class="hljs-string">'color-culture'</span>;
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Color, CMYK, RGB, Culture, Relation } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;color-culture&#x27;</span>;
 
 
 <span class="hljs-comment">// adding a bit of black to a pure yellow should result in a darker yellow</span>
@@ -169,7 +183,7 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
   <span class="hljs-keyword">const</span> source = culture.addColor(yellow);
 
 
-  <span class="hljs-keyword">const</span> relation = culture.addRelation( <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{
+  <span class="hljs-keyword">const</span> relation = culture.addRelation( <span class="hljs-function">()=&gt;</span>{
       <span class="hljs-keyword">return</span> bitOfBlack.add(source)
   } );
 
@@ -179,7 +193,7 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 </code></pre>
 				<p>If the original color is changed from yellow to blue, the result will appear as a darker blue instead of darker yellow:</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">const</span> darkCMKYYellow = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">30</span>, <span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">const</span> darkCMKYYellow = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">100</span>, <span class="hljs-number">30</span>, <span class="hljs-number">1</span>]);
     <span class="hljs-keyword">const</span> darkCMKYBlue = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">1</span>]);
 
     <span class="hljs-keyword">const</span> bitOfBlack = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">30</span>, <span class="hljs-number">0</span>]);
@@ -191,7 +205,7 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
     <span class="hljs-keyword">const</span> source = culture.addColor(CMYKyellow);
 
     <span class="hljs-comment">// relation is a function</span>
-    <span class="hljs-keyword">const</span> relation = culture.addRelation( <span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>{
+    <span class="hljs-keyword">const</span> relation = culture.addRelation( <span class="hljs-function">()=&gt;</span>{
       <span class="hljs-comment">// it calls upon the source color using source result</span>
       <span class="hljs-comment">// and adds a bitOfBlack to it</span>
         <span class="hljs-keyword">return</span> bitOfBlack.add(source.result)
@@ -205,66 +219,89 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
     alert(relation.result.toString()) <span class="hljs-comment">// this will result in a darker blue</span>
 
 </code></pre>
-				<p>This an example of a Relation that is independent of any other colors and will always return a random shade of green:</p>
+				<p>This is an example of a Relation that is independent of any other colors and will return a random shade of green:</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">const</span> randomGreen = culture.addRelation( <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> randomGreen = culture.addRelation( <span class="hljs-function">() =&gt;</span> {
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HSL([<span class="hljs-number">150</span>, <span class="hljs-number">50</span>, <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">75</span>, <span class="hljs-number">1</span>]);
   } );
 
 </code></pre>
-				<h2 id="color-manipulation">Color Manipulation</h2>
+				<a href="#color-manipulation" id="color-manipulation" style="color: inherit; text-decoration: none;">
+					<h2>Color Manipulation</h2>
+				</a>
 				<p>Every instance of the Color class contains commonly used functions for color manipulation.</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;Turquoise&#x27;</span>);
   <span class="hljs-built_in">console</span>.log(color.rgba);
   <span class="hljs-built_in">console</span>.log(color.lighten().rgba);
 </code></pre>
 				<p>Modifications can also be chained.</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;Turquoise&#x27;</span>);
   <span class="hljs-built_in">console</span>.log(color.rgba);
   <span class="hljs-built_in">console</span>.log(color.darken().desaturate());
 </code></pre>
-				<p>With the exception of negate a modification can be changed an amount.</p>
+				<p>Modifications may be changed by an amount ( with the exception of negate, which is absolute ).</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;Turquoise&#x27;</span>);
   <span class="hljs-built_in">console</span>.log(color.rgba); 
   <span class="hljs-built_in">console</span>.log(color.rotate(<span class="hljs-number">120</span>).saturate(<span class="hljs-number">55</span>));
 </code></pre>
-				<p>A modification DO NOT change the original color, if you do wish to change it reassign the result of the modification like so:</p>
+				<p>A modification DOES NOT change the original color, but if your intent is to change the original color proceed like so:</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'Turquoise'</span>);
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;Turquoise&#x27;</span>);
   color.negate(); <span class="hljs-comment">// this will NOT  change the value of the variable color</span>
   color = color.negate(); <span class="hljs-comment">// this will update the value of the variable color</span>
 </code></pre>
-				<h2 id="color-as-string">Color as string</h2>
+				<a href="#color-as-string" id="color-as-string" style="color: inherit; text-decoration: none;">
+					<h2>Color as string</h2>
+				</a>
 				<p>A string representation of a color may be expressed in many ways.</p>
 				<p>as a hexadecimal:</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>);
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;red&#x27;</span>);
   color.hex; <span class="hljs-comment">// #FF0000</span>
 </code></pre>
-				<p>as a alpha hexadecimal, where the ending two digist represent the alpha channel:</p>
+				<p>as an alpha hexadecimal, where the ending two digist represent the alpha channel:</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>);
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;red&#x27;</span>);
   color.hexa; <span class="hljs-comment">// #FF0000FF </span>
 </code></pre>
 				<p>and, of course, using toString:</p>
 				<pre><code class="language-ts">
-  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">'red'</span>);
+  <span class="hljs-keyword">let</span> color = <span class="hljs-keyword">new</span> Color(<span class="hljs-string">&#x27;red&#x27;</span>);
   color.toString(); <span class="hljs-comment">// rgb(255,0,0,1)</span>
 
   color = <span class="hljs-keyword">new</span> CMYK([<span class="hljs-number">0</span>,<span class="hljs-number">100</span>,<span class="hljs-number">100</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>])
   color.toString(); <span class="hljs-comment">// cmyk(0,100,100,0,1)</span>
 </code></pre>
-				<h2 id="installation">Installation</h2>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h2>Installation</h2>
+				</a>
 				<p>npm i color-culture --save</p>
-				<h2 id="examples">Examples</h2>
+				<a href="#examples" id="examples" style="color: inherit; text-decoration: none;">
+					<h2>Examples</h2>
+				</a>
 				<p>Examples can be found in:</p>
 				<p>Angular application: <a href="https://github.com/otaviocsantos/color-culture-angular-example">https://github.com/otaviocsantos/color-culture-angular-example</a></p>
 				<p>Vue application: <a href="https://github.com/otaviocsantos/color-culture-vue-example">https://github.com/otaviocsantos/color-culture-vue-example</a></p>
-				<h2 id="change-log">Change Log</h2>
-				<p>3.0.0 Made Relation more flexible, expanded documentation, added test cases, fixed round bug when calling rgba.</p>
+				<a href="#change-log" id="change-log" style="color: inherit; text-decoration: none;">
+					<h2>Change Log</h2>
+				</a>
+				<p>5.0.0
+					Breaking changes:
+					Removed spaces from names in Named.css.
+					Renamed Named.css to Named.names.
+					New features:
+					Added HSV color model.
+					New contrast modifier: makes sure your color is readable.
+					New Range class to create gradients.
+					Named now accepts user defined names.
+					Expanded tests.
+					Fixes:
+				Color convertions fixes between RGB &lt;-&gt; XYZ</p>
+				<p>4.0.0 New and improved, hopefully better maintained in the future...</p>
+				<p>3.0.0 Made Relation more flexible, expanded documentation, added test cases, fixed round bug when calling rgba, better creation from string, better support for custom models.</p>
 				<p>2.0.0 Ground up rewrite and streamlining.</p>
 				<p>2.0.1 Small fix in documentation and link to Angular app example.</p>
 				<p>2.0.2 Expanded documentation and link to Vue app example.</p>
@@ -279,53 +316,59 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 					<li class="globals  ">
 						<a href="globals.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_base_.html">"base"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_base_.html">&quot;base&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_base_factory_.html">"base-<wbr>factory"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_base_factory_.html">&quot;base-<wbr>factory&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_color_.html">"color"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_color_.html">&quot;color&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_compute_.html">"compute"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_compute_.html">&quot;compute&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_converter_.html">"converter"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_converter_.html">&quot;converter&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_culture_.html">"culture"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_culture_.html">&quot;culture&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_index_.html">"index"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_models_cmyk_.html">"models/cmyk"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_cmyk_.html">&quot;models/cmyk&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_models_hsl_.html">"models/hsl"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_hsl_.html">&quot;models/hsl&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_models_index_.html">"models/index"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_hsv_.html">&quot;models/hsv&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_models_lab_.html">"models/lab"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_index_.html">&quot;models/index&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_models_rgb_.html">"models/rgb"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_lab_.html">&quot;models/lab&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_models_xyz_.html">"models/xyz"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_rgb_.html">&quot;models/rgb&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_named_.html">"named"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_xyz_.html">&quot;models/xyz&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_parser_.html">"parser"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_named_.html">&quot;named&quot;</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_relation_.html">"relation"</a>
+					<li class=" tsd-kind-module">
+						<a href="modules/_parser_.html">&quot;parser&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_range_.html">&quot;range&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_relation_.html">&quot;relation&quot;</a>
 					</li>
 				</ul>
 			</nav>
@@ -341,65 +384,15 @@ Converter.register(<span class="hljs-string">'hip'</span>, <span class="hljs-str
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
