@@ -171,6 +171,64 @@ describe('Color creation tests', () => {
 });
 
 
+describe('Color presentation tests', () => {
+
+  it('Should create an RGB color as an RGB string ', () => {
+    const color = new Color('Yellow');
+    expect(color.toString()).to.equal('rgb(255, 255, 0, 1)');
+  });
+
+  it('Should create a CMYK color as a CMYK string ', () => {
+    const color = new CMYK('Yellow');
+    expect(color.toString()).to.equal('cmyk(0, 0, 100, 0, 1)');
+  });
+
+
+  it('Should round color correctly ', () => {
+    const color = new CMYK([0.5, 11.6666, 33.5555, 66.9999, 0.5 ]);
+    const check = new CMYK([1, 12, 34, 67, 0.5 ]);
+    expect(color.round().toString()).to.equal(check.toString());
+  });
+
+
+  it('Should round alpha when asked to ', () => {
+    const color = new CMYK([0.5, 11.6666, 33.5555, 66.9999, 0.5 ]);
+    const check = new CMYK([1, 12, 34, 67, 1 ]);
+    expect(color.round(false, false).toString()).to.equal(check.toString());
+  });
+
+  it('Round should alter original instead of making a copy from when asked to ', () => {
+    const color = new CMYK([0.5, 11.6666, 33.5555, 66.9999, 0.5 ]);
+    const pointer = color.round(false);
+    color.channels[0] = 14.5;
+    color.channels[1] = 28.9;
+    color.channels[2] = 36.7;
+    expect(pointer.toString()).to.equal(color.toString());
+  });
+
+  it('Should present color with correct fraction digits ', () => {
+    const color = new RGB([0.5, 11.6666, 33.252525, 0.5 ]);
+    const check = 'rgb(0.50, 11.67, 33.25, 0.50)';
+    expect(color.toFixed()).to.equal(check);
+  });
+
+  it('Should present color with correct fraction digits and skip alpha when asked to', () => {
+    const color = new RGB([0.5, 11.6666, 33.252525, 0.5 ]);
+    const check = 'rgb(0.50000, 11.66660, 33.25252, 0.5)';
+    expect(color.toFixed(5,true)).to.equal(check);
+  });
+
+  it('Should present color with correct fraction digits', () => {
+    const color = new CMYK([0.50005, 11.30035, 22.66665, 33.25256, 0.5 ]);
+    const check = 'cmyk(0.5000, 11.3003, 22.6667, 33.2526, 0.5)';
+    expect(color.toFixed(4,true)).to.equal(check);
+  });
+
+  // public toFixed(fractionDigits = 2, skipAlpha = false) 
+
+});
+
+
 describe('Color clone tests', () => {
 
   it('should clone', () => {

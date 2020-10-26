@@ -242,6 +242,30 @@ export class Color {
   }
 
   /**
+   * Round channels values
+   * @param makeCopy True return a copy of this color, defaults to true
+   * @param skipAlpha Skip alpha channel when rounding, defaults to true
+   */
+  public round(makeCopy = true, skipAlpha = true): Color {
+    if (makeCopy) {
+
+      return this.clone().round(false);
+
+    } else {
+
+      this.channels.map((o,i)=>{
+        if(i!==this.alphaIndex){
+          this.channels[i] = Math.round(this.channels[i]);
+        }else if(!skipAlpha){
+          this.channels[i] = Math.round(this.channels[i]);
+        }
+      });
+
+      return this;
+    }
+  }
+
+  /**
    * Return a new random color with the same model as this
    */
   public random(): Color {
@@ -451,7 +475,7 @@ export class Color {
   /**
    * Returns channel value in fixed-point notation.
    * @param fractionDigits Number of digits after the decimal point. Must be in the range 0 - 20, inclusive.
-   * @param skipAlpha Should alpha channel be ignored when values are processed.
+   * @param skipAlpha Should alpha channel be ignored when values are processed, defaults to false.
    */
   public toFixed(fractionDigits = 2, skipAlpha = false) {
     const result = new Array<string>();
