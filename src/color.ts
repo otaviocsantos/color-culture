@@ -433,8 +433,8 @@ export class Color {
   }
 
   /**
-   * Clones this color and returns a desaturated version
-   * @param amount How much should be changed 0 = no change, 1 = completely desaturated
+   * Clones this color and returns a contrasted version
+   * @param amount How much should be changed 0 = no change, 1 = fully contrasted
    * @param clampValues Default is true, clamp channels of the color returned
    */
   public contrast(amount = 1, clampValues = true) {

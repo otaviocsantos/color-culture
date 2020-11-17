@@ -290,6 +290,9 @@ Vue application: https://github.com/otaviocsantos/color-culture-vue-example
 
 
 ## Change Log
+5.0.1
+  Fixes:
+    Documentation for contrast method.
 5.0.0 
   Breaking changes:
     Removed spaces from names in Named.css.
