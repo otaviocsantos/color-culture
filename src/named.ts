@@ -170,7 +170,7 @@ export class Named {
    * Get a string value of a color by its name
    * @param key Color's name
    */
-  public static getName(key: string): string | undefined {
+  public static getValue(key: string): string | undefined {
     return Named.names.get(key);
   }
 
@@ -188,5 +188,21 @@ export class Named {
    */
   public static delete(key: string): boolean {
     return Named.names.delete(key);
+  }
+
+  /**
+   * Get a string name of a color by its value
+   * @param value Color's value
+   */
+  public static getName(value: string): string | undefined {
+    if(value){
+      value = value.toUpperCase();
+      const found = [...Named.names].find(([key, val]) => val == value);
+      if(found){
+        return found[0];
+      }
+    }
+    
+    return undefined;
   }
 }

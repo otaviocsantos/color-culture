@@ -121,19 +121,34 @@ export class Color {
    * @param model Model to which this color will be outputted.
    * @param clampValues Should channels values be kept with range? Defaults to true.
    */
-  constructor(value?: any, model = 'rgb', clampValues = true) {
-    if (model === '') {
-      model = 'rgb';
-    }
+  constructor(value?: any, model = '', clampValues = true) {
+    
 
     if (value instanceof Base) {
       this.base = new Base(value.channels, value.ranges, value.model, value.alphaIndex, value.clampFunction);
     } else if (typeof value === 'string') {
       this.base = Parser.fromString(value.toString(), clampValues);
+
+      if (model === '') {
+        model = 'rgb';
+      }
+
       if (model !== 'rgb') {
         this.base = this.to(model).base;
       }
+    } else if(value instanceof Color){
+      
+      if(model==''){
+        model = value.model;
+      }
+      this.base = BaseFactory.createGeneric(value.channels, model, clampValues);
+
     } else {
+      
+      if (model === '') {
+        model = 'rgb';
+      }
+
       this.base = BaseFactory.createGeneric(value, model, clampValues);
     }
 

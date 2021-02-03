@@ -15,7 +15,7 @@ export class Parser {
 
     // check for #hex
     if (val.substr(0, 1) === '#') {
-      array = Parser.ChannelsFromHEX(val.substr(1));
+      array = Parser.channelsFromHEX(val.substr(1));
 
       if (array) {
         return BaseFactory.createRGB(array);
@@ -61,7 +61,7 @@ export class Parser {
 
       return BaseFactory.createRGB(array, clampValues);
     } else if (Named.has(val)) {
-      return Parser.fromString(Named.getName(val) as string);
+      return Parser.fromString(Named.getValue(val) as string);
     } else if (prefix === 'hsl' || prefix === 'hsla') {
       const values: string[] = this.extractValues(val);
 
@@ -130,7 +130,14 @@ export class Parser {
     throw new Error("Parser couldn't understand value: " + val);
   }
 
-  public static ChannelsFromHEX(val: string): number[] | null {
+  public static formatHEX(val: string): string | null {
+
+    if(!val){
+      return null;
+    }
+    if(val[0]==='#'){
+      val = val.substr(1)
+    }
     if (val.length < 3) {
       return null;
     }
@@ -151,12 +158,22 @@ export class Parser {
       val += 'FF';
     }
 
-    return [
-      parseInt(val.substr(0, 2), 16),
-      parseInt(val.substr(2, 2), 16),
-      parseInt(val.substr(4, 2), 16),
-      parseInt(val.substr(6, 2), 16) / 255,
-    ];
+    return val;
+  }
+
+  public static channelsFromHEX(val: string): number[] | null {
+
+    const formated = Parser.formatHEX(val);
+
+    if(formated){
+      return [
+        parseInt(formated.substr(0, 2), 16),
+        parseInt(formated.substr(2, 2), 16),
+        parseInt(formated.substr(4, 2), 16),
+        parseInt(formated.substr(6, 2), 16) / 255,
+      ];
+    }
+    return null;
   }
 
   /**

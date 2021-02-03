@@ -3,7 +3,7 @@ import 'mocha';
 import { expect } from 'chai';
 
 import { Color } from '../src/color';
-import { CMYK, HSL, LAB, RGB, XYZ } from '../src/models';
+import { CMYK, HSL, HSV, LAB, RGB, XYZ } from '../src/models';
 
 describe('Color creation tests', () => {
 
@@ -183,6 +183,24 @@ describe('Color presentation tests', () => {
     expect(color.toString()).to.equal('cmyk(0, 0, 100, 0, 1)');
   });
 
+  it('Should accept a color as parameter to create a color ', () => {
+    const initial = new CMYK('Yellow');
+    const color = new CMYK(initial);
+    expect(color.toString()).to.equal('cmyk(0, 0, 100, 0, 1)');
+  });
+
+  it('Should accept a color as parameter to create a color ', () => {
+    const initial = new HSV([350, 23, 55, 0.5]);
+    const color = new HSV(initial);
+    expect(color.toString()).to.equal('hsv(350, 23, 55, 0.5)');
+  });
+
+  it('Should accept a color as parameter to create a color ', () => {
+    const initial = new HSV([350, 23, 55, 0.5]);
+    const color = new Color(initial);
+    expect(color.toString()).to.equal('hsv(350, 23, 55, 0.5)');
+  });
+
 
   it('Should round color correctly ', () => {
     const color = new CMYK([0.5, 11.6666, 33.5555, 66.9999, 0.5 ]);
@@ -223,6 +241,8 @@ describe('Color presentation tests', () => {
     const check = 'cmyk(0.5000, 11.3003, 22.6667, 33.2526, 0.5)';
     expect(color.toFixed(4,true)).to.equal(check);
   });
+
+  
 
   // public toFixed(fractionDigits = 2, skipAlpha = false) 
 

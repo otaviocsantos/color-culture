@@ -165,6 +165,15 @@ export class Compute {
     );
   }
 
+  /**
+   * Returns a new color after mixing this color to another by an x amount
+   * 0 = this color, 0.5 halfway between the two, 1 = another color
+   * Tries to approach values used by a CSS Gradient method, since it behaves differently
+   * when any alpha channel is 0.
+   * @param other Second color that will be added to this
+   * @param amount Amount by which each color will be represented, default is 0.5 a perfect mix
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public static mix(source: Color, destiny: Color, amount = 0.5, clampValues = true): Color {
     let src: Color;
     let dest: Color;
@@ -192,6 +201,13 @@ export class Compute {
     return src.to(source.model, clampValues);
   }
 
+  /**
+   * Returns a new color after mixing this color to another by an x amount
+   * 0 = this color, 0.5 halfway between the two, 1 = another color
+   * @param other Second color that will be added to this
+   * @param amount Amount by which each color will be represented, default is 0.5 a perfect mix
+   * @param clampValues Default is true, clamp channels of the color returned
+   */
   public static mixChannels(source: Color, destiny: Color, amount = 0.5, clampValues = true): Color {
     const copy = source.clone(false);
     destiny = destiny.to(copy.model, false);

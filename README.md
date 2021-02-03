@@ -290,6 +290,15 @@ Vue application: https://github.com/otaviocsantos/color-culture-vue-example
 
 
 ## Change Log
+5.0.2
+Fixes: 
+  Named.getName now returns a color's name by its value.
+New Features: 
+  Color constructor now accepts a color instance as parameter to create a new color.
+  Named.getValue returns a color's value by its name.
+  Added test cases to new methods.
+  Added documentation to some methods.
+  Updated docs.
 5.0.1
   Fixes:
     Documentation for contrast method.
