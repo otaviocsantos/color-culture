@@ -7,13 +7,13 @@ import { Relation } from './relation';
  */
 export class Culture {
   get items() {
-    return this.m_items;
+    return this._items;
   }
 
   /**
    * Collection of groups of colors indexed by names
    */
-  protected m_items = new Array<Relation>();
+  protected _items = new Array<Relation>();
 
   /**
    * Add a color to this culture
@@ -23,7 +23,7 @@ export class Culture {
     if (color !== undefined && color !== null) {
       const rel = new Relation(color);
 
-      this.m_items.push(rel);
+      this._items.push(rel);
 
       return rel;
     }
@@ -39,7 +39,7 @@ export class Culture {
   public addRelation(modifier: any = null): Relation {
     const relation = new Relation(modifier);
 
-    this.m_items.push(relation);
+    this._items.push(relation);
 
     return relation;
   }

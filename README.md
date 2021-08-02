@@ -290,43 +290,88 @@ Vue application: https://github.com/otaviocsantos/color-culture-vue-example
 
 
 ## Change Log
-5.0.2
+5.0.3,
+
 Fixes: 
-  Named.getName now returns a color's name by its value.
+
+Contrast now works correctly when used with models other than RGB.
+
+5.0.2,
+
+Fixes: 
+
+Named.getName now returns a color's name by its value.
+
 New Features: 
+
   Color constructor now accepts a color instance as parameter to create a new color.
+  
   Named.getValue returns a color's value by its name.
+  
   Added test cases to new methods.
+  
   Added documentation to some methods.
+  
   Updated docs.
+  
 5.0.1
+  
   Fixes:
-    Documentation for contrast method.
+  
+  Documentation for contrast method.
+
 5.0.0 
+  
   Breaking changes:
-    Removed spaces from names in Named.css.
-    Renamed Named.css to Named.names.
+  
+  Removed spaces from names in Named.css.
+  
+  Renamed Named.css to Named.names.
+  
   New features: 
-    Added HSV color model.
-    New contrast modifier: makes sure your color is readable.
-    New Range class to create gradients.
-    Named now accepts user defined names.
-    Expanded tests.
+  
+  Added HSV color model.
+
+  New contrast modifier: makes sure your color is readable.
+
+  New Range class to create gradients.
+
+  Named now accepts user defined names.
+
+  Expanded tests.
+
   Fixes:
-    Color convertions fixes between RGB <-> XYZ
+  
+  Color convertions fixes between RGB <-> XYZ
 
-4.0.0 New and improved, hopefully better maintained in the future...
+4.0.0 
 
-3.0.0 Made Relation more flexible, expanded documentation, added test cases, fixed round bug when calling rgba, better creation from string, better support for custom models.
+New and improved, hopefully better maintained in the future...
 
-2.0.0 Ground up rewrite and streamlining.
+3.0.0 
 
-2.0.1 Small fix in documentation and link to Angular app example.
+Made Relation more flexible, expanded documentation, added test cases, fixed round bug when calling rgba, better creation from string, better support for custom models.
 
-2.0.2 Expanded documentation and link to Vue app example.
+2.0.0 
 
-2.1.0 Added new creation methods to BaseFactory, fixed some some creation methods in BaseFactory. Updated documentation.
+Ground up rewrite and streamlining.
 
-2.1.1 Fixed small typos in README
+2.0.1 
 
-2.1.2 Added custom color model CRUD methods to BaseFactory.
+Small fix in documentation and link to Angular app example.
+
+2.0.2 
+
+Expanded documentation and link to Vue app example.
+
+2.1.0 
+
+Added new creation methods to BaseFactory, fixed some some creation methods in BaseFactory. Updated documentation.
+
+2.1.1 
+
+Fixed small typos in README
+
+2.1.2 
+
+Added custom color model CRUD methods to BaseFactory.

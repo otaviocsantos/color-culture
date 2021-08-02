@@ -75,5 +75,51 @@ describe('contrast tests', () => {
     expect(result.toString()).to.equal(contrasted.toString());
   });
 
+  it('Contrast should keep alpha value ', () => {
+
+    const middle = new RGB([200, 55, 127.5, 0.12]);
+    const contrasted = new RGB([127.5, 127.5, 127.5, 0.12]);
+
+    const result = middle.contrast(-1);
+    if(result instanceof Color){
+      expect(result.alpha.toString()).to.equal(contrasted.alpha.toString());
+    }else{
+      throw result;
+    }
+  });
+
+  it('Contrast should keep alpha value when used with a non RGB model', () => {
+
+    const middle = new HSL([120, 30, 40, 0.67]);
+    const contrasted = new HSL([120, 30, 40, 0.67]);
+
+    const result = middle.contrast(1);
+    if(result instanceof Color){
+      expect(result.alpha.toString()).to.equal(contrasted.alpha.toString());
+    }else{
+      throw result;
+    }
+  });
+
+  it('Non RGB model should be properly contrasted ', () => {
+
+    const middle = new HSL([200, 55, 60.5, 0.61]);
+    const contrasted = new HSL([200, 71.2779047739692, 62.811349036402575, 0.61]);
+
+    const result = middle.contrast(0.1);
+    console.log('--------------------------------------------------------',result.toString())
+    expect(result.toString()).to.equal(contrasted.toString());
+  });
+
+
+  it('Non RGB model should be properly diminished ', () => {
+
+    const middle = new HSL([200, 55, 60.5, 0.461]);
+    const contrasted = new HSL([0, 0, 50, 0.461]);
+
+    const result = middle.contrast(-1);
+    expect(result.toString()).to.equal(contrasted.toString());
+  });
+
 });
 

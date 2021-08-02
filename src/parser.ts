@@ -131,12 +131,11 @@ export class Parser {
   }
 
   public static formatHEX(val: string): string | null {
-
-    if(!val){
+    if (!val) {
       return null;
     }
-    if(val[0]==='#'){
-      val = val.substr(1)
+    if (val[0] === '#') {
+      val = val.substr(1);
     }
     if (val.length < 3) {
       return null;
@@ -162,10 +161,9 @@ export class Parser {
   }
 
   public static channelsFromHEX(val: string): number[] | null {
-
     const formated = Parser.formatHEX(val);
 
-    if(formated){
+    if (formated) {
       return [
         parseInt(formated.substr(0, 2), 16),
         parseInt(formated.substr(2, 2), 16),

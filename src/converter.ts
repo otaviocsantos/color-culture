@@ -108,7 +108,12 @@ export class Converter {
     if (s === 0) {
       val = l * 255;
       value.channels = [val, val, val, value.alpha];
-      value.ranges = [[0, 255], [0, 255], [0, 255], [0, 1]];
+      value.ranges = [
+        [0, 255],
+        [0, 255],
+        [0, 255],
+        [0, 1],
+      ];
       value.model = 'rgb';
       return value;
     }
@@ -396,7 +401,12 @@ export class Converter {
       [l, c, h, value.alpha],
       clampValues,
       // TODO: Check ranges
-      [[0, 180], [0, 180], [0, 360], [0, 1]],
+      [
+        [0, 180],
+        [0, 180],
+        [0, 360],
+        [0, 1],
+      ],
       'lch',
       3,
     );

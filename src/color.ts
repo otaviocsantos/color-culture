@@ -122,8 +122,6 @@ export class Color {
    * @param clampValues Should channels values be kept with range? Defaults to true.
    */
   constructor(value?: any, model = '', clampValues = true) {
-    
-
     if (value instanceof Base) {
       this.base = new Base(value.channels, value.ranges, value.model, value.alphaIndex, value.clampFunction);
     } else if (typeof value === 'string') {
@@ -136,15 +134,12 @@ export class Color {
       if (model !== 'rgb') {
         this.base = this.to(model).base;
       }
-    } else if(value instanceof Color){
-      
-      if(model==''){
+    } else if (value instanceof Color) {
+      if (model === '') {
         model = value.model;
       }
       this.base = BaseFactory.createGeneric(value.channels, model, clampValues);
-
     } else {
-      
       if (model === '') {
         model = 'rgb';
       }
@@ -263,15 +258,12 @@ export class Color {
    */
   public round(makeCopy = true, skipAlpha = true): Color {
     if (makeCopy) {
-
       return this.clone().round(false);
-
     } else {
-
-      this.channels.map((o,i)=>{
-        if(i!==this.alphaIndex){
+      this.channels.map((o, i) => {
+        if (i !== this.alphaIndex) {
           this.channels[i] = Math.round(this.channels[i]);
-        }else if(!skipAlpha){
+        } else if (!skipAlpha) {
           this.channels[i] = Math.round(this.channels[i]);
         }
       });

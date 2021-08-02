@@ -308,12 +308,13 @@ export class Compute {
 
     const ranged = amount * 255;
     const factor = (259 * (ranged + 255)) / (255 * (259 - ranged));
+    const rgb = color.rgb(clampValues);
     const result = new Color(
       [
-        factor * (color.channels[0] - 127.5) + 127.5,
-        factor * (color.channels[1] - 127.5) + 127.5,
-        factor * (color.channels[2] - 127.5) + 127.5,
-        color.channels[3],
+        factor * (rgb.channels[0] - 127.5) + 127.5,
+        factor * (rgb.channels[1] - 127.5) + 127.5,
+        factor * (rgb.channels[2] - 127.5) + 127.5,
+        rgb.channels[3],
       ],
       'rgb',
       clampValues,

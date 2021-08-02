@@ -90,7 +90,17 @@ export class BaseFactory {
    * @param clampValues if values should be clamped, default is true
    */
   public static createRGB(values = [0, 0, 0, 1], clampValues = true): Base {
-    const result = new Base(values, [[0, 255], [0, 255], [0, 255], [0, 1]], 'rgb', 3);
+    const result = new Base(
+      values,
+      [
+        [0, 255],
+        [0, 255],
+        [0, 255],
+        [0, 1],
+      ],
+      'rgb',
+      3,
+    );
     if (clampValues) {
       result.clamp();
     }
@@ -103,18 +113,29 @@ export class BaseFactory {
    * @param clampValues if values should be clamped, default is true
    */
   public static createHSL(values = [0, 0, 0, 1], clampValues = true): Base {
-    const result = new Base(values, [[0, 360], [0, 100], [0, 100], [0, 1]], 'hsl', 3, (scope: Base) => {
-      scope.channels[0] = ((scope.channels[0] % 360) + 360) % 360;
+    const result = new Base(
+      values,
+      [
+        [0, 360],
+        [0, 100],
+        [0, 100],
+        [0, 1],
+      ],
+      'hsl',
+      3,
+      (scope: Base) => {
+        scope.channels[0] = ((scope.channels[0] % 360) + 360) % 360;
 
-      for (let i = 1; i < scope.channels.length; i++) {
-        scope.channels[i] =
-          scope.ranges[i][0] > scope.channels[i]
-            ? scope.ranges[i][0]
-            : scope.ranges[i][1] < scope.channels[i]
-            ? scope.ranges[i][1]
-            : scope.channels[i];
-      }
-    });
+        for (let i = 1; i < scope.channels.length; i++) {
+          scope.channels[i] =
+            scope.ranges[i][0] > scope.channels[i]
+              ? scope.ranges[i][0]
+              : scope.ranges[i][1] < scope.channels[i]
+              ? scope.ranges[i][1]
+              : scope.channels[i];
+        }
+      },
+    );
     if (clampValues) {
       result.clamp();
     }
@@ -127,18 +148,29 @@ export class BaseFactory {
    * @param clampValues if values should be clamped, default is true
    */
   public static createHSV(values = [0, 0, 0, 1], clampValues = true): Base {
-    const result = new Base(values, [[0, 360], [0, 100], [0, 100], [0, 1]], 'hsv', 3, (scope: Base) => {
-      scope.channels[0] = ((scope.channels[0] % 360) + 360) % 360;
+    const result = new Base(
+      values,
+      [
+        [0, 360],
+        [0, 100],
+        [0, 100],
+        [0, 1],
+      ],
+      'hsv',
+      3,
+      (scope: Base) => {
+        scope.channels[0] = ((scope.channels[0] % 360) + 360) % 360;
 
-      for (let i = 1; i < scope.channels.length; i++) {
-        scope.channels[i] =
-          scope.ranges[i][0] > scope.channels[i]
-            ? scope.ranges[i][0]
-            : scope.ranges[i][1] < scope.channels[i]
-            ? scope.ranges[i][1]
-            : scope.channels[i];
-      }
-    });
+        for (let i = 1; i < scope.channels.length; i++) {
+          scope.channels[i] =
+            scope.ranges[i][0] > scope.channels[i]
+              ? scope.ranges[i][0]
+              : scope.ranges[i][1] < scope.channels[i]
+              ? scope.ranges[i][1]
+              : scope.channels[i];
+        }
+      },
+    );
     if (clampValues) {
       result.clamp();
     }
@@ -151,7 +183,18 @@ export class BaseFactory {
    * @param clampValues if values should be clamped, default is true
    */
   public static createCMYK(values = [0, 0, 0, 0, 1], clampValues = true): Base {
-    const result = new Base(values, [[0, 100], [0, 100], [0, 100], [0, 100], [0, 1]], 'cmyk', 4);
+    const result = new Base(
+      values,
+      [
+        [0, 100],
+        [0, 100],
+        [0, 100],
+        [0, 100],
+        [0, 1],
+      ],
+      'cmyk',
+      4,
+    );
     if (clampValues) {
       result.clamp();
     }
@@ -164,7 +207,17 @@ export class BaseFactory {
    * @param clampValues if values should be clamped, default is true
    */
   public static createLAB(values = [0, 0, 0, 1], clampValues = true): Base {
-    const result = new Base(values, [[0, 100], [-128, 128], [-128, 128], [0, 1]], 'lab', 3);
+    const result = new Base(
+      values,
+      [
+        [0, 100],
+        [-128, 128],
+        [-128, 128],
+        [0, 1],
+      ],
+      'lab',
+      3,
+    );
     if (clampValues) {
       result.clamp();
     }
@@ -177,7 +230,17 @@ export class BaseFactory {
    * @param clampValues if values should be clamped, default is true
    */
   public static createXYZ(values = [0, 0, 0, 1], clampValues = true): Base {
-    const result = new Base(values, [[0, 100], [0, 100], [0, 100], [0, 1]], 'xyz', 3);
+    const result = new Base(
+      values,
+      [
+        [0, 100],
+        [0, 100],
+        [0, 100],
+        [0, 1],
+      ],
+      'xyz',
+      3,
+    );
     if (clampValues) {
       result.clamp();
     }

@@ -195,14 +195,14 @@ export class Named {
    * @param value Color's value
    */
   public static getName(value: string): string | undefined {
-    if(value){
+    if (value) {
       value = value.toUpperCase();
-      const found = [...Named.names].find(([key, val]) => val == value);
-      if(found){
+      const found = [...Named.names].find(([key, val]) => val === value);
+      if (found) {
         return found[0];
       }
     }
-    
+
     return undefined;
   }
 }
